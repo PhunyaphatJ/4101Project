@@ -30,10 +30,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->foreign('email')->references('email')->on('persons')->onDelete('cascade');
             $table->char('student_id',10)->unique();
-            $table->primary('student_id');
             $table->enum('student_type',['no_register','general','internship','former']);
             $table->enum('department',['CS','IT']);
-            $table->int('address_id');  
+            $table->unsignedInteger('address_id');  
             $table->foreign('address_id')->references('address_id')->on('address')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
@@ -42,11 +41,11 @@ return new class extends Migration
         
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
-            $table->char('professor_id',10)->primary();
+            $table->char('professor_id',10)->unique();
             $table->string('remark');
             $table->enum('status',['active','no_active']);
-            $table->int('running_number');
-            $table->bool('assigned');
+            $table->integer('running_number');
+            $table->boolean('assigned');
             $table->timestamps();
         });
     }
