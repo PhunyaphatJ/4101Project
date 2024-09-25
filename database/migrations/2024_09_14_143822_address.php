@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->increments('address_id');
+            $table->mediumIncrements('address_id')->unsigned();
             $table->string('house_no');
             $table->string('village_no');
-            $table->string('road');
+            $table->string('road')->nullable();
             $table->string('sub_district');
-            $table->string('district');
+            $table->string('district')->nullable();
             $table->string('province');
             $table->string('postal_code');
             $table->timestamps();
-            $table->index('address_id','address_id_index');
+            $table->softDeletes();
         });
     }
 

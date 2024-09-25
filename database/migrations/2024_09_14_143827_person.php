@@ -12,27 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('persons', function (Blueprint $table) {
-            $table->id();
-            $table->string('email')->unique();
+            $table->string('email')->primary();
             $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
             $table->enum('prefix',['MS','MR','MRS']);
             $table->string('name');
             $table->string('surname');
-            $table->char('phone',10);
+            $table->char('phone',10)->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->index('email','email_index');
+            $table->index(['name','surname'],'name_surname_index');
         });
 
 
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->string('email')->unique();
+            $table->string('email')->primary();
             $table->foreign('email')->references('email')->on('persons')->onDelete('cascade');
             $table->char('student_id',10)->unique();
-            $table->enum('student_type',['no_register','general','internship','former']);
-            $table->enum('department',['CS','IT']);
-            $table->unsignedInteger('address_id');  
+            $table->enum('student_type',['no_register','general','internship','former'])->default('no_register');
+            $table->enum('department',['CS','IT'])->default('CS');
+            $table->mediumInteger('address_id')->unsigned()->nullable();  
             $table->foreign('address_id')->references('address_id')->on('address')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
@@ -40,12 +38,13 @@ return new class extends Migration
         });
         
         Schema::create('professors', function (Blueprint $table) {
-            $table->id();
+            $table->string('email')->primary();
+            $table->foreign('email')->references('email')->on('persons')->onDelete('cascade');
             $table->char('professor_id',10)->unique();
-            $table->string('remark');
-            $table->enum('status',['active','no_active']);
-            $table->integer('running_number');
-            $table->boolean('assigned');
+            $table->string('remark')->nullable();
+            $table->enum('status',['active','no_active'])->default('active');
+            $table->integer('running_number')->default(0);
+            $table->boolean('assigned')->default(true);
             $table->timestamps();
         });
     }
@@ -55,8 +54,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('persons');
         Schema::dropIfExists('students');
         Schema::dropIfExists('professors');
+        Schema::dropIfExists('persons');
     }
 };
