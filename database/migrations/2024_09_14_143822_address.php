@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('village_no');
             $table->string('road')->nullable();
             $table->string('sub_district');
-            $table->string('district')->nullable();
+            $table->string('district');
             $table->string('province');
             $table->string('postal_code');
             $table->timestamps();

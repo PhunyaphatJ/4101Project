@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -15,26 +16,14 @@ return new class extends Migration
             $table->mediumIncrements('application_id')->unsigned();
             $table->string('application_name');
             $table->enum('document_status',['approval_pending','reject','document_pending','completed']);
+            $table->string('student_email');
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        Schema::create('application_address', function (Blueprint $table) {
-            $table->mediumIncrements('address_id')->unsigned();
-            $table->string('house_no');
-            $table->string('village_no');
-            $table->string('road')->nullable();
-            $table->string('sub_district');
-            $table->string('district')->nullable();
-            $table->string('province');
-            $table->string('postal_code');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->foreign('student_email')->references('email')->on('students')->onDelete('cascade');
         });
 
         Schema::create('internship_registers', function (Blueprint $table) {
             $table->mediumIncrements('application_id')->unsigned();
-            $table->string('student_email');
             $table->char('student_id',10);
             $table->integer('credit');
             $table->enum('department',['CS','IT']);
@@ -43,7 +32,6 @@ return new class extends Migration
             $table->string('recentreceipt_path');
             $table->timestamps();
             $table->foreign('application_id')->references('application_id')->on('applications')->onDelete('cascade');
-            $table->foreign('student_email')->references('email')->on('students')->onDelete('cascade');
         });
 
         Schema::create('internship_app_info', function (Blueprint $table) {
@@ -57,25 +45,22 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('attend_to');
-            $table->foreign('company_address')->references('address_id')->on('application_address')->onDelete('cascade');
+            $table->foreign('company_address')->references('address_id')->on('address')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
 
         Schema::create('internship_request_apps', function (Blueprint $table) {
             $table->mediumInteger('application_id')->unsigned();
-            $table->string('student_email');
             $table->mediumInteger('internship_app_info_id')->unsigned();
             $table->timestamps(); 
             $table->foreign('application_id')->references('application_id')->on('applications')->onDelete('cascade');
-            $table->foreign('student_email')->references('email')->on('students')->onDelete('cascade'); 
             $table->foreign('internship_app_info_id')->references('internship_app_info_id')->on('internship_app_info')->onDelete('cascade'); 
         });
 
         Schema::create('recommendation_apps', function (Blueprint $table) {
             $table->mediumInteger('application_id')->unsigned();
             $table->mediumInteger('internship_app_info_id')->unsigned();
-            $table->string('student_email');
             $table->string('mentor_email');
             $table->string('mentor_position');
             $table->char('mentor_fax',10)->nullabe();
@@ -83,7 +68,6 @@ return new class extends Migration
             $table->string('response_letter_path')->nullable();
             $table->timestamps();
             $table->foreign('application_id')->references('application_id')->on('applications')->onDelete('cascade');
-            $table->foreign('student_email')->references('email')->on('students')->onDelete('cascade'); 
             $table->foreign('internship_app_info_id')->references('internship_app_info_id')->on('internship_app_info')->onDelete('cascade'); 
         });
 
