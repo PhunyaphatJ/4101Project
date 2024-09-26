@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->mediumIncrements('application_id')->unsigned();
-            $table->string('application_name');
+            $table->enum('application_name',['ลงทะเบียนฝึกงาน','หนังสือขอความอนุเคราะห์','หนังสือส่งตัว','หนังสือขอบคุณ']);
             $table->enum('document_status',['approval_pending','reject','document_pending','completed']);
             $table->string('student_email');
             $table->timestamps();
