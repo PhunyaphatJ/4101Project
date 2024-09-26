@@ -45,9 +45,6 @@ return new class extends Migration
             $table->string('remark')->nullable();
             $table->mediumInteger('internship_id')->unsigned();
             $table->timestamps();
-            // $table->foreign('form_id')->references('form_id')->on('question_form')->onDelete('cascade');
-            // $table->foreign('part_id')->references('part_id')->on('question_part')->onDelete('cascade');
-            // $table->foreign('question_id')->references('question_id')->on('question_list')->onDelete('cascade');
             $table->foreign(['form_id', 'part_id','question_id'])->references(['form_id', 'part_id','question_id'])->on('question_list')->onDelete('cascade');
             $table->foreign('internship_id')->references('internship_id')->on('internship_info')->onDelete('cascade');
         });
