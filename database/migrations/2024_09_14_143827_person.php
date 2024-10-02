@@ -31,7 +31,7 @@ return new class extends Migration
             $table->enum('student_type',['no_register','general','internship','former'])->default('no_register');
             $table->enum('department',['CS','IT'])->default('CS');
             $table->mediumInteger('address_id')->unsigned()->nullable();  
-            $table->foreign('address_id')->references('address_id')->on('address')->onDelete('cascade');
+            $table->foreign('address_id')->references('address_id')->on('addresses')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
             $table->index(['email','student_type'],'student_id_type_index');
@@ -46,6 +46,7 @@ return new class extends Migration
             $table->integer('running_number')->default(0);
             $table->boolean('assigned')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

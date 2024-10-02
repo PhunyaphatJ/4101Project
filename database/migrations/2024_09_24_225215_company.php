@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->char('phone',10);
             $table->mediumInteger('address_id')->unsigned();
-            $table->foreign('address_id')->references('address_id')->on('address')->onDelete('cascade');
+            $table->foreign('address_id')->references('address_id')->on('addresses')->onDelete('cascade');
             $table->char('fax',10)->nullable();
             $table->timestamps();
             $table->softDeletes();

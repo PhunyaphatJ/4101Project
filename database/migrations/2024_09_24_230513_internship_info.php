@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('internship_info', function (Blueprint $table) {
+        Schema::create('internship_infos', function (Blueprint $table) {
             $table->mediumIncrements('internship_id')->unsigned();
             $table->string('student_email');
             $table->string('professor_email');
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->mediumIncrements('internship_report')->unsigned();
             $table->mediumInteger('internship_id')->unsigned();
             $table->string('file_part');
-            $table->foreign('internship_id')->references('internship_id')->on('internship_info')->onDelete('cascade');
+            $table->foreign('internship_id')->references('internship_id')->on('internship_infos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -45,6 +45,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('internship_reports');
-        Schema::dropIfExists('internship_info');
+        Schema::dropIfExists('internship_infos');
     }
 };

@@ -23,7 +23,7 @@ return new class extends Migration
         });
 
         Schema::create('internship_registers', function (Blueprint $table) {
-            $table->mediumIncrements('application_id')->unsigned();
+            $table->mediumInteger('application_id')->unsigned();
             $table->char('student_id',10);
             $table->integer('credit');
             $table->enum('department',['CS','IT']);
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->foreign('application_id')->references('application_id')->on('applications')->onDelete('cascade');
         });
 
-        Schema::create('internship_app_info', function (Blueprint $table) {
+        Schema::create('internship_app_infos', function (Blueprint $table) {
             $table->mediumIncrements('internship_app_info_id')->unsigned();
             $table->string('company_name');
             $table->mediumInteger('company_address')->unsigned();
@@ -45,9 +45,8 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('attend_to')->nullable();
-            $table->foreign('company_address')->references('address_id')->on('address')->onDelete('cascade');
+            $table->foreign('company_address')->references('address_id')->on('addresses')->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create('internship_request_apps', function (Blueprint $table) {
@@ -55,7 +54,7 @@ return new class extends Migration
             $table->mediumInteger('internship_app_info_id')->unsigned();
             $table->timestamps(); 
             $table->foreign('application_id')->references('application_id')->on('applications')->onDelete('cascade');
-            $table->foreign('internship_app_info_id')->references('internship_app_info_id')->on('internship_app_info')->onDelete('cascade'); 
+            $table->foreign('internship_app_info_id')->references('internship_app_info_id')->on('internship_app_infos')->onDelete('cascade'); 
         });
 
         Schema::create('recommendation_apps', function (Blueprint $table) {
@@ -67,8 +66,9 @@ return new class extends Migration
             $table->char('mentor_phone',10)->nullable();
             $table->string('response_letter_path');
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('application_id')->references('application_id')->on('applications')->onDelete('cascade');
-            $table->foreign('internship_app_info_id')->references('internship_app_info_id')->on('internship_app_info')->onDelete('cascade'); 
+            $table->foreign('internship_app_info_id')->references('internship_app_info_id')->on('internship_app_infos')->onDelete('cascade'); 
         });
 
         Schema::create('appreciation_apps', function (Blueprint $table) {
@@ -93,6 +93,6 @@ return new class extends Migration
         Schema::dropIfExists('recommendation_apps');
         Schema::dropIfExists('appreciation_apps');
         Schema::dropIfExists('applications');
-        Schema::dropIfExists('internship_app_info');
+        Schema::dropIfExists('internship_app_infos');
     }
 };
