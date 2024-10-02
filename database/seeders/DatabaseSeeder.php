@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CompanyTableSeeder::class);
         $this->call(ApplicationTableSeeder::class);
         $this->call(IntershipInfoTableSeeder::class);
+        $this->call(InternshipManual_ResponseLetterSeeder::class);
+        $this->call(QuestionSeeder::class);
     }
 }

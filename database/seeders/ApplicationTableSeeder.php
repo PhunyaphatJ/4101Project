@@ -35,6 +35,11 @@ class ApplicationTableSeeder extends Seeder
                 'document_status'=>'completed',
                 'student_email'=>'student1@example.com',
             ],
+            [
+                'application_name'=>'หนังสือขอความอนุเคราะห์',
+                'document_status'=>'document_pending',
+                'student_email'=>'student1@example.com',
+            ],
         ]);
 
         DB::table('internship_registers')->insert([
@@ -49,11 +54,20 @@ class ApplicationTableSeeder extends Seeder
             ],
         ]);
 
-        DB::table('internship_app_info')->insert([
+        DB::table('internship_app_infos')->insert([
             [
                 'company_name'=>'company1',
                 'company_address'=>1,
                 'company_phone'=>'023412345',
+                'register_semester'=>'s',
+                'year'=>2024,
+                'start_date'=>'2024-09-30',
+                'end_date'=>'2024-12-30',
+            ],
+            [
+                'company_name'=>'company2',
+                'company_address'=>2,
+                'company_phone'=>'054656877',
                 'register_semester'=>'s',
                 'year'=>2024,
                 'start_date'=>'2024-09-30',
@@ -65,6 +79,10 @@ class ApplicationTableSeeder extends Seeder
             [
                 'application_id'=>3,
                 'internship_app_info_id'=>1,
+            ],
+            [
+                'application_id'=>5,
+                'internship_app_info_id'=>2,
             ],
         ]);
 

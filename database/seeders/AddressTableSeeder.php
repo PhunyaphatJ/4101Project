@@ -14,7 +14,7 @@ class AddressTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('address')->insert([
+        DB::table('addresses')->insert([
             [
                 'house_no'=>'9/9',
                 'village_no'=>'99',

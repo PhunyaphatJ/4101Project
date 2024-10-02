@@ -13,7 +13,7 @@ class IntershipInfoTableSeeder extends Seeder
      */
     public function run(): void
     {
-       DB::table('internship_info')->insert([
+       DB::table('internship_infos')->insert([
         [
             'student_email'=>'student1@example.com',
             'professor_email'=>'professor1@example.com',
@@ -24,6 +24,11 @@ class IntershipInfoTableSeeder extends Seeder
             'start_date'=>'2024-01-09',
             'end_date'=>'2025-10-01',
         ],
+       ]);
+
+       DB::table('internship_reports')->insert([
+        'internship_id'=>1,
+        'file_part'=>'c://',
        ]);
 
     }
