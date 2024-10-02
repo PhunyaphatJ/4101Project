@@ -9,8 +9,14 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    
+    use \Illuminate\Database\Eloquent\SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
+    use HasFactory, Notifiable;
+    protected $primaryKey = 'email';
+    public $incrementing = false;
+    protected $softCascade = ['person'];
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'roles',
     ];
 
     /**
@@ -43,5 +50,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    public function person()
+    {
+        return $this->hasOne(Person::class,'email','email');
     }
 }
