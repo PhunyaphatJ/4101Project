@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-            //คิดว่าควร relation with internship_id 
         Schema::create('events', function (Blueprint $table) {
-            $table->mediumIncrements('event_id')->unsigned();
+            $table->char('student_id',10);
             $table->date('date');
-            $table->string('student_email');
-            $table->string('professor_email');
-            $table->foreign('student_email')->references('email')->on('students')->onDelete('cascade');
-            $table->foreign('professor_email')->references('email')->on('professors')->onDelete('cascade');
+            $table->boolean('sent');
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('student_id')->references('student_id')->on('internship_infos')->onDelete('cascade');
         });
 
         Schema::create('notifications', function (Blueprint $table) {
@@ -29,9 +27,9 @@ return new class extends Migration
             $table->timestamp('datetime');
             $table->string('subject');
             $table->string('details');
-            $table->foreign('sender_email')->references('email')->on('persons')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('receiver_email')->references('email')->on('users')->onDelete('cascade');
         });
     }
 
