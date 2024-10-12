@@ -22,8 +22,8 @@ return new class extends Migration
             $table->mediumInteger('part_id')->unsigned();
             $table->string('part_text');            
             $table->timestamps();
-            $table->foreign('form_id')->references('form_id')->on('question_forms')->onDelete('cascade');
             $table->primary(['form_id', 'part_id']);
+            $table->foreign('form_id')->references('form_id')->on('question_forms')->onDelete('cascade');
         });
 
         Schema::create('question_lists', function (Blueprint $table) {
@@ -43,10 +43,11 @@ return new class extends Migration
             $table->mediumInteger('question_id')->unsigned();  
             $table->string('answer')->nullable();
             $table->string('remark')->nullable();
-            $table->mediumInteger('internship_id')->unsigned();
+            $table->char('student_id',10);
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign(['form_id', 'part_id','question_id'])->references(['form_id', 'part_id','question_id'])->on('question_lists')->onDelete('cascade');
-            $table->foreign('internship_id')->references('internship_id')->on('internship_infos')->onDelete('cascade');
+            $table->foreign('student_id')->references('student_id')->on('internship_infos')->onDelete('cascade');
         });
     }
 

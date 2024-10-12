@@ -11,31 +11,36 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('internship_infos', function (Blueprint $table) {
-            $table->mediumIncrements('internship_id')->unsigned();
-            $table->string('student_email');
-            $table->string('professor_email');
-            $table->string('mentor_email');
+        Schema::create('internship_details', function (Blueprint $table) {
+            $table->char('student_id',10);
+            $table->mediumInteger('internship_detail_id')->unsigned()->autoIncrements();
             $table->mediumInteger('company_id')->unsigned();
-            $table->enum('register_semester',['1','2','s','retake1','retake2']);
+            $table->enum('register_semester',['1','2','S','retake1','retake2']);
             $table->year('year');
-            $table->date('start_date'); //YYYY-MM-DD
+            $table->date('start_date');
             $table->date('end_date');
-            $table->enum('grade',['A','F'])->nullable();
-            $table->foreign('student_email')->references('email')->on('students')->onDelete('cascade');
-            $table->foreign('professor_email')->references('email')->on('professors')->onDelete('cascade');
-            $table->foreign('mentor_email')->references('email')->on('mentors')->onDelete('cascade');
-            $table->foreign('company_id')->references('company_id')->on('companys')->onDelete('cascade');
+            $table->string('attend_to')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
+            $table->foreign('company_id')->references('company_id')->on('companies')->onDelete('cascade');
+            $table->primary(['internship_detail_id', 'student_id']);
         });
 
-        Schema::create('internship_reports', function (Blueprint $table) {
-            $table->mediumIncrements('internship_report')->unsigned();
-            $table->mediumInteger('internship_id')->unsigned();
-            $table->string('file_part');
-            $table->foreign('internship_id')->references('internship_id')->on('internship_infos')->onDelete('cascade');
+        Schema::create('internship_infos', function (Blueprint $table) {
+            $table->char('student_id', 10)->primary();
+            $table->mediumInteger('internship_id')->unsigned()->autoIncrements()->unique();
+            $table->char('professor_id',10);
+            $table->string('mentor_email');
+            $table->mediumInteger('internship_detail_id')->unsigned()->unique();
+            $table->enum('grade',['A','F'])->nullable();
+            $table->string('report_file_path')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
+            $table->foreign('professor_id')->references('professor_id')->on('professors')->onDelete('cascade');
+            $table->foreign('mentor_email')->references('email')->on('mentors')->onDelete('cascade');
+            $table->foreign('internship_detail_id')->references('internship_detail_id')->on('internship_details')->onDelete('cascade');
         });
     }
 
@@ -44,7 +49,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('internship_reports');
         Schema::dropIfExists('internship_infos');
+        Schema::dropIfExists('internship_details');
     }
 };

@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companys', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->mediumIncrements('company_id')->unsigned();
             $table->string('company_name');
             $table->char('phone',10);
             $table->mediumInteger('address_id')->unsigned();
-            $table->foreign('address_id')->references('address_id')->on('addresses')->onDelete('cascade');
             $table->char('fax',10)->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('address_id')->references('address_id')->on('addresses')->onDelete('cascade');
         });
 
         Schema::create('mentors', function (Blueprint $table) {
@@ -30,9 +30,9 @@ return new class extends Migration
             $table->char('phone',10)->nullable();
             $table->char('fax',10)->nullable();
             $table->mediumInteger('company_id')->unsigned();
-            $table->foreign('company_id')->references('company_id')->on('companys')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('company_id')->references('company_id')->on('companies')->onDelete('cascade');
         });
     }
 
@@ -42,6 +42,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('mentors');
-        Schema::dropIfExists('companys');
+        Schema::dropIfExists('companies');
     }
 };
