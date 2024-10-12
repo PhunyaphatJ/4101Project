@@ -9,9 +9,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
     
     use \Illuminate\Database\Eloquent\SoftDeletes;
-    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
     use HasFactory, Notifiable;
     protected $primaryKey = 'email';
