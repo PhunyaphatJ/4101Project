@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('application_type',['Internship_Register','Internship_Request','Recommendation','Appreciation']);
             $table->enum('application_status',['approval_pending','reject','document_pending','completed']);
             $table->timestamp('sent');
-            $table->mediumInteger('internship_detail_id')->unsigned();
+            $table->mediumInteger('internship_detail_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
