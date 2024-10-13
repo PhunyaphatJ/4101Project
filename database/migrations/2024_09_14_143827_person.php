@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->string('email')->primary();
-            $table->enum('prefix',['MS.','MR.','MRS.']);
+            $table->enum('prefix',['MS','MR','MRS']);
             $table->string('name');
             $table->string('surname');
             $table->char('phone',10)->nullable();
