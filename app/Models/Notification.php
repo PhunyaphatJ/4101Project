@@ -20,7 +20,7 @@ class Notification extends Model
     ];
 
     public function sender_email(){
-        return $this->belongsTo(Person::class,'sender_email','email');
+        return $this->belongsTo(User::class,'receiver_email','email');
     }
 
 }

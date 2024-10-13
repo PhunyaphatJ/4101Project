@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Internship_manual extends Model
+class Document extends Model
 {
     use HasFactory;
-    
-    protected $primaryKey = 'manual_id';
+
+    protected $primaryKey = 'document_id';
 
     protected $fillable = [
-        'manual_path',
+        'document_path',
+        'document_type',
         'admin_email',
     ];
 
     public function admin(){
-        return $this->belongsTo(Person::class,'admin_email','email');
+        return $this->belongsTo(Admin::class,'admin_email','email');
     }
+
 }

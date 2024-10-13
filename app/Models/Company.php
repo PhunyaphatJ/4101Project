@@ -11,18 +11,15 @@ class Company extends Model
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
     
     use HasFactory;
-    protected $table = 'companys';
+    protected $table = 'companies';
     protected $primaryKey = 'company_id';
     protected $softCascade = ['address','mentor'];
 
     protected $fillable = [
-        'house_no',
-        'village_no',
-        'road',
-        'sub_district',
-        'district',
-        'province',
-        'postal_code',
+        'company_name',
+        'phone',
+        'address_id',
+        'fax',
     ];
 
     public function address()
@@ -35,12 +32,8 @@ class Company extends Model
         return $this->hasMany(Mentor::class,'company_id','company_id');
     }
 
-    public function internship_infos()
+    public function internship_details()
     {
-        return $this->hasMany(Internship_info::class,'company_id','company_id');
-    }
-
-    public function appreciations(){
-        return $this->hasMany(Appreciation_app::class,'company_id','company_id');
+        return $this->hasMany(Internship_detail::class,'company_id','company_id');
     }
 }

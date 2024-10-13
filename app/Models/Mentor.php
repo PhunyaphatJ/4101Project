@@ -11,6 +11,19 @@ class Mentor extends Model
 {
     use HasFactory,softDeletes;
 
+    protected $primaryKey = 'email';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'email',
+        'name',
+        'surname',
+        'position',
+        'phone',
+        'fax',
+        'company_id',
+    ];
+
     public function company()
     {
         return $this->hasOne(Company::class,'company_id','company_id');

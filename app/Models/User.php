@@ -16,7 +16,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
     protected $primaryKey = 'email';
     public $incrementing = false;
-    protected $softCascade = ['person'];
+    protected $softCascade = ['person','notification'];
     /**
      * The attributes that are mass assignable.
      *
@@ -56,5 +56,9 @@ class User extends Authenticatable
     public function person()
     {
         return $this->hasOne(Person::class,'email','email');
+    }
+
+    public function notifications(){
+        return $this->hasMany(Notification::class,'receiver_email','email');
     }
 }

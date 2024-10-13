@@ -4,32 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Internship_info extends Model
 {
-    use HasFactory,softDeletes;
+    use \Illuminate\Database\Eloquent\SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
-    protected $primaryKey = 'internship_id';
+    use HasFactory;
 
+    protected $primaryKey = 'student_id';
+    public $incrementing = false;
+    protected $softCascade = ['event','evaluation_answer'];
     protected $fillable = [
-        'student_email',
-        'professor_email',
+        'student_id',
+        'professor_id',
         'mentor_email',
-        'company_id',
-        'register_semester',
-        'year',
+        'internship_detail_id',
+        'grade',
+        'report_file_path',
     ];
     
     public function student()
     {
-        return $this->belongsTo(Student::class,'student_email','email');
+        return $this->belongsTo(Student::class,'student_id','student_id');
     }
 
     public function professor()
     {
-        return $this->belongsTo(Professor::class,'professor_email','email');
+        return $this->belongsTo(Professor::class,'professor_id','professor_id');
     }    
 
     public function mentor()
@@ -37,18 +40,16 @@ class Internship_info extends Model
         return $this->belongsTo(Mentor::class,'mentor_email','email');
     }
 
-    public function company()
-    {
-        return $this->belongsTo(Company::class,'company_id','company_id');
-    }
-
-    public function internship_report()
-    {
-        return $this->hasOne(Internship_report::class,'internship_id','internship_id');
-    }
-
     public function evaluation_answers(){
         return $this->hasMany(Evaluation_answer::class,'internship_id','internship_id');
+    }
+
+    public function internship_detail(){
+        return $this->hasOne(Internship_detail::class,'internship_detail_id','internship_detail_id');
+    }
+
+    public function event(){
+        return $this->hasOne(Event::class,'student_id','student_id');
     }
 
 }

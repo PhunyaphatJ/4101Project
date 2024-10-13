@@ -35,23 +35,20 @@ class Person extends Model
         return $this->hasOne(Professor::class,'email','email');
     }
 
+    public function admin()
+    {
+        return $this->hasOne(Admin::class,'email','email');
+    }
+
 
     public function user()
     {
         return $this->belongsTo(User::class,'email','email');
     }
 
-    public function notifications()
-    {
-        return $this->hasMany(Notification::class,'sender_email','email');
+    public function applications(){
+        return $this->hasMany(Application::class,'applicant_email','email');
     }
 
-    public function internship_manual(){
-        return $this->hasMany(Internship_manual::class,'admin_email','email');
-    }
-    
-    public function response_letter(){
-        return $this->hasOne(Response_letter::class,'admin_email','email');
-    }
-
+  
 }

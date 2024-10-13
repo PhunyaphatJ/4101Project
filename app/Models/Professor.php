@@ -27,10 +27,6 @@ class Professor extends Model
 
     public function internship_infos()
     {
-        return $this->hasMany(Internship_info::class,'professor_email','email');
-    }
-
-    public function appreciations(){
-        return $this->hasMany(Appreciation_app::class,'professor_email','email');
+        return $this->hasMany(Internship_info::class,'professor_id','professor_id');
     }
 }

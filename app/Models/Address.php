@@ -32,8 +32,4 @@ class Address extends Model
     {
         return $this->belongsTo(Student::class,'address_id','address_id');
     }
-
-    public function internship_app_info(){
-        return $this->belongsTo(Internship_app_info::class,'address_id','internship_app_info_id');
-    }
 }

@@ -6,22 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\SoftDeletes;
 
-class Internship_register extends Model
+class Evidence extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $table = 'evidences';
+    protected $primaryKey = 'student_id';
+    public $incrementing = false;
+
     protected $fillable = [
-        'application_id',
         'student_id',
         'credit',
-        'department',
-        'transcript_path',
         'idcard_path',
+        'transcript_path',
         'recentreceipt_path',
     ];
 
-
-    public function application(){
-        return $this->belongsTo(Application::class,'application_id','application_id');
+    public function student(){
+        return $this->belongsTo(Student::class,'student_id','student_id');
     }
+
 }

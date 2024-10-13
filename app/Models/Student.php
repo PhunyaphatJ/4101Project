@@ -13,7 +13,7 @@ class Student extends Model
 
     protected $primaryKey = 'email';
     public $incrementing = false;
-    protected $softCascade = ['address','internship_info','application'];
+    protected $softCascade = ['address','internship_info','application','evidence','internship_detail'];
     protected $fillable = [
         'email', 
         'student_id', 
@@ -32,11 +32,20 @@ class Student extends Model
     }
     public function internship_info()
     {
-        return $this->hasOne(Internship_info::class,'student_email','email');
+        return $this->hasOne(Internship_info::class,'student_id','student_id');
     }
 
     public function applications(){
-        return $this->hasMany(Application::class,'email','student_email');
+        return $this->hasMany(Application::class,'student_id','student_id');
+    }
+    
+
+    public function internship_details(){
+        return $this->hasMany(Internship_detail::class,'student_id','student_id');
+    }
+
+    public function evidence(){
+        return $this->hasOne(Evidence::class,'student_id','student_id');
     }
 
 }
