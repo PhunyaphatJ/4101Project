@@ -12,8 +12,6 @@ class Person extends Model
     use HasFactory;
 
     protected $table = 'persons';
-    protected $primaryKey = 'email';
-    public $incrementing = false;
     protected $softCascade = ['student','professor'];
 
 
