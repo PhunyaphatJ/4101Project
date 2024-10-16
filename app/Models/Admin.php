@@ -10,11 +10,11 @@ class Admin extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $primaryKey = 'email';
+    // protected $primaryKey = 'email';
     public $incrementing = false;
 
     protected $fillable = [
-        'status',
+        'email','status',
     ];
 
 
