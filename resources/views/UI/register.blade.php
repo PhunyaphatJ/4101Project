@@ -1,4 +1,4 @@
-@extends('layout_login')
+@extends('login_layout')
 @section('title', 'register')
 @section('register', 'select_menu_color')
 @section('body_header', 'Register')
@@ -185,7 +185,7 @@
         <hr class="my-4">
 
         <div class="mx-3">
-            <a href="/manual"><button class="btn sumit_color p-3 px-5 float-end" type="submit">Register</button></a>
+            <a href="/student_manual"><button class="btn sumit_color p-3 px-5 float-end" type="submit">Register</button></a>
         </div>
 
     </div>

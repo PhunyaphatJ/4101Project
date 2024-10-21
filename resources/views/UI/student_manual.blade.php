@@ -1,4 +1,4 @@
-@extends('layout_student')
+@extends('student_layout')
 @section('title','manual')
 @section('manual','select_menu_color')
 @section('body_header','คู่มือการใช้งานระบบ')

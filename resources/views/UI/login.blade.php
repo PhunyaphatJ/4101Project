@@ -1,4 +1,4 @@
-@extends('layout_login')
+@extends('login_layout')
 @section('title', 'login')
 @section('login', 'select_menu_color')
 @section('body_header', 'Login')
@@ -14,7 +14,7 @@
                     <input type="password" class="form-control" id="#" placeholder="Password">
                     <label for="#">Password</label>
                 </div>
-                <a href="/manual"><button class="btn sumit_color w-100 py-3 my-4" type="submit">Login</button></a>
+                <a href="/student_manual"><button class="btn sumit_color w-100 py-3 my-4" type="submit">Login</button></a>
             </form>
         </div>
     </div>

@@ -1,4 +1,4 @@
-@extends('layout_student')
+@extends('student_layout')
 @section('title', 'process_1')
 @section('process', 'select_menu_color')
 @section('process_1', 'select_menu_color')
@@ -113,9 +113,9 @@
     <hr class="my-4">
 
     <div class="mx-3">
-        <a href="/status"><button class="btn sumit_color p-3 px-5 float-end" type="submit">ลงทะเบียน</button></a>
+        <a href="/student_status"><button class="btn sumit_color p-3 px-5 float-end" type="submit">ลงทะเบียน</button></a>
     </div>
     <div class="mx-3">
-        <a href="/process"><button class="btn cancel_color p-3 px-5 me-3 float-end" type="cancel">ยกเลิก</button></a>
+        <a href="/student_process"><button class="btn cancel_color p-3 px-5 me-3 float-end" type="cancel">ยกเลิก</button></a>
     </div>
 @endsection

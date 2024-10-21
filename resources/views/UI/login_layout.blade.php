@@ -1,5 +1,5 @@
 {{-- path หน้าเว็บเป็น /layout_login --}}
-@extends('layout_navbar')
+@extends('navbar_layout')
 @section('sidebar')
 <div class="row mt-3">
     <div class="col-lg-3">
