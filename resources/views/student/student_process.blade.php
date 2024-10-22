@@ -1,6 +1,6 @@
 @extends('student.student_layout')
-@section('title', 'process')
-@section('process', 'select_menu_color')
+@section('title', 'student_process')
+@section('student_process', 'select_menu_color')
 {{-- @section('body_header', 'ข้อมูลนักศึกษา') --}}
 @section('style')
     <style>
@@ -43,7 +43,7 @@
                             </div>
                         </li>
                     </ul>
-                    <a href="/student_process_1"><button type="button" class="btn btn-lg sumit_color mt-4 w-100 p-3" data-bs-dismiss="modal" style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
+                    <a href="/student_process_register_for_internship"><button type="button" class="btn btn-lg sumit_color mt-4 w-100 p-3  rounded-5" data-bs-dismiss="modal" style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
                 </div>
             </div>
         </div>

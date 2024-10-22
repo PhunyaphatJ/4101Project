@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {{-- icon จากเว็บ bootstrap --}}
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
     @yield('style') {{-- @yield('style') จะรับค่า "style(css)" มาจากไฟล์ที่เรียกใช้ layout --}}
+    @yield('layout_style')
     <style>
         body {
             background-color: #DFF2FF;
@@ -67,6 +69,21 @@
             background-color: #232323;
             /*สีปุ่ม cancel*/
             color: #ffffff;
+        }
+
+        .app_accept_color {
+            color: #00ff4c;
+            /*สีสถานะเอกสารอนุมัติ*/
+        }
+
+        .app_approval_pending_color {
+            color: #ffe600;
+            /*สีสถานะเอกสารรอการอนุมัติ*/
+        }
+
+        .app_reject_color {
+            color: #ff0000;
+            /*สีสถานะเอกสารไม่อนุมิติ*/
         }
 
     </style>

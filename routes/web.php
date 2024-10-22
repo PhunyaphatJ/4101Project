@@ -20,9 +20,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-Route::get('/layout_login', function () {
-    return view('layout_login');
-});
-
 Route::get('/{menu}',[UIController::class,'select_menu']);

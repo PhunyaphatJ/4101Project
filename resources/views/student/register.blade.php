@@ -1,4 +1,4 @@
-@extends(student.'login_layout')
+@extends('ui_layout.login_layout')
 @section('title', 'register')
 @section('register', 'select_menu_color')
 @section('body_header', 'Register')
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="col-6">
-                        <select class="form-select" id="#" required>
+                        <select class="form-select rounded-5 ps-4" id="#" required>
                             <option value="">COS</option>
                             <option>INT</option>
                         </select>
@@ -45,7 +45,7 @@
 
                     <div class="col-6">
                         <label for="firstName" class="form-label">ชื่อ</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                        <input type="text" class="form-control rounded-5 ps-4" id="firstName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
@@ -53,7 +53,7 @@
 
                     <div class="col-6">
                         <label for="#" class="form-label">รหัสนักศึกษา</label>
-                        <input type="text" class="form-control" id="#" placeholder="" value="" required>
+                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid student id is required.
                         </div>
@@ -61,7 +61,7 @@
 
                     <div class="col-6">
                         <label for="lastName" class="form-label">นามสกุล</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                        <input type="text" class="form-control rounded-5 ps-4" id="lastName" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid last name is required.
                         </div>
@@ -69,7 +69,7 @@
 
                     <div class="col-6">
                         <label for="#" class="form-label">เบอร์โทรศัพท์</label>
-                        <input type="text" class="form-control" id="#" placeholder="" value="" required>
+                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid phone number is required.
                         </div>
@@ -86,28 +86,28 @@
                 <div class="row">
                     <div class="col-3">
                         <label for="#" class="form-label">เลขที่</label>
-                        <input type="text" class="form-control" id="#" placeholder="" value="" required>
+                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid is required.
                         </div>
                     </div>
                     <div class="col-3">
                         <label for="#" class="form-label">หมู่ที่</label>
-                        <input type="text" class="form-control" id="#" placeholder="" value="" required>
+                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid is required.
                         </div>
                     </div>
                     <div class="col-6">
                         <label for="#" class="form-label">ถนน</label>
-                        <input type="text" class="form-control" id="#" placeholder="" value="" required>
+                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid is required.
                         </div>
                     </div>
                     <div class="col-6">
                         <label for="#" class="form-label">จังหวัด</label>
-                        <select class="form-select" id="#" required>
+                        <select class="form-select rounded-5 ps-4" id="#" required>
                             <option value="">Choose...</option>
                             <option>United States</option>
                         </select>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="col-6">
                         <label for="#" class="form-label">อำเภอ/เขต</label>
-                        <select class="form-select" id="#" required>
+                        <select class="form-select rounded-5 ps-4" id="#" required>
                             <option value="">Choose...</option>
                             <option>United States</option>
                         </select>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="col-6">
                         <label for="#" class="form-label">ตำบล/แขวง</label>
-                        <select class="form-select" id="#" required>
+                        <select class="form-select rounded-5 ps-4" id="#" required>
                             <option value="">Choose...</option>
                             <option>United States</option>
                         </select>
@@ -137,7 +137,7 @@
                     </div>
                     <div class="col-6">
                         <label for="#" class="form-label">รหัสไปรษณีย์</label>
-                        <input type="text" class="form-control" id="#" placeholder="" value=""
+                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value=""
                             required>
                         <div class="invalid-feedback">
                             Valid is required.
@@ -156,7 +156,7 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email"
+                        <input type="email" class="form-control rounded-5 ps-4" id="email"
                             placeholder="0000000000@rumail.ru.ac.th" required>
                         <div class="invalid-feedback">
                             Valid email is required
@@ -165,7 +165,7 @@
 
                     <div class="col-6">
                         <label for="password" class="form-label">รหัสผ่าน</label>
-                        <input type="password" class="form-control" id="password" placeholder="" required>
+                        <input type="password" class="form-control rounded-5 ps-4" id="password" placeholder="" required>
                         <div class="invalid-feedback">
                             Valid password is required
                         </div>
@@ -173,7 +173,7 @@
 
                     <div class="col-6">
                         <label for="password" class="form-label">ยืนยันรหัสผ่าน</label>
-                        <input type="password" class="form-control" id="password" placeholder="" required>
+                        <input type="password" class="form-control rounded-5 ps-4" id="password" placeholder="" required>
                         <div class="invalid-feedback">
                             Valid password date required
                         </div>
@@ -185,7 +185,7 @@
         <hr class="my-4">
 
         <div class="mx-3">
-            <a href="/student_manual"><button class="btn sumit_color p-3 px-5 float-end" type="submit">Register</button></a>
+            <a href="/student_manual"><button class="btn sumit_color p-3 px-5 float-end  rounded-5" type="submit">Register</button></a>
         </div>
 
     </div>

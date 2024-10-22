@@ -1,6 +1,6 @@
 {{-- path หน้าเว็บเป็น /admin/menu(menu_11 หมายถึงเมนูจัดการคำร้อง, menu_12 หมายถึงเมนูจัดการเอกสาร, menu_13 หมายถึงเมนูจัดการข้อมูลผู้ใช้งาน, menu_14 หมายถึงเมนูสถิติ, menu_15 หมายถึงเมนูตรวจสอบเกรดวิชาฝึกงาน)(ตั้งชื่อเมนูใหม่เอานะ) --}}
 @extends('ui_layout.navbar_layout')
-@section('style')
+@section('layout_style')
     <style>
         #sidebar{
             position: sticky;
