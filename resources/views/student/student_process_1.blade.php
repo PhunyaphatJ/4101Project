@@ -1,4 +1,4 @@
-@extends('student_layout')
+@extends('student.student_layout')
 @section('title', 'process_1')
 @section('process', 'select_menu_color')
 @section('process_1', 'select_menu_color')

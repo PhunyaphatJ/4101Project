@@ -19,7 +19,7 @@ class UIController extends Controller
         } else if ($menu == 'student_status'){
             return view('/student_layout', compact('menu'));
         } else  if ($menu == 'menu_11') {
-            return view('/admin_layout', compact('menu'));
+            return view('/UI.admin_layout', compact('menu'));
         } else if ($menu == 'menu_12') {
             return view('/admin_layout', compact('menu'));
         } else if ($menu == 'menu_13') {

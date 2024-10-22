@@ -1,4 +1,4 @@
-@extends('login_layout')
+@extends(student.'login_layout')
 @section('title', 'register')
 @section('register', 'select_menu_color')
 @section('body_header', 'Register')

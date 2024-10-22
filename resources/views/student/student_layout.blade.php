@@ -1,5 +1,5 @@
 {{-- path หน้าเว็บเป็น /student/menu(manual หมายถึงเมนูคู่มือการใช้งานระบบ,  process หมายถึงเมนูprocess การฝึกงาน, status หมายถึงเมนูตรวจสอบสถานะคำร้อง) --}}
-@extends('navbar_layout')
+@extends('student.navbar_layout')
 @section('style')
     <style>
         #sidebar{

@@ -1,4 +1,4 @@
-@extends('student_layout')
+@extends('student.student_layout')
 @section('title', 'process')
 @section('process', 'select_menu_color')
 {{-- @section('body_header', 'ข้อมูลนักศึกษา') --}}

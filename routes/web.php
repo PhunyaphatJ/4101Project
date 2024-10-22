@@ -5,7 +5,7 @@ use App\Http\Controllers\UIController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('ui_layout.login');
 });
 
 Route::get('/dashboard', function () {
