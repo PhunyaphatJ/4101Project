@@ -12,24 +12,8 @@ class UIController extends Controller
             return view('ui_layout.login', compact('menu'));
         } else if ($menu == 'registerr') {
             return view('student.register', compact('menu'));
-        } else if ($menu == 'student_manual') {
-            return view('student.student_manual', compact('menu'));
-        } else if ($menu == 'student_process') {
-            return view('student.student_process', compact('menu'));
-        } else if ($menu == 'student_status'){
-            return view('student.student_layout', compact('menu'));
-        } else  if ($menu == 'menu_11') {
-            return view('ui_layout.admin_layout', compact('menu'));
-        } else if ($menu == 'menu_12') {
-            return view('ui_layout.admin_layout', compact('menu'));
-        } else if ($menu == 'menu_13') {
-            return view('ui_layout.admin_layout', compact('menu'));
-        } else if ($menu == 'menu_14'){
-            return view('ui_layout.admin_layout', compact('menu'));
-        } else if ($menu == 'menu_15'){
-            return view('ui_layout.admin_layout', compact('menu'));
-        } 
-        
+        }
+
         if ($menu == 'student_process_register_for_internship') {
             $menu = 'student_process';
             return view('student.student_process_register_for_internship', compact('menu'));
