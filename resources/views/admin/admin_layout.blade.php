@@ -20,7 +20,7 @@
                             class="bi bi-back ms-3 me-2"></i>จัดการเอกสาร</a>
                     <a class="list-group-item p-3 my-1 @yield('sidebar_manage_user_color')" href="{{route('manage_user_professor')}}"><i
                             class="bi bi-back ms-3 me-2"></i>จัดการข้อมูลผู้ใช้งาน</a>
-                    <a class="list-group-item p-3 my-1 @yield('sidebar_statistics_color')" href="{{route('statistics_yearly')}}i
+                    <a class="list-group-item p-3 my-1 @yield('sidebar_statistics_color')" href="{{route('statistics_yearly')}}"><i
                             class="bi bi-back ms-3 me-2"></i>สถิติ</a>
                     <a class="list-group-item p-3 my-1 @yield('sidebar_check_grade_color')" href="{{route('check_grade')}}"><i
                             class="bi bi-back ms-3 me-2"></i>ตรวจสอบเกรดวิชาฝึกงาน</a>
