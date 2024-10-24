@@ -15,17 +15,11 @@ class UIController extends Controller
         } else if ($menu == 'registerr') {
             return view('student.register', compact('menu'));
         } else if ($menu == 'student_manual') {
-            $student_process_status = 'register_pending';
-            return view('student.student_manual', compact('menu', 'student_process_status'));
+            return view('student.student_manual', compact('menu'));
         } else if ($menu == 'student_process') {
-            // $student_process_status = 'no_register';
-            // $student_process_status = 'register_pending';
-            // $student_process_status = 'register_completed';
-            $student_process_status = 'internship';
-            return view('student.student_process', compact('menu', 'student_process_status'));
+            return view('student.student_process', compact('menu'));
         } else if ($menu == 'student_status'){
-            $student_process_status = 'register_pending';
-            return view('student.student_status', compact('menu', 'student_process_status'));
+            return view('student.student_layout', compact('menu'));
         } else  if ($menu == 'menu_11') {
             return view('ui_layout.admin_layout', compact('menu'));
         } else if ($menu == 'menu_12') {
