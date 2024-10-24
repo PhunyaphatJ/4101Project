@@ -46,14 +46,14 @@
             /*สี body*/
         }
 
-        .sumit_color {
+        .submit_color {
             background-color: #FCE029;
             /*สีปุ่ม sumit*/
             color: #000000;
             text-decoration: none;
         }
 
-        .sumit_color:hover{
+        .submit_color:hover{
             background-color: #edd32a;
             color: #000000;
         }

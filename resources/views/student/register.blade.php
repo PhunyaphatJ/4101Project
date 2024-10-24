@@ -21,55 +21,55 @@
         <div class="mx-3">
             <form class="needs-validation" novalidate>
                 <div class="row">
-                    <label for="#" class="form-label col-6">คำนำหน้า</label>
-                    <label for="#" class="form-label col-6">สาขาวิชา</label>
+                    <label for="prefix" class="form-label col-6">คำนำหน้า</label>
+                    <label for="department" class="form-label col-6">สาขาวิชา</label>
                     <div id="form-check" class="form-check col-2">
-                        <input id="#" name="#" type="radio" class="form-check-input ms-1" required>
-                        <label class="form-check-label ms-1" for="#">นาง</label>
+                        <input id="mr" name="prefix" type="radio" class="form-check-input ms-1" required>
+                        <label class="form-check-label ms-1" for="mr">นาย</label>
                     </div>
                     <div id="form-check" class="form-check col-2">
-                        <input id="#" name="#" type="radio" class="form-check-input" required>
-                        <label class="form-check-label" for="#">นาง</label>
+                        <input id="mrs" name="prefix" type="radio" class="form-check-input" required>
+                        <label class="form-check-label" for="mrs">นาง</label>
                     </div>
                     <div id="form-check" class="form-check col-2">
-                        <input id="#" name="#" type="radio" class="form-check-input" style="translate: -200% 0%" required>
-                        <label class="form-check-label" for="#" style="translate: -70% 0%">นางสาว</label>
+                        <input id="miss" name="prefix" type="radio" class="form-check-input" style="translate: -200% 0%" required>
+                        <label class="form-check-label" for="mrs" style="translate: -70% 0%">นางสาว</label>
                     </div>
 
                     <div class="col-6">
-                        <select class="form-select rounded-5 ps-4" id="#" required>
+                        <select class="form-select rounded-5 ps-4" id="department" required>
                             <option value="">COS</option>
                             <option>INT</option>
                         </select>
                     </div>
 
                     <div class="col-6">
-                        <label for="firstName" class="form-label">ชื่อ</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="firstName" placeholder="" value="" required>
+                        <label for="fname" class="form-label">ชื่อ</label>
+                        <input type="text" class="form-control rounded-5 ps-4" id="fname" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <label for="#" class="form-label">รหัสนักศึกษา</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
+                        <label for="student_id" class="form-label">รหัสนักศึกษา</label>
+                        <input type="text" class="form-control rounded-5 ps-4" id="student_id" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid student id is required.
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <label for="lastName" class="form-label">นามสกุล</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="lastName" placeholder="" value="" required>
+                        <label for="lname" class="form-label">นามสกุล</label>
+                        <input type="text" class="form-control rounded-5 ps-4" id="lname" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid last name is required.
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <label for="#" class="form-label">เบอร์โทรศัพท์</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
+                        <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+                        <input type="tel" class="form-control rounded-5 ps-4" id="phone" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid phone number is required.
                         </div>
@@ -85,29 +85,29 @@
             <form class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-3">
-                        <label for="#" class="form-label">เลขที่</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
+                        <label for="house_no" class="form-label">เลขที่</label>
+                        <input type="text" class="form-control rounded-5 ps-4" id="house_no" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid is required.
                         </div>
                     </div>
                     <div class="col-3">
-                        <label for="#" class="form-label">หมู่ที่</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
+                        <label for="village_no" class="form-label">หมู่ที่</label>
+                        <input type="number" class="form-control rounded-5 ps-4" id="village_no" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid is required.
                         </div>
                     </div>
                     <div class="col-6">
-                        <label for="#" class="form-label">ถนน</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value="" required>
+                        <label for="road" class="form-label">ถนน</label>
+                        <input type="text" class="form-control rounded-5 ps-4" id="road" placeholder="" value="" required>
                         <div class="invalid-feedback">
                             Valid is required.
                         </div>
                     </div>
                     <div class="col-6">
-                        <label for="#" class="form-label">จังหวัด</label>
-                        <select class="form-select rounded-5 ps-4" id="#" required>
+                        <label for="province" class="form-label">จังหวัด</label>
+                        <select class="form-select rounded-5 ps-4" id="province" required>
                             <option value="">Choose...</option>
                             <option>United States</option>
                         </select>
@@ -116,18 +116,8 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <label for="#" class="form-label">อำเภอ/เขต</label>
-                        <select class="form-select rounded-5 ps-4" id="#" required>
-                            <option value="">Choose...</option>
-                            <option>United States</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a valid county.
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <label for="#" class="form-label">ตำบล/แขวง</label>
-                        <select class="form-select rounded-5 ps-4" id="#" required>
+                        <label for="district" class="form-label">อำเภอ/เขต</label>
+                        <select class="form-select rounded-5 ps-4" id="district" required>
                             <option value="">Choose...</option>
                             <option>United States</option>
                         </select>
@@ -136,8 +126,18 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <label for="#" class="form-label">รหัสไปรษณีย์</label>
-                        <input type="text" class="form-control rounded-5 ps-4" id="#" placeholder="" value=""
+                        <label for="sub_district" class="form-label">ตำบล/แขวง</label>
+                        <select class="form-select rounded-5 ps-4" id="sub_district" required>
+                            <option value="">Choose...</option>
+                            <option>United States</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a valid sub district.
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label for="postcode" class="form-label">รหัสไปรษณีย์</label>
+                        <input type="text" class="form-control rounded-5 ps-4" id="postcode" placeholder="" value=""
                             required>
                         <div class="invalid-feedback">
                             Valid is required.
@@ -185,7 +185,7 @@
         <hr class="my-4">
 
         <div class="mx-3">
-            <a href="/student_manual"><button class="btn sumit_color p-3 px-5 float-end  rounded-5" type="submit">Register</button></a>
+            <a href="/student_manual"><button class="btn submit_color p-3 px-5 float-end  rounded-5" type="submit">Register</button></a>
         </div>
 
     </div>

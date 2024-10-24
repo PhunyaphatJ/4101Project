@@ -13,14 +13,14 @@
 @endsection
 @section('body_content')
     <div class="d-flex gap-4 justify-content-center py-5">
-        <div class="sumit_color" style="width: 45%">
+        <div class="sidebar_color" style="width: 45%">
             <a id="bottom_menu" class="btn d-grid align-items-center mb-4 rounded-0 py-3" type="button" href="student_process_company_rec" style="height: 85%">
                 <h5>ขอเอกสารส่งตัว</h5>
                 <p>(นักศึกษาที่มีสถานที่ฝึกงานแล้ว)</p>
             </a>
         </div>
-        <div class="sumit_color" style="width: 45%">
-            <a id="bottom_menu" class="btn d-grid align-items-center mb-4 rounded-0 py-3" type="button" href="student_process_company_rec_search_address" style="height: 85%">
+        <div class="sidebar_color" style="width: 45%">
+            <a id="bottom_menu" class="btn d-grid align-items-center mb-4 rounded-0 py-3" type="button" href="student_process_company_search_address" style="height: 85%">
                 <h5>ขอเอกสารขอความอนุเคราะห์</h5>
                 <p>(นักศึกษาที่มีสถานที่ยังไม่มีฝึกงานแล้ว)</p>
             </a>
