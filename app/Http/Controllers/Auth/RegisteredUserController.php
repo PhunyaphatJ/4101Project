@@ -36,6 +36,15 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterUserRequest $request): RedirectResponse
     {
+        if($request->role == 'admin' || $request->role == 'professor'){
+            if(!Auth::check() ){
+                return redirect()->back()->with('error', 'You must be logged in to create');
+            }
+            if (Auth::user()->role != 'admin'){
+                return redirect()->back()->with('error', 'You Need a permission to create');
+            }
+        }
+
 
         DB::transaction(function () use ($request) {
             $user = User::create([
@@ -90,12 +99,12 @@ class RegisteredUserController extends Controller
                     ]);
             }
             event(new Registered($user));
+            if(!Auth::check()){
+                Auth::login($user);
+                // return redirect('/'); 
+            }
         });
-        // Auth::login($user);
 
-        if(!Auth::check()){
-            return redirect('/'); 
-        }
        
 
         return redirect()->back();

@@ -55,21 +55,23 @@
                     <tr>
                         <td>{{ $application['application_id'] }}</td>
                         <td>{{ $application['student_id'] }}</td>
-                        <td>{{ $application['name'] }}</td>
-                        <td>{{ $application['lastname'] }}</td>
-                        <td>{{ $application['date'] }}</td>
+                        <td>{{ $application->student->person->name }}</td>
+                        <td>{{ $application->student->person->surname }}</td>
+                        <td>{{ $application->notification->datetime }}</td>
                         {{-- เปลี่ยนประเภทคำร้องเป็นภาษาไทย --}}
-                        @if ($application['application_type'] == 'internship_register')
+                        @if ($application['application_type'] == 'Internship_Register')
                             <td>ขึ้นทะเบียนฝึกงาน</td>
-                        @elseif($application['application_type'] == 'internship_request')
+                        @elseif($application['application_type'] == 'Internship_Request')
                             <td>เอกสารขอความอนุเคราะห์</td>
-                        @elseif($application['application_type'] == 'recommendation')
+                        @elseif($application['application_type'] == 'Recommendation')
                             <td>เอกสารส่งตัว</td>
-                        @elseif($application['application_type'] == 'appreciation')
+                        @elseif($application['application_type'] == 'Appreciation')
                             <td>เอกสารขอบคุณ</td>
                         @endif
+                        <td class="status_document_pending_color">กำลังจัดทำ</td>
+
                         {{-- เปลี่ยนสถานะคำร้องเป็นภาษาไทย --}}
-                        @if ($application['application_status'] == 'approval_pending')
+                        {{-- @if ($application['application_status'] == 'approval_pending')
                             <td class="status_approval_pending_color">รอการอนุมัติ</td>
                         @elseif($application['application_status'] == 'document_pending')
                             <td class="status_document_pending_color">กำลังจัดทำ</td>
@@ -77,8 +79,8 @@
                             <td class="status_completed_color">สมบูรณ์</td>
                         @elseif($application['application_status'] == 'reject')
                             <td class="status_reject_color">ปฏิเสธ</td>
-                        @endif
-                        <td><a class="btn btn-warning btn-sm"href="{{route('application_update_document_status_detail',[$application['application_type'],$application['application_id']])}}">แสดง</a></td>
+                        @endif --}}
+                        <td><a class="btn btn-warning btn-sm"href="{{route('application_detail',[$application['application_type'],$application['application_id']])}}">แสดง</a></td>
                     </tr>
                 @endforeach
             </tbody>

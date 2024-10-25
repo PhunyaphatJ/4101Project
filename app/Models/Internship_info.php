@@ -52,4 +52,27 @@ class Internship_info extends Model
         return $this->hasOne(Event::class,'student_id','student_id');
     }
 
+    public function getCompanyName (){
+        return $this->internship_detail->company->company_name;
+    }
+
+    public function getSemester(){
+        return $this->internship_detail->register_semester;
+    }
+
+    public function getYear(){
+        return $this->internship_detail->year;
+    }
+
+    public function getStartDate(){
+        return $this->internship_detail->start_date;
+    }
+
+    public function getEndDate(){
+        return $this->internship_detail->end_date;
+    }
+
+    public function getAttendTo(){
+        return $this->internship_detail->attend_to;
+    }
 }

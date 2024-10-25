@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('applicant_email');
             $table->enum('application_type',['Internship_Register','Internship_Request','Recommendation','Appreciation']);
             $table->enum('application_status',['approval_pending','reject','document_pending','completed']);
-            $table->mediumInteger('notification_id')->unsigned();
+            $table->mediumInteger('notification_id')->unsigned()->unique();
             $table->mediumInteger('internship_detail_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();

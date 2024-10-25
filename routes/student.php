@@ -3,6 +3,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::middleware('guest')->group(function () {
     Route::get('/',[UserController::class,'login'])->name('login');
@@ -13,7 +14,7 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::prefix('student')->middleware('auth')->group(function(){
+Route::prefix('student')->middleware(['auth','verified','role:student'])->group(function(){
     Route::view('/','student.test')->name('student');
     Route::get('/manual/{student_process_status}',[StudentController::class,'manual'])->name('manual');
     Route::get('/process/{student_process_status}',[StudentController::class,'process'])->name('process');

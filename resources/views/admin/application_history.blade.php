@@ -14,28 +14,28 @@
             @endif
             <a href="{{ route('application_history') }}">ทั้งหมด</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอขึ้นทะเบียนฝึกงาน --}}
-            @if ($application_type == 'internship_register')
+            @if ($application_type == 'Internship_Register')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
-            <a href="{{ route('application_history_list', 'internship_register') }}">ขึ้นทะเบียนฝึกงาน</a></li>
+            <a href="{{ route('application_history_list', 'Internship_Register') }}">ขึ้นทะเบียนฝึกงาน</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารขอความอนุเคราะห์ --}}
-            @if ($application_type == 'internship_request')
+            @if ($application_type == 'Internship_Request')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
-            <a href="{{ route('application_history_list', 'internship_request') }}">เอกสารขอความอนุเคราะห์</a></li>
+            <a href="{{ route('application_history_list', 'Internship_Request') }}">เอกสารขอความอนุเคราะห์</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารส่งตัว --}}
-            @if ($application_type == 'recommendation')
+            @if ($application_type == 'Recommendation')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
-            <a href="{{ route('application_history_list', 'recommendation') }}">เอกสารส่งตัว</a></li>
+            <a href="{{ route('application_history_list', 'Recommendation') }}">เอกสารส่งตัว</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารสขอบคุณ --}}
-            @if ($application_type == 'appreciation')
+            @if ($application_type == 'Appreciation')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
@@ -62,17 +62,17 @@
                     <tr>
                         <td>{{ $application['application_id'] }}</td>
                         <td>{{ $application['student_id'] }}</td>
-                        <td>{{ $application['name'] }}</td>
-                        <td>{{ $application['lastname'] }}</td>
-                        <td>{{ $application['date'] }}</td>
+                        <td>{{ $application->student->person->name }}</td>
+                        <td>{{ $application->student->person->surname }}</td>
+                        <td>{{ $application->notification->datetime }}</td>
                         {{-- เปลี่ยนประเภทคำร้องเป็นภาษาไทย --}}
-                        @if ($application['application_type'] == 'internship_register')
+                        @if ($application['application_type'] == 'Internship_Register')
                             <td>ขึ้นทะเบียนฝึกงาน</td>
-                        @elseif($application['application_type'] == 'internship_request')
+                        @elseif($application['application_type'] == 'Internship_Request')
                             <td>เอกสารขอความอนุเคราะห์</td>
-                        @elseif($application['application_type'] == 'recommendation')
+                        @elseif($application['application_type'] == 'Recommendation')
                             <td>เอกสารส่งตัว</td>
-                        @elseif($application['application_type'] == 'appreciation')
+                        @elseif($application['application_type'] == 'Appreciation')
                             <td>เอกสารขอบคุณ</td>
                         @endif
                         {{-- เปลี่ยนสถานะคำร้องเป็นภาษาไทย --}}

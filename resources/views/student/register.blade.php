@@ -28,6 +28,11 @@
         </ul>
     </div>
 @endif
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="container">
     <form class="needs-validation" validate method="POST" action="{{ route('register') }}">
         @csrf
@@ -130,7 +135,7 @@
                 </div>
                 <div class="col-6">
                     <label for="postal_code" class="form-label">รหัสไปรษณีย์</label>
-                    <input id="input_zipcode" type="text" class="form-control rounded-5 ps-4" name="postal_code" placeholder="" value="{{ old('postal_code') }}" autocomplete="off" required>
+                    <input id="input_zipcode" type="text" class="form-control rounded-5 ps-4" name="postal_code" placeholder="" value="{{ old('postal_code') }} " autocomplete="off" required >
                 </div>
             </div>
         </section>
