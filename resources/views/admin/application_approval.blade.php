@@ -66,13 +66,14 @@
                 </li>
                 <li class="navigation"><a
                         href="{{ route('application_approval_list', 'recommendation') }}">เอกสารส่งตัว</a></li>
-                <li class="navigation active"><a href="{{ route('application_approval_list', 'appreciation') }}">เอกสารขอบคุณ</a>
+                <li class="navigation active"><a
+                        href="{{ route('application_approval_list', 'appreciation') }}">เอกสารขอบคุณ</a>
                 </li>
             </ul>
         @endif
-        <table class="table mt-1">
+        <table class="table mt-1 text-center">
             <thead>
-                <tr >
+                <tr>
                     <th scope="col">เลขที่คำขอ</th>
                     <th scope="col">รหัสนักศึกษา</th>
                     <th scope="col">ชื่อ</th>
@@ -91,8 +92,24 @@
                         <td>{{ $application['name'] }}</td>
                         <td>{{ $application['lastname'] }}</td>
                         <td>{{ $application['date'] }}</td>
-                        <td>{{ $application['application_type'] }}</td>
-                        <td class="status_approval_pending_color">{{ $application['application_status'] }}</td>
+                        @if ($application['application_type'] == 'internship_register')
+                            <td>ขึ้นทะเบียนฝึกงาน</td>
+                        @elseif($application['application_type'] == 'internship_request')
+                            <td>เอกสารขอความอนุเคราะห์</td>
+                        @elseif($application['application_type'] == 'recommendation')
+                            <td>เอกสารส่งตัว</td>
+                        @elseif($application['application_type'] == 'appreciation')
+                            <td>เอกสารขอบคุณ</td>
+                        @endif
+                        @if ($application['application_status'] == 'approval_pending')
+                            <td class="status_approval_pending_color">รอการอนุมัติ</td>
+                        @elseif($application['application_status'] == 'document_pending')
+                            <td class="status_approval_pending_color">กำลังจัดทำ</td>
+                        @elseif($application['application_status'] == 'completed')
+                            <td class="status_approval_pending_color">สมบูรณ์</td>
+                        @elseif($application['application_status'] == 'reject')
+                            <td class="status_approval_pending_color">ปฏิเสธ</td>
+                        @endif
                         <td><a class="btn btn-warning btn-sm"href="#">แสดง</a></td>
                     </tr>
                 @endforeach

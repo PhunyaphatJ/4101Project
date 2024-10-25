@@ -114,9 +114,14 @@
             border-width: 2px;
             border-color: lightgray;
         }
+        li.navigation:hover a{
+            color: black;
+            background-color: lightblue;
+        }
         li.navigation.active a {
             color: black;
             border-color: black;
+            background-color:lightblue;
         }
         td.status_approval_pending_color{
             color:lightskyblue;
