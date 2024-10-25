@@ -58,12 +58,12 @@
                         </li>
                     </ul>
                     @if ($student_process_status == 'no_register')
-                    <a href="/student_process_register_for_internship"><button type="button"
+                    <a href="student_process_register_for_internship"><button type="button"
                         class="btn btn-lg submit_color mt-4 w-100 p-3  rounded-5" data-bs-dismiss="modal"
                         style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
                     @else
-                        @if ($student_process_status == 'register_pending' || $student_process_status == 'register_completed' || $student_process_status == 'internship')
-                        <a href="/student_process_register_for_internship"><button type="button"
+                        @if ($student_process_status == 'register_pending' || $student_process_status == 'register_completed' || $student_process_status == 'company_pending' || $student_process_status == 'internship')
+                        <a href="student_process_register_for_internship"><button type="button"
                             class="btn btn-lg submit_color mt-4 w-100 p-3  rounded-5 disabled" data-bs-dismiss="modal"
                             style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
                         @endif

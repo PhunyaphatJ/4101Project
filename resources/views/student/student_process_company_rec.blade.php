@@ -14,13 +14,13 @@
 @section('body_content')
     <div class="d-flex gap-4 justify-content-center py-5">
         <div class="sidebar_color" style="width: 45%">
-            <a id="bottom_menu" class="btn d-grid align-items-center mb-4 py-3 rounded-0" type="button" href="student_process_company_search_address" style="height: 85%">
+            <a id="bottom_menu" class="btn d-grid align-items-center mb-4 py-3 rounded-0" type="button" href="/student/{{ $student_process_status }}/rec_no_request/student_process_company_search_address" style="height: 85%">
                 <h5>ขอเอกสารส่งตัว</h5>
                 <p>(นักศึกษาที่ไม่มีการยื่นหนังสือขอความอนุเคราะห์)</p>
             </a>
         </div>
         <div class="sidebar_color" style="width: 45%">
-            <a id="bottom_menu" class="btn d-grid align-items-center mb-4 py-3 rounded-0 " type="button" href="student_process_company_rec_with_request" style="height: 85%">
+            <a id="bottom_menu" class="btn d-grid align-items-center mb-4 py-3 rounded-0 " type="button" href="/student/{{ $student_process_status }}/rec_with_request/student_process_company_rec_with_request" style="height: 85%">
                 <h5>ขอเอกสารส่งตัว</h5>
                 <p>(นักศึกษาที่มีการยื่นหนังสือขอความอนุเคราะห์)</p>
             </a>

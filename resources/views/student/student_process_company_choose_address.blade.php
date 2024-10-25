@@ -435,34 +435,72 @@
             </div>
 
             <hr class="my-4">
-            <div class="mx-3">
-                <button class="btn submit_color p-3 px-5 float-end rounded-5" data-bs-toggle="modal"
-                    data-bs-target="#app_approval_pending" type="submit">ขอเอกสารส่งตัว</button>
-            </div>
-            <div class="mx-3">
-                <a href="student_process_company_search_address"><button
-                        class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ยกเลิก</button></a>
-            </div>
 
-            <div class="modal fade" id="app_approval_pending" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">ขอเอกสารส่งตัว</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <p>บันทึกคำขอแล้ว</p>
-                            <p class="app_approval_pending_color">รอการอนุมัติจากเจ้าหน้าที่</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn cancel_color" data-bs-dismiss="modal">ปิด</button>
+            @if ($app_type == 'rec_no_request')
+                <div class="modal fade" id="app_approval_pending" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">ขอเอกสารส่งตัว</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p>บันทึกคำขอแล้ว</p>
+                                <p class="app_approval_pending_color">รอการอนุมัติจากเจ้าหน้าที่</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="cancel_color py-3 px-4 rounded-5"
+                                    href="/student/company_pending/rec_no_request/student_process_company_choose_address">ปิด</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                @if ($app_type == 'rec_with_request')
+                    <div class="modal fade" id="app_approval_pending" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">ขอเอกสารส่งตัว</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <p>บันทึกคำขอแล้ว</p>
+                                    <p class="app_approval_pending_color">รอการอนุมัติจากเจ้าหน้าที่</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="cancel_color py-3 px-4 rounded-5"
+                                        href="/student/company_pending/rec_with_request/student_process_company_choose_address">ปิด</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endif
+
+            @if ($student_process_status == 'company_pending')
+                <div class="mx-3">
+                    <button class="btn submit_color p-3 px-5 float-end rounded-5 disabled" data-bs-toggle="modal"
+                        data-bs-target="#app_approval_pending" type="submit">ขอเอกสารส่งตัว</button>
+                </div>
+                <div class="mx-3">
+                    <a href="student_process_company_search_address"><button
+                            class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ย้อนกลับ</button></a>
+                </div>
+            @else
+                <div class="mx-3">
+                    <button class="btn submit_color p-3 px-5 float-end rounded-5" data-bs-toggle="modal"
+                        data-bs-target="#app_approval_pending" type="submit">ขอเอกสารส่งตัว</button>
+                </div>
+                <div class="mx-3">
+                    <a href="student_process_company_search_address"><button
+                            class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ยกเลิก</button></a>
+                </div>
+            @endif
         @endif
     @endif
 

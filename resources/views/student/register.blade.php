@@ -185,7 +185,7 @@
         <hr class="my-4">
 
         <div class="mx-3">
-            <a href="/student_manual"><button class="btn submit_color p-3 px-5 float-end  rounded-5" type="submit">Register</button></a>
+            <a href="no_register/student_manual"><button class="btn submit_color p-3 px-5 float-end  rounded-5" type="submit">Register</button></a>
         </div>
 
     </div>

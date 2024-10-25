@@ -73,12 +73,17 @@
         }
 
         .app_accept_color {
-            color: #00ff4c;
+            color: #2bff00;
             /*สีสถานะเอกสารอนุมัติ*/
         }
 
-        .app_approval_pending_color {
+        .app_in_preparation_color {
             color: #ffe600;
+            /*สีสถานะเอกสารกำลังจัดทำ*/
+        }
+
+        .app_approval_pending_color {
+            color: #001aff;
             /*สีสถานะเอกสารรอการอนุมัติ*/
         }
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UIController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
 
 
@@ -42,4 +42,12 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Route::get('/{menu}',[UIController::class,'select_menu']);
+Route::get('/student/{menu}',[StudentController::class,'student_register']);
+
+// Route::get('/{user}/{menu}',[StudentController::class,'select_menu']);
+
+Route::get('/student/{student_process_status}/{menu}',[StudentController::class,'internship_register']);
+
+Route::get('/student/{student_process_status}/{app_type}/{menu}',[StudentController::class,'internship_company']);
+
+Route::get('/student/{student_process_status}/{app_type}/{report}/{menu}',[StudentController::class,'internship_report']);
