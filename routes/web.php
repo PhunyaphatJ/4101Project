@@ -22,6 +22,12 @@ Route::prefix('admin')->group(function(){
     Route::get('/statistics/compare_yearly',[AdminController::class,'statistics_compare_yearly'])->name('statistics_compare_yearly');
     Route::get('/statistics/evaluation',[AdminController::class,'statistics_evaluation'])->name('statistics_evaluation');
     Route::get('/check_grade',[AdminController::class,'check_grade'])->name('check_grade');
+
+    Route::get('/manage_application/approval/{application_type},',[AdminController::class,'application_approval_list'])->name('application_approval_list');
+});
+
+Route::get('/test', function(){
+    return view('ui_layout.navbar_layout');
 });
 
 // Route::prefix('admin')->group(function(){
