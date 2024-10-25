@@ -1,4 +1,3 @@
-{{-- path หน้าเว็บเป็น /student/menu(manual หมายถึงเมนูคู่มือการใช้งานระบบ,  process หมายถึงเมนูprocess การฝึกงาน, status หมายถึงเมนูตรวจสอบสถานะคำร้อง) --}}
 @extends('ui_layout.navbar_layout')
 @section('layout_style')
     <style>
@@ -72,7 +71,7 @@
 
         <div class="col-lg-9">
             <div class="card body_color" style="border-radius: 0px 20px 0px 20px">
-                <div class="card-body" style="margin: 4% 7%">
+                <div class="card-body" style="margin: 3% 7%">
                     <div>
                         <h4 class="text-center">@yield('body_header')</h4> {{-- @yield('body_header') จะรับค่า "หัวข้อ" มาจากไฟล์ที่เรียกใช้ layout --}}
                     </div>
@@ -82,11 +81,11 @@
                 </div>
             </div>
             <div class="card border-0" style="background-color: transparent">
-                <div class="card-body" style="margin: 4% 3%">
+                <div class="card-body" style="margin: 3% 3%">
                     <div>
                         <h5>@yield('out_body_header')</h5> {{-- @yield('body_header') จะรับค่า "หัวข้อ" มาจากไฟล์ที่เรียกใช้ layout --}}
                     </div>
-                    <div class="my-4 mx-3">
+                    <div class=" mx-3">
                         @yield('out_body_content') {{-- @yield('body_content') จะรับค่า "content" มาจากไฟล์ที่เรียกใช้ layout --}}
                     </div>
                 </div>

@@ -1,3 +1,4 @@
+{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_manual --}}
 @extends('student.student_layout')
 @section('title','student_manual')
 @section('student_manual','select_menu_color')

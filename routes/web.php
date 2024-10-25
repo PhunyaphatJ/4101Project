@@ -50,10 +50,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/student/{menu}',[StudentController::class,'student_register']);
 
-// Route::get('/{user}/{menu}',[StudentController::class,'select_menu']);
-
-Route::get('/student/{student_process_status}/{menu}',[StudentController::class,'internship_register']);
-
-Route::get('/student/{student_process_status}/{app_type}/{menu}',[StudentController::class,'internship_company']);
-
-Route::get('/student/{student_process_status}/{app_type}/{report}/{menu}',[StudentController::class,'internship_report']);
+Route::get('/student/{student_process_status}/{app_type}/{report}/{menu}',[StudentController::class,'student_menu']);
