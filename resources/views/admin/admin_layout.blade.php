@@ -40,7 +40,7 @@
                                 href="{{ route('application_update_document_status') }}"><i
                                     class="bi bi-dice-2 ms-3 me-2"></i>ปรับปรุงสถานะการจัดทำเอกสาร</a>
                             <a class="list-group-item p-3 my-1 @yield('subsidebar_application_history_color')"
-                                href="{{ route('appplication_history') }}"><i
+                                href="{{ route('application_history') }}"><i
                                     class="bi bi-dice-3 ms-3 me-2"></i>ประวัติคำร้อง</a>
                         </ul>
                     </div>
@@ -127,12 +127,24 @@
             color:lightskyblue;
         }
         td.status_document_pending_color{
-            color:yellow;
+            color:gold;
         }
         td.status_completed_color{
-            color:green;
+            color:lightgreen;
         }
         td.status_reject_color{
+            color: red;
+        }
+        .status_approval_pending_color{
+            color:lightskyblue;
+        }
+        .status_document_pending_color{
+            color:gold;
+        }
+        .status_completed_color{
+            color:lightgreen;
+        }
+        .status_reject_color{
             color: red;
         }
     </style>

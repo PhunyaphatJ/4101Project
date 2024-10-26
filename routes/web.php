@@ -14,7 +14,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/', function () { return view('admin.fake_login'); });
     Route::get('/manage_application/approval',[AdminController::class,'application_approval'])->name('application_approval');
     Route::get('/manage_application/update_document_status',[AdminController::class,'application_update_document_status'])->name('application_update_document_status');
-    Route::get('/manage_application/history',[AdminController::class,'appplication_history'])->name('appplication_history');
+    Route::get('/manage_application/history',[AdminController::class,'application_history'])->name('application_history');
     Route::get('/manage_document',[AdminController::class,'manage_document'])->name('manage_document');
     Route::get('/manage_user/professor',[AdminController::class,'manage_user_professor'])->name('manage_user_professor');
     Route::get('/manage_user/student',[AdminController::class,'manage_user_student'])->name('manage_user_student');
@@ -23,17 +23,11 @@ Route::prefix('admin')->group(function(){
     Route::get('/statistics/evaluation',[AdminController::class,'statistics_evaluation'])->name('statistics_evaluation');
     Route::get('/check_grade',[AdminController::class,'check_grade'])->name('check_grade');
 
-    Route::get('/manage_application/approval/{application_type},',[AdminController::class,'application_approval_list'])->name('application_approval_list');
+    Route::get('/manage_application/approval/{application_type}',[AdminController::class,'application_approval_list'])->name('application_approval_list');
+    Route::get('/manage_application/approval/{application_type}/{application_id}',[AdminController::class,'application_approval_detail'])->name('application_approval_detail');
+    Route::get('/manage_application/update_document_status/{application_type}',[AdminController::class,'application_update_document_status_list'])->name('application_update_document_status_list');
+    Route::get('/manage_application/history/{application_type}',[AdminController::class,'application_history_list'])->name('application_history_list');
 });
-
-Route::get('/test', function(){
-    return view('ui_layout.navbar_layout');
-});
-
-// Route::prefix('admin')->group(function(){
-//     Route::get('/', function () { return view('admin.fake_login'); });
-//     Route::get('/{menu}/{submenu}',[AdminController::class,'select_sidebar_menu']);
-// });
 
 // ----------
 Route::get('/dashboard', function () {
