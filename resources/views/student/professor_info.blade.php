@@ -1,20 +1,12 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_professor --}}
+{{-- path หน้าเว็บเป็น /student/process/professor_info/{student_process_status} --}}
 @extends('student.student_layout')
-@section('title', 'student_professor')
-@section('student_process', 'select_menu_color')
-@section('student_professor', 'select_menu_color')
+@section('title', 'professor_info')
+@section('process', 'select_menu_color')
+@section('professor_info', 'select_menu_color')
 @section('body_header', 'พบอาจารย์ที่ปรึกษา')
 @section('style')
     <style>
-        #bookmark_icon {
-            position: absolute;
-            top: 0%;
-            right: 0%;
-            font-size: 300%;
-            translate: 0% -10%;
-        }
-
-        #student_info {
+        #display_info {
             background-color: rgba(0, 0, 0, 0.7);
             color: #ffffff;
         }
@@ -22,9 +14,8 @@
 @endsection
 @section('body_content')
     <section> {{-- แสดงข้อมูลอาจารย์ที่ปรึกษา --}}
-        <div class="card rounded-0 shadow" id="student_info">
+        <div class="card rounded-0 shadow" id="display_info">
             <div class="card-body">
-                <i class="bi bi-bookmark-fill" id="bookmark_icon"></i>
                 <div class="px-5 py-4">
                     <h5 class="mb-0"><i class="bi bi-folder-fill me-2"></i>ข้อมูลอาจารย์ที่ปรึกษา</h5>
                     <div class="row mt-4 ms-4">
@@ -76,7 +67,7 @@
                 </div>
             </div>
         </div>
-    
+
         <hr class="my-4">
     </section>
 

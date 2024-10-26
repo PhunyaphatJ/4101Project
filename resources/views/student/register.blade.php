@@ -201,12 +201,12 @@
             </div>
         </section>
 
-        <section> {{-- ปุ่ม register จะเซทค่าดั้งนี้ student_process_status = no_register, app_type = no_app, report = no_report--}}
+        <section> {{-- ปุ่ม register จะเซทค่าดั้งนี้ student_process_status = no_register --}}
             <hr class="my-4">
 
             <div class="mx-3">
-                <a href="/student/no_register/no_app/no_report/student_manual"><button
-                        class="btn submit_color p-3 px-5 float-end  rounded-5" type="submit">Register</button></a>
+                <a href="/student/manual/no_register"><button
+                            class="btn submit_color p-3 px-5 float-end  rounded-5" type="submit">Register</button></a>
             </div>
         </section>
 

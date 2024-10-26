@@ -1,12 +1,12 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_process_company --}}
+{{-- path หน้าเว็บเป็น /student/process/process_company/{student_process_status} --}}
 @extends('student.student_layout')
-@section('title', 'student_process_company')
-@section('student_process', 'select_menu_color')
-@section('student_process_company', 'select_menu_color')
+@section('title', 'process_company')
+@section('process', 'select_menu_color')
+@section('process_company', 'select_menu_color')
 @section('body_header', 'สถานที่ฝึกงาน')
 @section('style')
     <style>
-        #bottom_menu {
+        #bottom_menu, #display_info {
             background-color: rgba(0, 0, 0, 0.7);
             color: #ffffff;
         }
@@ -18,14 +18,14 @@
             <div class="d-flex gap-4 justify-content-center py-5">
                 <div class="sidebar_color" style="width: 45%">
                     <a id="bottom_menu" class="btn d-grid align-items-center mb-4 rounded-0 py-3" type="button"
-                        href="/student/{{ $student_process_status }}/rec/no_report/student_process_company_rec" style="height: 85%">
+                        href="/student/process/process_company_rec/{{ $student_process_status }}/rec" style="height: 85%">
                         <h5>ขอเอกสารส่งตัว</h5>
                         <p>(นักศึกษาที่มีสถานที่ฝึกงานแล้ว)</p>
                     </a>
                 </div>
                 <div class="sidebar_color" style="width: 45%">
                     <a id="bottom_menu" class="btn d-grid align-items-center mb-4 rounded-0 py-3" type="button"
-                        href="/student/{{ $student_process_status }}/request/no_report/student_process_company_search_address"
+                        href="/student/process/process_company_search_address/{{ $student_process_status }}/request"
                         style="height: 85%">
                         <h5>ขอเอกสารขอความอนุเคราะห์</h5>
                         <p>(นักศึกษาที่มีสถานที่ยังไม่มีฝึกงานแล้ว)</p>
@@ -36,7 +36,7 @@
     @else
         @if ($student_process_status == 'internship')
             <section> {{-- แสดงข้อมูลสถานที่ฝึกงาน --}}
-                <div class="card rounded-0 shadow">
+                <div class="card rounded-0 shadow" id="display_info">
                     <div class="card-body">
                         <div class="px-5 py-4">
                             <h5 class="mb-0"><i class="bi bi-folder-fill me-2"></i>ข้อมูลสถานที่ฝึกงาน</h5>
@@ -94,7 +94,7 @@
             </section>
 
             <section> {{-- แสดงรายละเอียดการฝึกงาน--}}
-                <div class="card rounded-0 shadow mt-3">
+                <div class="card rounded-0 shadow mt-3" id="display_info">
                     <div class="card-body">
                         <div class="px-5 py-4">
                             <h5 class="mb-0"><i class="bi bi-folder-fill me-2"></i>รายละเอียดการฝึกงาน</h5>
@@ -150,7 +150,7 @@
             </section>
 
             <section> {{-- แสดงรายละเอียดพี่เลี้ยง--}}
-                <div class="card rounded-0 shadow mt-3">
+                <div class="card rounded-0 shadow mt-3" id="display_info">
                     <div class="card-body">
                         <div class="px-5 py-4">
                             <h5 class="mb-0"><i class="bi bi-folder-fill me-2"></i>รายละเอียดพี่เลี้ยง</h5>

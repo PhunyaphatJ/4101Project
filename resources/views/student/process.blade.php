@@ -1,7 +1,7 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_process --}}
+{{-- path หน้าเว็บเป็น /student/process/{student_process_status} --}}
 @extends('student.student_layout')
-@section('title', 'student_process')
-@section('student_process', 'select_menu_color')
+@section('title', 'process')
+@section('process', 'select_menu_color')
 {{-- @section('body_header', 'ข้อมูลนักศึกษา') --}}
 @section('style')
     <style>
@@ -60,12 +60,12 @@
                             </li>
                         </ul>
                         @if ($student_process_status == 'no_register')
-                        <a href="student_process_register_for_internship"><button type="button"
+                        <a href="/student/process/process_register_for_internship/{{ $student_process_status }}"><button type="button"
                             class="btn btn-lg submit_color mt-4 w-100 p-3  rounded-5" data-bs-dismiss="modal"
                             style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
                         @else
                             @if ($student_process_status == 'register_pending' || $student_process_status == 'register_completed' || $student_process_status == 'company_pending' || $student_process_status == 'internship')
-                            <a href="student_process_register_for_internship"><button type="button"
+                            <a href="/student/process/process_register_for_internship/{{ $student_process_status }}"><button type="button"
                                 class="btn btn-lg submit_color mt-4 w-100 p-3  rounded-5 disabled" data-bs-dismiss="modal"
                                 style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
                             @endif

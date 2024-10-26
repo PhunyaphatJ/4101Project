@@ -1,8 +1,8 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_process_company_add_address --}}
+{{-- path หน้าเว็บเป็น /student/process/process_company_add_address/{student_process_status}/{app_type} --}}
 @extends('student.student_layout')
-@section('title', 'student_process_company_add_address')
-@section('student_process', 'select_menu_color')
-@section('student_process_company', 'select_menu_color')
+@section('title', 'process_company_add_address')
+@section('process', 'select_menu_color')
+@section('process_company', 'select_menu_color')
 @if ($app_type == 'request')
     @section('body_header', 'สถานที่ฝึกงาน(ขอเอกสารขอความอนุเคราะห์)')
 @else
@@ -137,9 +137,9 @@
             <hr class="my-4">
 
             <div class="mx-3">
-                <a href="student_process_company_choose_address"><button
+                <a href="/student/process/process_company_choose_address/{{ $student_process_status }}/{{ $app_type }}"><button
                         class="btn submit_color p-3 px-5 float-end ms-3 rounded-5" type="submit">เพิ่มสถานที่</button></a>
-                <a href="student_process_company_search_address"><button
+                <a href="/student/process/process_company_search_address/{{ $student_process_status }}/{{ $app_type }}"><button
                         class="btn cancel_color p-3 px-5 float-end  rounded-5" type="submit">ยกเลิก</button></a>
             </div>
         </section>

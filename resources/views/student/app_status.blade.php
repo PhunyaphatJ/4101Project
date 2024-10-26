@@ -1,7 +1,7 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_app_status --}}
+{{-- path หน้าเว็บเป็น /student/app_status/{student_process_status} --}}
 @extends('student.student_layout')
-@section('title', 'student_app_status')
-@section('student_app_status', 'select_menu_color')
+@section('title', 'app_status')
+@section('app_status', 'select_menu_color')
 @section('body_header', 'ตรวจสอบสถานะคำร้อง')
 @section('out_body_content')
     <section> {{-- คำร้องขอลงทะเบียนฝึกงาน --}}

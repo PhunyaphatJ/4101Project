@@ -48,6 +48,20 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/student/{menu}',[StudentController::class,'student_register']);
 
-Route::get('/student/{student_process_status}/{app_type}/{report}/{menu}',[StudentController::class,'student_menu']);
+Route::prefix('student')->group(function(){
+    Route::get('/login',[StudentController::class,'login']);
+    Route::get('/register',[StudentController::class,'register']);
+    Route::get('/manual/{student_process_status}',[StudentController::class,'manual']);
+    Route::get('/process/{student_process_status}',[StudentController::class,'process']);
+    Route::get('/process/process_register_for_internship/{student_process_status}',[StudentController::class,'process_register_for_internship']);
+    Route::get('/process/process_company/{student_process_status}',[StudentController::class,'process_company']);
+    Route::get('/process/process_company_rec/{student_process_status}/{app_type}',[StudentController::class,'process_company_rec']);
+    Route::get('/process/process_company_rec_with_request/{student_process_status}/{app_type}',[StudentController::class,'process_company_rec_with_request']);
+    Route::get('/process/process_company_search_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_search_address']);
+    Route::get('/process/process_company_add_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_add_address']);
+    Route::get('/process/process_company_choose_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_choose_address']);
+    Route::get('/process/professor_info/{student_process_status}',[StudentController::class,'professor_info']);
+    Route::get('/process/report/{student_process_status}/{report}',[StudentController::class,'report']);
+    Route::get('/app_status/{student_process_status}',[StudentController::class,'app_status']);
+});

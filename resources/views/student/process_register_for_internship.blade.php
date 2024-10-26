@@ -1,10 +1,10 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_process_register_for_internship --}}
+{{-- path หน้าเว็บเป็น /student/process/process_register_for_internship/{student_process_status} --}}
 {{-- ถ้ากดปุ่มลงทะเบียนแล้ว student_process_status จะเปลี่ยนจาก no_register เป็น register_pending  --}}
 {{-- หากต้องการทดลองใช้เมนูในขั้นตอนถัดไปให้เปลี่ยน student_process_status เป็น register_completed ตรง path  --}}
 @extends('student.student_layout')
-@section('title', 'student_process_register_for_internship')
-@section('student_process', 'select_menu_color')
-@section('student_process_register_for_internship', 'select_menu_color')
+@section('title', 'process_register_for_internship')
+@section('process', 'select_menu_color')
+@section('process_register_for_internship', 'select_menu_color')
 @section('body_header', 'ลงทะเบียนขอฝึกงาน')
 @section('style')
     <style>
@@ -21,7 +21,7 @@
             translate: 185% -90%;
         }
 
-        #student_info {
+        #display_info {
             background-color: rgba(0, 0, 0, 0.7);
             color: #ffffff;
         }
@@ -39,7 +39,7 @@
 @section('body_content')
     @if ($student_process_status == 'no_register' || $student_process_status == 'register_pending')
         <section> {{-- แสดงข้อมูลนักศึกษา --}}
-            <div class="card rounded-0 shadow" id="student_info">
+            <div class="card rounded-0 shadow" id="display_info">
                 <div class="card-body">
                     <i class="bi bi-bookmark-fill" id="bookmark_icon"></i>
                     <div class="px-5 py-4">
@@ -142,6 +142,10 @@
                     <button class="btn submit_color p-3 px-5 float-end rounded-5" data-bs-toggle="modal"
                         data-bs-target="#app_approval_pending" type="submit">ลงทะเบียน</button>
                 </div>
+                <div class="mx-3">
+                    <a href="/student/process/{{ $student_process_status }}"><button class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"
+                            type="cancel">ยกเลิก</button></a>
+                </div>
             @else
                 @if (
                     $student_process_status == 'register_pending' ||
@@ -152,13 +156,13 @@
                         <button class="btn submit_color p-3 px-5 float-end rounded-5 disabled" data-bs-toggle="modal"
                             data-bs-target="#app_approval_pending" type="submit">ลงทะเบียน</button>
                     </div>
+                    <div class="mx-3">
+                        <a href="/student/process/{{ $student_process_status }}"><button class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"
+                                type="cancel">ย้อนกลับ</button></a>
+                    </div>
                 @endif
 
             @endif
-            <div class="mx-3">
-                <a href="student_process"><button class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"
-                        type="cancel">ยกเลิก</button></a>
-            </div>
 
             <div class="modal fade" id="app_approval_pending" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -175,7 +179,7 @@
                         </div>
                         <div class="modal-footer">
                             <a class="cancel_color py-3 px-4 rounded-5"
-                                href="/student/register_pending/no_app/no_report/student_process_register_for_internship">ปิด</a>
+                                href="/student/process/process_register_for_internship/register_pending">ปิด</a>
                         </div>
                     </div>
                 </div>
@@ -187,7 +191,7 @@
                 $student_process_status == 'company_pending' ||
                 $student_process_status == 'internship')
             <section> {{-- แสดงข้อมูลนักศึกษา --}}
-                <div class="card rounded-0 shadow">
+                <div class="card rounded-0 shadow" id="display_info">
                     <div class="card-body">
                         <div class="px-5 py-4">
                             <h5 class="mb-0"><i class="bi bi-folder-fill me-2"></i>ข้อมูลนักศึกษา</h5>
@@ -243,7 +247,7 @@
             </section>
 
             <section> {{-- แสดงข้อมูลและหลักฐานประกอบการพิจารณา --}}
-                <div class="card rounded-0 shadow mt-3">
+                <div class="card rounded-0 shadow mt-3" id="display_info">
                     <div class="card-body">
                         <div class="px-5 py-4">
                             <h5><i class="bi bi-folder-fill me-2"></i>ข้อมูลและหลักฐานประกอบการพิจารณา</h5>

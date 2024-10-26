@@ -1,8 +1,8 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_report --}}
+{{-- path หน้าเว็บเป็น /student/process/report/{student_process_status}/{report} --}}
 @extends('student.student_layout')
-@section('title', 'student_report')
-@section('student_process', 'select_menu_color')
-@section('student_report', 'select_menu_color')
+@section('title', 'report')
+@section('process', 'select_menu_color')
+@section('report', 'select_menu_color')
 @section('body_header', 'รายงานการฝึกงาน')
 @section('style')
     <style>
@@ -40,7 +40,7 @@
                             <div class="col-6"></div>
                             <div class="col-6 mb-4">
                                 <a class="btn submit_color d-inline-flex align-items-center rounded-5 ps-3 float-end"
-                                    type="button" href="/student/{{ $student_process_status }}/{{ $app_type }}/edit_report/student_report">
+                                    type="button" href="/student/process/report/{{ $student_process_status }}/edit_report">
                                     แก้ไขรายงาน<i class="bi bi-pencil ms-2" style="font-size: 25px"></i>
                                 </a>
                             </div>
@@ -77,7 +77,7 @@
                                 <div class="col-6">
                                     <a class="btn submit_color d-inline-flex align-items-center rounded-5 float-end"
                                         type="button"
-                                        href="/student/{{ $student_process_status }}/{{ $app_type }}/have_report/student_report">
+                                        href="/student/process/report/{{ $student_process_status }}/have_report">
                                         บันทึก<i class="bi bi-floppy2 ms-2" style="font-size: 25px"></i>
                                     </a>
                                 </div>
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="col-6"></div>
                                     <div class="col-6">
-                                        <a class="btn submit_color d-inline-flex align-items-center rounded-5 float-end" type="button" href="/student/{{ $student_process_status }}/{{ $app_type }}/have_report/student_report">
+                                        <a class="btn submit_color d-inline-flex align-items-center rounded-5 float-end" type="button" href="/student/process/report/{{ $student_process_status }}/have_report">
                                             บันทึก<i class="bi bi-floppy2 ms-2" style="font-size: 25px"></i>
                                         </a>
                                     </div>

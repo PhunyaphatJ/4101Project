@@ -1,10 +1,10 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_process_company_choose_address --}}
+{{-- path หน้าเว็บเป็น /student/process/process_company_choose_address/{student_process_status}/{app_type} --}}
 {{-- ถ้ากดปุ่ม submit ขอเอกสารส่งตัวแล้ว student_process_status จะเปลี่ยนจาก register_completed เป็น company_pending  --}}
 {{-- หากต้องการทดลองใช้เมนูในขั้นตอนถัดไปให้เปลี่ยน student_process_status เป็น internship ตรง path  --}}
 @extends('student.student_layout')
-@section('title', 'student_process_company_choose_address')
-@section('student_process', 'select_menu_color')
-@section('student_process_company', 'select_menu_color')
+@section('title', 'process_company_choose_address')
+@section('process', 'select_menu_color')
+@section('process_company', 'select_menu_color')
 @if ($app_type == 'request')
     @section('body_header', 'สถานที่ฝึกงาน(ขอเอกสารขอความอนุเคราะห์)')
 @else
@@ -22,7 +22,7 @@
             translate: 0% -10%;
         }
 
-        #company_info {
+        #display_info {
             background-color: rgba(0, 0, 0, 0.7);
             color: #ffffff;
         }
@@ -36,7 +36,7 @@
 @endsection
 @section('body_content')
     <section> {{-- แสดงข้อมูลสถานที่ฝึกงาน --}}
-        <div class="card rounded-0 shadow" id="company_info">
+        <div class="card rounded-0 shadow" id="display_info">
             <div class="card-body">
                 <i class="bi bi-bookmark-fill" id="bookmark_icon"></i>
                 <div class="px-5 py-4">
@@ -185,7 +185,7 @@
     @else
         @if ($app_type == 'rec_with_request')
             <section> {{-- แสดงรายละเอียดการฝึกงาน --}}
-                <div class="card rounded-0 shadow mt-3" id="company_info">
+                <div class="card rounded-0 shadow mt-3" id="display_info">
                     <div class="card-body">
                         <i class="bi bi-bookmark-fill" id="bookmark_icon"></i>
                         <div class="px-5 py-4">
@@ -252,7 +252,7 @@
                     data-bs-target="#app_approval_pending" type="submit">ขอเอกสารขอความอนุเคราะห์</button>
             </div>
             <div class="mx-3">
-                <a href="student_process_company_search_address"><button
+                <a href="/student/process/process_company_search_address/{{ $student_process_status }}/{{ $app_type }}"><button
                         class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ยกเลิก</button></a>
             </div>
 
@@ -470,7 +470,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <a class="cancel_color py-3 px-4 rounded-5"
-                                        href="/student/company_pending/rec_no_request/no_report/student_process_company_choose_address">ปิด</a>
+                                        href="/student/process/process_company_choose_address/{{ $student_process_status }}/{{ $app_type }}">ปิด</a>
                                 </div>
                             </div>
                         </div>
@@ -492,20 +492,20 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a class="cancel_color py-3 px-4 rounded-5"
-                                            href="/student/company_pending/rec_with_request/no_report/student_process_company_choose_address">ปิด</a>
+                                            href="/student/process/process_company_choose_address/company_pending/{{ $app_type }}">ปิด</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endif
                 @endif
-                @if ($student_process_status == 'company_pending')
+                @if ($student_process_status == 'company_pending' || $student_process_status == 'internship')
                     <div class="mx-3">
                         <button class="btn submit_color p-3 px-5 float-end rounded-5 disabled" data-bs-toggle="modal"
                             data-bs-target="#app_approval_pending" type="submit">ขอเอกสารส่งตัว</button>
                     </div>
                     <div class="mx-3">
-                        <a href="student_process_company_search_address"><button
+                        <a href="/student/process/process_company_search_address/{{ $student_process_status }}/{{ $app_type }}"><button
                                 class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"
                                 type="cancel">ย้อนกลับ</button></a>
                     </div>
@@ -515,7 +515,7 @@
                             data-bs-target="#app_approval_pending" type="submit">ขอเอกสารส่งตัว</button>
                     </div>
                     <div class="mx-3">
-                        <a href="student_process_company_search_address"><button
+                        <a href="/student/process/process_company_search_address/{{ $student_process_status }}/{{ $app_type }}"><button
                                 class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"
                                 type="cancel">ยกเลิก</button></a>
                     </div>
@@ -524,6 +524,7 @@
         @endif
     @endif
 
+    {{-- สำหรับ tooltip ข้อความหมายเหตุปุ่มเพิ่มพี่เลี้ยง --}}
     <script>
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {

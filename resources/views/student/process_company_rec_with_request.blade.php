@@ -1,8 +1,8 @@
-{{-- path หน้าเว็บเป็น /student/{student_process_status}/{app_type}/{report}/student_process_company_rec_with_request --}}
+{{-- path หน้าเว็บเป็น /student/process/process_company_rec_with_request/{student_process_status}/{app_type} --}}
 @extends('student.student_layout')
-@section('title', 'student_process_company_rec_with_request')
-@section('student_process', 'select_menu_color')
-@section('student_process_company', 'select_menu_color')
+@section('title', 'process_company_rec_with_request')
+@section('process', 'select_menu_color')
+@section('process_company', 'select_menu_color')
 @section('body_header', 'สถานที่ฝึกงาน(ขอเอกสารส่งตัว)')
 @section('style')
     <style>
@@ -24,7 +24,7 @@
             <div class="card rounded-2 shadow mb-3">
                 <div class="card-body">
                     <div>
-                        <a href="student_process_company_choose_address"
+                        <a href="/student/process/process_company_choose_address/{{ $student_process_status }}/{{ $app_type }}"
                             class="btn submit_color float-end rounded-5">เลือกสถานที่</a>
                         <div class="row ">
                             
