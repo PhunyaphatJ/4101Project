@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-    return view('ui_layout.login');
-});
+Route::get('/',[UserController::class,'login'])->name('login');
+Route::post('/',[UserController::class,'login_verify'])->name('login_verify');
+
 
 Route::prefix('admin')->group(function(){
     Route::get('/', function () { return view('admin.fake_login'); });
@@ -51,8 +52,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/',[StudentController::class,'login'])->name('login');
-Route::post('/compare_login',[StudentController::class,'compare_login'])->name('compare_login');
+
+
 Route::get('/registerr',[StudentController::class,'register'])->name('register');
 Route::post('/compare_register',[StudentController::class,'compare_register'])->name('compare_register');
 
