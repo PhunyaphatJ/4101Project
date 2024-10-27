@@ -104,7 +104,7 @@
                 <h4>ข้อมูลสถานที่ฝึกงาน</h4>
                 <div class="ms-3">
                     <div>
-                        <h6 style="display: inline-block">ชื่อ: </h6>
+                        <h6 style="display: inline-block">ชื่อสถานที่: </h6>
                         <span>{{ $application['company_name'] }}</span>
                     </div>
                     <div>
@@ -223,39 +223,52 @@
     </div>
     {{-- button group --}}
     <div class="text-center mt-4">
-        {{-- ปุ่มอนุมัติ เมื่อกดจะแสดง pop up ยืนยันการอนุมัติคำร้อง --}}
-        <div style="display: inline-block">
-            <button class="btn btn-success" onclick="approve_block_on()">อนุมัติ</button>
-            {{-- pop up ยืนยันการอนุมัติคำร้อง --}}
-            <div class="overlay" id="approve-popup">
-                <div class="card overlay-item w-75">
-                    <div class="card-body">
-                        <div class="row">
-                            <h4 class="col-9 text-start mt-4 ps-3">อนุมัติคำร้อง</h4>
-                            <div class="col-3 text-end">
-                                <button class="btn"><i class="bi bi-x-lg" style="text-align: left;"
-                                        onclick="approve_block_off()"></i></button>
+        @if ($application['application_type'] == 'recommendation')
+            {{-- ปุ่มถัดไป กรณีเป็นเอกสารส่งตัว --}}
+            <div style="display: inline-block">
+                <a class="btn btn-warning"
+                    href="/admin/manage_application/approval/{{ $application['application_type'] }}/{{ $application['application_id'] }}/assign_professor">
+                    ถัดไป
+                </a>
+            </div>
+        @else
+            {{-- ปุ่มอนุมัติ เมื่อกดจะแสดง pop up ยืนยันการอนุมัติคำร้อง --}}
+            <div style="display: inline-block">
+                <button class="btn btn-success" onclick="approve_block_on()">อนุมัติ</button>
+                {{-- pop up ยืนยันการอนุมัติคำร้อง --}}
+                <div class="overlay" id="approve-popup">
+                    <div class="card overlay-item w-75">
+                        <div class="card-body">
+                            <div class="row">
+                                <h4 class="col-9 text-start mt-4 ps-3">อนุมัติคำร้อง</h4>
+                                <div class="col-3 text-end">
+                                    <button class="btn"><i class="bi bi-x-lg" style="text-align: left;"
+                                            onclick="approve_block_off()"></i></button>
+                                </div>
+                            </div>
+                            {{-- ปุ่มใน pop up --}}
+                            <div class="text-start ps-3">
+                                <span>อนุมัติคำร้อง {{ $application['application_id'] }}
+                                    และเปลี่ยนสถานะคำร้องเป็น</span>
+                                @if ($application['application_type'] == 'internship_register')
+                                    <span>'สมบูรณ์'</span>
+                                @else
+                                    <span>'กำลังจัดทำ'</span>
+                                @endif
+                            </div>
+                            <div class="mt-2">
+                                <a class="btn btn-warning"
+                                    href="{{ route('approve_application', [$application['application_type'], $application['application_id']]) }}">
+                                    ยืนยัน
+                                </a>
+                                <button class="btn btn-dark" onclick="approve_block_off()">ยกเลิก</button>
                             </div>
                         </div>
-                        {{-- ปุ่มใน pop up --}}
-                        <div class="text-start ps-3">
-                            <span>อนุมัติคำร้อง {{ $application['application_id'] }} และเปลี่ยนสถานะคำร้องเป็น</span>
-                            @if ($application['application_type'] == 'internship_register')
-                                <span>'สมบูรณ์'</span>
-                            @else
-                                <span>'กำลังจัดทำ'</span>
-                            @endif
-                        </div>
-                        <a class="btn btn-warning"
-                            href="{{ route('approve_application', [$application['application_type'], $application['application_id']]) }}">
-                            ยืนยัน
-                        </a>
-                        <button class="btn btn-dark" onclick="approve_block_off()">ยกเลิก</button>
                     </div>
                 </div>
+                {{-- สิ้นสุด pop up --}}
             </div>
-            {{-- สิ้นสุด pop up --}}
-        </div>
+        @endif
         {{-- ปุ่มไม่อนุมัติ เมื่อกดจะแสดง pop up ยืนยันการไม่อนุมัติคำร้อง --}}
         <div style="display: inline-block">
             <button class="btn btn-danger" onclick="reject_block_on()">ไม่อนุมัติ</button>

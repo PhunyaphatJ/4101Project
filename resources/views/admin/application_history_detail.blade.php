@@ -104,7 +104,7 @@
                 <h4>ข้อมูลสถานที่ฝึกงาน</h4>
                 <div class="ms-3">
                     <div>
-                        <h6 style="display: inline-block">ชื่อ: </h6>
+                        <h6 style="display: inline-block">ชื่อสถานที่: </h6>
                         <span>{{ $application['company_name'] }}</span>
                     </div>
                     <div>

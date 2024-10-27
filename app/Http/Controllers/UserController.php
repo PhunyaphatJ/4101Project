@@ -10,11 +10,17 @@ class UserController extends Controller
     function login()
     {
         $menu = 'login';
-        return view('ui_layout.login', compact('menu'));
+        $invalid = false;
+        return view('ui_layout.login', compact('menu', 'invalid'));
     }
 
     function login_verify(Request $request)
     {
+        if ($request['email'] == '' && $request['password'] == '') {
+            $menu = 'login';
+            $invalid = false;
+            return view('ui_layout.login', compact('menu','invalid'));
+        }
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -93,6 +99,7 @@ class UserController extends Controller
             }
         }
         $menu = 'login';
-        return view('ui_layout.login', compact('menu'));
+        $invalid = true;
+        return view('ui_layout.login', compact('menu','invalid'));
     }
 }

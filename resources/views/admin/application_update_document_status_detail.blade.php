@@ -77,7 +77,7 @@
                 <h4>ข้อมูลสถานที่ฝึกงาน</h4>
                 <div class="ms-3">
                     <div>
-                        <h6 style="display: inline-block">ชื่อ: </h6>
+                        <h6 style="display: inline-block">ชื่อสถานที่: </h6>
                         <span>{{ $application['company_name'] }}</span>
                     </div>
                     <div>
@@ -214,11 +214,13 @@
                         {{-- ปุ่มใน pop up --}}
                         <p class="text-start ps-3">เปลี่ยนสถานะคำร้อง {{ $application['application_id'] }}
                             เป็น'สมบูรณ์'</p>
-                        <a class="btn btn-warning"
-                            href="{{ route('application_update_document_status_complete', [$application['application_type'], $application['application_id']]) }}">
-                            ยืนยัน
-                        </a>
-                        <button class="btn btn-dark" onclick="approve_block_off()">ยกเลิก</button>
+                        <div class="mt-2">
+                            <a class="btn btn-warning"
+                                href="{{ route('application_update_document_status_complete', [$application['application_type'], $application['application_id']]) }}">
+                                ยืนยัน
+                            </a>
+                            <button class="btn btn-dark" onclick="approve_block_off()">ยกเลิก</button>
+                        </div>
                     </div>
                 </div>
             </div>

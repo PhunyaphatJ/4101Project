@@ -26,6 +26,9 @@
                         {{ $message }}
                     </div>
                 @enderror
+                @if($invalid)
+                <p id="invalid-text" class="text-danger text-center">Email หรือรหัสผ่านไม่ถูกต้อง</p>
+                @endif
                 <button class="btn submit_color w-100 py-3 my-4  rounded-5" type="submit">Login</button>
             </form>
         </div>

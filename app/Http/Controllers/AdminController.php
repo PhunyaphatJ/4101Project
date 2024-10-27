@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Professor;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -179,14 +180,14 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'ทอมแอนด์เจอร์รี่ มหาชน จำกัด.',
                 'company_address' => '2 หมู่ที่ 2 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'ข้าวเหนียว มะม่วง'
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'ข้าวเหนียว มะม่วง'
             ],
             [
                 // ข้อมูล application
@@ -205,21 +206,21 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'เค้กแสนอร่อย จำกัด.',
                 'company_address' => '3 หมู่ที่ 3 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'คัพเค้ก นุ่มนวล',
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'คัพเค้ก นุ่มนวล',
                 // ข้อมูลพี่เลี้ยง
                 'mentor_name' => 'ภาพวาด',
                 'mentor_lastname' => 'งามตา',
                 'mentor_email' => 'butii@email.com',
                 'mentor_position' => 'xxx',
-                'mentor_phone'=> '02xxx',
-                'mentor_fax'=> '02xxx',
+                'mentor_phone' => '02xxx',
+                'mentor_fax' => '02xxx',
                 // เอกสาร2
                 'response_file_path' => '#response_file_path'
             ],
@@ -240,22 +241,22 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'สวนสัตว์เขาเขียว',
                 'company_address' => '4 หมู่ที่ 4 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'ต้นกล้า งอกงาม',
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'ต้นกล้า งอกงาม',
                 // ข้อมูลอาจารย์ที่ปรึกษา
                 'professor_id' => '01',
-                'professor_prefix'=>'MR.',
+                'professor_prefix' => 'MR.',
                 'professor_name' => 'นภา',
                 'professor_lastname' => 'กว้างใหญ่',
                 'professor_email' => 'sky@ruamail.ac.th',
-                'professor_phone'=> '02xxx',
-                'professor_remark'=> '',
+                'professor_phone' => '02xxx',
+                'professor_remark' => '',
             ],
             [
                 // ข้อมูล application
@@ -273,14 +274,14 @@ class AdminController extends Controller
                 'email' => 'underthesea@rumail.ru.ac.th',
                 'company_name' => 'อควาเรียม',
                 'company_address' => '5 หมู่ที่ 5 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'เซบาสเตียน ศรีเมือง'
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'เซบาสเตียน ศรีเมือง'
             ],
         ];
         foreach ($applications as $application) {
@@ -290,12 +291,16 @@ class AdminController extends Controller
         }
     }
     // จัดการคำร้อง อนุมัติคำร้อง ,อนุมัติคำร้อง
-    function approve_application($application_type, $application_id)
+    function approve_application($application_type, $application_id, Request $request)
     {
         $menu = 'manage_application';
         $event = 'approve';
         // .....เปลี่ยนสถานะคำร้องใน DB เป็น completed กรณีเป็นคำร้องขึ้นทะเบียนฝึกงาน......
-        // .....เปลี่ยนสถานะคำร้องใน DB เป็น document_pending กรณีเป็นคำร้องอื่นๆ.......
+        // .....เปลี่ยนสถานะคำร้องใน DB เป็น document_pending กรณีเป็นคำร้องอื่นๆ.........
+        // ...........assign อาจารย์ที่ปรึกษา กรณีเป็นคำร้องขอเอกสารส่งตัว...............
+        $request->selected_professor;   //คือรหัสประจำตัวอาจารย์ที่แอดมินเลือก..........
+        // .....เปลี่ยนประเภทของนักศึกษาเป็น general กรณีเป็นคำร้องขึ้นทะเบียนฝึกงาน........
+        // .....เปลี่ยนประเภทของนักศึกษาเป็น internship กรณีเป็นคำร้องขอเอกสารส่งตัว.......
         $noti_subject = 'คำร้องได้รับการอนุมัติ';
         $noti_detail = 'เลขที่คำร้อง:' . $application_id;
         if ($application_type == 'internship_register') {
@@ -308,7 +313,7 @@ class AdminController extends Controller
             $noti_detail = $noti_detail . ' ,คำร้องขอเอกสารขอบคุณได้รับการอนุมัติและกำลังจัดทำเอกสาร';
         }
         // ..............บันทึกแจ้งเตือน................
-        return view('admin.application_approval_response', compact('menu', 'event'));
+        return view('admin.application_approval_response', compact('menu', 'application_type', 'event'));
     }
     // จัดการคำร้อง อนุมัติคำร้อง ,ไม่อนุมัติคำร้อง aka.ปฏิเสธ
     function reject_application($application_type, $application_id, Request $request)
@@ -338,6 +343,47 @@ class AdminController extends Controller
         $noti_detail = $noti_detail . ',เหตุผลการปฏิเสธคำร้อง ' . $request->response_detail;
         // ..............บันทึกแจ้งเตือน................
         return view('admin.application_approval_response', compact('menu', 'event'));
+    }
+    // จัดการคำร้อง อนุมัติคำร้อง ,มอบหมายอาจารย์ตอนอนุมัติเอกสารส่งตัว
+    function assign_professor()
+    {
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
+        // ตัวอย่างข้อมูล
+        $application = [
+            // ข้อมูล application
+            'application_id' => '003',
+            'date' => '2024-10-03',
+            'application_type' => 'recommendation',
+            'application_status' => 'approval_pending',
+            // ข้อมูล student
+            'student_id' => '6305003333',
+            'prefix' => 'MS.',
+            'name' => 'สตรอเบอร์รี่',
+            'lastname' => 'เค้ก',
+            'department' => 'CS',
+            'phone' => '094xxx',
+            'email' => 'strawberrycake@rumail.ru.ac.th'
+        ];
+        // ตัวอย่างข้อมูลอาจารย์
+        $professors = [
+            [
+                'professor_id' => '01',
+                'professor_name' => 'จิ้งจอง',
+                'professor_lastname' => 'สีทอง'
+            ],
+            [
+                'professor_id' => '02',
+                'professor_name' => 'ต้นข้าว',
+                'professor_lastname' => 'ท้องนา'
+            ],
+            [
+                'professor_id' => '03',
+                'professor_name' => 'นภา',
+                'professor_lastname' => 'ยามเย็น'
+            ],
+        ];
+        $menu = 'manage_application';
+        return view('admin.application_approval_assign_professor', compact('menu', 'application', 'professors'));
     }
 
     // จัดการคำร้อง อัพเดตสถานะการจัดทำเอกสาร ,หน้าแรก แสดงรายการคำร้องทั้งหมดที่อยูในสถานะกำลังจัดทำ
@@ -446,7 +492,8 @@ class AdminController extends Controller
         }
     }
     // จัดการคำร้อง อัพเดตสถานะการจัดทำเอกสาร ,ข้อมูลรายละเอียดคำร้อง
-    function application_update_document_status_detail($application_type, $application_id){
+    function application_update_document_status_detail($application_type, $application_id)
+    {
         $menu = 'manage_application';
         // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         // ข้อมูลตัวอย่าง application ทั้งหมดที่อยู่ในสถานะกำลังจัดทำ
@@ -468,14 +515,14 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'ทอมแอนด์เจอร์รี่ มหาชน จำกัด.',
                 'company_address' => '2 หมู่ที่ 2 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'ข้าวเหนียว มะม่วง'
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'ข้าวเหนียว มะม่วง'
             ],
             [
                 // ข้อมูล application
@@ -494,21 +541,21 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'เค้กแสนอร่อย จำกัด.',
                 'company_address' => '3 หมู่ที่ 3 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'คัพเค้ก นุ่มนวล',
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'คัพเค้ก นุ่มนวล',
                 // ข้อมูลพี่เลี้ยง
                 'mentor_name' => 'ภาพวาด',
                 'mentor_lastname' => 'งามตา',
                 'mentor_email' => 'butii@email.com',
                 'mentor_position' => 'xxx',
-                'mentor_phone'=> '02xxx',
-                'mentor_fax'=> '02xxx',
+                'mentor_phone' => '02xxx',
+                'mentor_fax' => '02xxx',
                 // เอกสาร2
                 'response_file_path' => '#response_file_path'
             ],
@@ -529,22 +576,22 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'สวนสัตว์เขาเขียว',
                 'company_address' => '4 หมู่ที่ 4 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'ต้นกล้า งอกงาม',
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'ต้นกล้า งอกงาม',
                 // ข้อมูลอาจารย์ที่ปรึกษา
                 'professor_id' => '01',
-                'professor_prefix'=>'MR.',
+                'professor_prefix' => 'MR.',
                 'professor_name' => 'นภา',
                 'professor_lastname' => 'กว้างใหญ่',
                 'professor_email' => 'sky@ruamail.ac.th',
-                'professor_phone'=> '02xxx',
-                'professor_remark'=> '',
+                'professor_phone' => '02xxx',
+                'professor_remark' => '',
             ],
             [
                 // ข้อมูล application
@@ -562,14 +609,14 @@ class AdminController extends Controller
                 'email' => 'underthesea@rumail.ru.ac.th',
                 'company_name' => 'อควาเรียม',
                 'company_address' => '5 หมู่ที่ 5 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'เซบาสเตียน ศรีเมือง'
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'เซบาสเตียน ศรีเมือง'
             ],
         ];
         foreach ($applications as $application) {
@@ -579,9 +626,10 @@ class AdminController extends Controller
         }
     }
     // จัดการคำร้อง อัพเดตสถานะการจัดทำเอกสาร ,อัพเดตสถานะการจัดทำเอกสาร aka.ทำเอกสารเสร็จแล้ว
-    function application_update_document_status_complete($application_type, $application_id){
+    function application_update_document_status_complete($application_type, $application_id)
+    {
         $menu = 'manage_application';
-        // .....เปลี่ยนสถานะคำร้องใน DB เป็น completed......
+        // .....เปลี่ยนสถานะคำร้องใน DB เป็น completed...... 
         $noti_subject = 'จัดทำเอกสารเสร็จสิ้น';
         $noti_detail = 'เลขที่คำร้อง:' . $application_id;
         if ($application_type == 'internship_request') {
@@ -724,7 +772,8 @@ class AdminController extends Controller
         }
     }
     // จัดการคำร้อง ประวัติคำร้อง ,ข้อมูลรายละเอียดคำร้อง
-    function application_history_detail($application_type, $application_id){
+    function application_history_detail($application_type, $application_id)
+    {
         $menu = 'manage_application';
         // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         // ข้อมูลตัวอย่าง application ทั้งหมดที่อยู่ในสถานะรอการอนุมัติ
@@ -765,14 +814,14 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'ทอมแอนด์เจอร์รี่ มหาชน จำกัด.',
                 'company_address' => '2 หมู่ที่ 2 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'ข้าวเหนียว มะม่วง'
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'ข้าวเหนียว มะม่วง'
             ],
             [
                 // ข้อมูล application
@@ -791,21 +840,21 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'เค้กแสนอร่อย จำกัด.',
                 'company_address' => '3 หมู่ที่ 3 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'คัพเค้ก นุ่มนวล',
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'คัพเค้ก นุ่มนวล',
                 // ข้อมูลพี่เลี้ยง
                 'mentor_name' => 'ภาพวาด',
                 'mentor_lastname' => 'งามตา',
                 'mentor_email' => 'butii@email.com',
                 'mentor_position' => 'xxx',
-                'mentor_phone'=> '02xxx',
-                'mentor_fax'=> '02xxx',
+                'mentor_phone' => '02xxx',
+                'mentor_fax' => '02xxx',
                 // เอกสาร2
                 'response_file_path' => '#response_file_path'
             ],
@@ -826,22 +875,22 @@ class AdminController extends Controller
                 // ข้อมูลสถานที่ฝึกงาน
                 'company_name' => 'สวนสัตว์เขาเขียว',
                 'company_address' => '4 หมู่ที่ 4 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'ต้นกล้า งอกงาม',
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'ต้นกล้า งอกงาม',
                 // ข้อมูลอาจารย์ที่ปรึกษา
                 'professor_id' => '01',
-                'professor_prefix'=>'MR.',
+                'professor_prefix' => 'MR.',
                 'professor_name' => 'นภา',
                 'professor_lastname' => 'กว้างใหญ่',
                 'professor_email' => 'sky@ruamail.ac.th',
-                'professor_phone'=> '02xxx',
-                'professor_remark'=> '',
+                'professor_phone' => '02xxx',
+                'professor_remark' => '',
             ],
             [
                 // ข้อมูล application
@@ -859,14 +908,14 @@ class AdminController extends Controller
                 'email' => 'underthesea@rumail.ru.ac.th',
                 'company_name' => 'อควาเรียม',
                 'company_address' => '5 หมู่ที่ 5 ถนน รามคำแหง00 อำเภอ/เขต บางกะปิ ตำบล/แขวง หัวหมาก จังหวัด กรุงเทพมหานคร รหัสไปรษณีย์ 102xx',
-                'company_phone'=> '02xxx',
-                'company_fax'=> '02xxx',
+                'company_phone' => '02xxx',
+                'company_fax' => '02xxx',
                 // ข้อมูลรายละเอียดการฝึกงาน
-                'register_semester'=>'S',
-                'year'=>'2567',
-                'start_date'=>'2024-10-30',
-                'end_date'=>'2025-2-10',
-                'attend_to'=>'เซบาสเตียน ศรีเมือง'
+                'register_semester' => 'S',
+                'year' => '2567',
+                'start_date' => '2024-10-30',
+                'end_date' => '2025-2-10',
+                'attend_to' => 'เซบาสเตียน ศรีเมือง'
             ],
         ];
         foreach ($applications as $application) {
