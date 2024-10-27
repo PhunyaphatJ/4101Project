@@ -1,6 +1,7 @@
 {{-- path หน้าเว็บเป็น /student/process/report/{student_process_status}/{report} --}}
 @extends('student.student_layout')
 @section('title', 'report')
+@section('navbar_header', 'นักศึกษา')
 @section('process', 'select_menu_color')
 @section('report', 'select_menu_color')
 @section('body_header', 'รายงานการฝึกงาน')
@@ -18,88 +19,77 @@
     </style>
 @endsection
 @section('body_content')
-    @if ($report == 'have_report')
-        <section> {{-- แสดงลิงค์ไฟล์ตัวอย่างรายงาน, ลิงค์ไฟล์ตรายงานของฉัน, ปุ่มแก้ไขรายงาน --}}
-            <div class="card rounded-0 shadow" id="student_info">
-                <div class="card-body">
-                    <div class="" style="margin: 5% 15%">
-                        <div class="row justify-content-center">
-                            <div class="col-6 mb-4">
-                                <button class="btn sidebar_color d-inline-flex align-items-center m-auto rounded-5"
-                                    type="button">
-                                    ตัวอย่างรายงานการฝึกงาน<i class="bi bi-file-earmark-arrow-down ms-2"
-                                        style="font-size: 30px"></i>
-                                </button>
-                            </div>
+    <section>
+        <div class="card rounded-0 shadow" id="student_info">
+            <div class="card-body">
+                <div class="" style="margin: 5% 15%">
+                    <div class="row justify-content-center">
+                        <div class="col-6 mb-4">
+                            <button class="btn sidebar_color d-inline-flex align-items-center m-auto rounded-5"
+                                type="button">
+                                ตัวอย่างรายงานการฝึกงาน<i class="bi bi-file-earmark-arrow-down ms-2"
+                                    style="font-size: 30px"></i>
+                            </button>
+                        </div>
+                        @if ($report == 'have_report')
                             <div class="col-6 mb-3">
                                 <button class="btn sidebar_color d-inline-flex align-items-center rounded-5 m-auto"
                                     type="button">
-                                    รายงานการฝึกงานของฉัน<i class="bi bi-file-earmark-text ms-2" style="font-size: 30px"></i>
+                                    รายงานการฝึกงานของฉัน<i class="bi bi-file-earmark-text ms-2"
+                                        style="font-size: 30px"></i>
                                 </button>
                             </div>
                             <div class="col-6"></div>
-                            <div class="col-6 mb-4">
-                                <a class="btn submit_color d-inline-flex align-items-center rounded-5 ps-3 float-end"
-                                    type="button" href="/student/process/report/{{ $student_process_status }}/edit_report">
-                                    แก้ไขรายงาน<i class="bi bi-pencil ms-2" style="font-size: 25px"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @else
-        @if ($report == 'no_report')
-            <section> {{-- แสดงลิงค์ไฟล์ตัวอย่างรายงาน, ลิงค์ไฟล์ตรายงานของฉัน(ลิงค์ไม่สามารใช้งานได้), input รายงาน, ปุ่มบันทึกรายงาน --}}
-                <div class="card rounded-0 shadow" id="student_info">
-                    <div class="card-body">
-                        <div class="" style="margin: 5% 15%">
-                            <div class="row justify-content-center">
+                            <form class="row" method="POST"
+                                action="{{ route('add_report', [$student_process_status]) }}">
+                                @csrf
                                 <div class="col-6 mb-4">
-                                    <button class="btn sidebar_color d-inline-flex align-items-center m-auto rounded-5"
+                                    <input type="file" class="form-control rounded-5 ps-4" name="report_file"
+                                        placeholder="" required>
+                                </div>
+                                <div class="col-6 mb-4">
+                                    <button
+                                        class="btn submit_color d-inline-flex align-items-center rounded-5 ps-3 float-end disabled"
                                         type="button">
-                                        ตัวอย่างรายงานการฝึกงาน<i class="bi bi-file-earmark-arrow-down ms-2"
-                                            style="font-size: 30px"></i>
+                                        แก้ไขรายงาน<i class="bi bi-pencil ms-2" style="font-size: 25px"></i>
                                     </button>
                                 </div>
+                                <div class="col-6"></div>
+                                <div class="col-6">
+                                    <button class="btn submit_color d-inline-flex align-items-center rounded-5 float-end"
+                                        type="submit">
+                                        บันทึก<i class="bi bi-floppy2 ms-2" style="font-size: 25px"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        @else
+                            @if ($report == 'no_report')
+
                                 <div class="col-6 mb-3">
-                                    <button class="btn sidebar_color d-inline-flex align-items-center rounded-5 m-auto disabled"
+                                    <button
+                                        class="btn sidebar_color d-inline-flex align-items-center rounded-5 m-auto disabled"
                                         type="button">
                                         รายงานการฝึกงานของฉัน<i class="bi bi-file-earmark-text ms-2"
                                             style="font-size: 30px"></i>
                                     </button>
                                 </div>
-                                <div class="col-6 mb-4">
-                                    <input type="file" class="form-control rounded-5 ps-4 m-auto" id="recentreceipt"
-                                        placeholder="">
-                                </div>
-                                <div class="col-6">
-                                    <a class="btn submit_color d-inline-flex align-items-center rounded-5 float-end"
-                                        type="button"
-                                        href="/student/process/report/{{ $student_process_status }}/have_report">
-                                        บันทึก<i class="bi bi-floppy2 ms-2" style="font-size: 25px"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        @else
-            @if ($report == 'edit_report')
-                <section> {{-- แสดงลิงค์ไฟล์ตัวอย่างรายงาน, ลิงค์ไฟล์ตรายงานของฉัน(ลิงค์ไม่สามารใช้งานได้), input รายงาน, ปุ่มบันทึกรายงาน --}}
-                    <div class="card rounded-0 shadow" id="student_info">
-                        <div class="card-body">
-                            <div class="" style="margin: 5% 15%">
-                                <div class="row justify-content-center">
+                                <form class="row" method="POST"
+                                    action="{{ route('add_report', [$student_process_status]) }}">
+                                    @csrf
                                     <div class="col-6 mb-4">
-                                        <button class="btn sidebar_color d-inline-flex align-items-center m-auto rounded-5"
-                                            type="button">
-                                            ตัวอย่างรายงานการฝึกงาน<i class="bi bi-file-earmark-arrow-down ms-2"
-                                                style="font-size: 30px"></i>
+                                        <input type="file" class="form-control rounded-5 ps-4" name="report_file"
+                                            placeholder="" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <button
+                                            class="btn submit_color d-inline-flex align-items-center rounded-5 float-end"
+                                            type="submit">
+                                            บันทึก<i class="bi bi-floppy2 ms-2" style="font-size: 25px"></i>
                                         </button>
                                     </div>
+                                </form>
+                            {{-- @else
+                                @if ($report == 'edit_report')
                                     <div class="col-6 mb-3">
                                         <button class="btn sidebar_color d-inline-flex align-items-center rounded-5 m-auto"
                                             type="button">
@@ -108,27 +98,40 @@
                                         </button>
                                     </div>
                                     <div class="col-6 mb-4">
-                                        <input type="file" class="form-control rounded-5 ps-4 m-auto" id="recentreceipt" placeholder="">
+                                        <input type="file" class="form-control rounded-5 ps-4 m-auto" id="recentreceipt"
+                                            placeholder="">
                                     </div>
-                                    <div class="col-6 mb-4">
-                                        <button class="btn submit_color d-inline-flex align-items-center rounded-5 ps-3 float-end disabled"
-                                            type="button">
-                                            แก้ไขรายงาน<i class="bi bi-pencil ms-2" style="font-size: 25px"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-6"></div>
-                                    <div class="col-6">
-                                        <a class="btn submit_color d-inline-flex align-items-center rounded-5 float-end" type="button" href="/student/process/report/{{ $student_process_status }}/have_report">
-                                            บันทึก<i class="bi bi-floppy2 ms-2" style="font-size: 25px"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            @endif
-        @endif
+                                    <form class="row" method="POST"
+                                        action="{{ route('add_report', [$student_process_status]) }}">
+                                        @csrf
+                                        <div class="col-6 mb-4">
+                                            <input type="file" class="form-control rounded-5 ps-4" name="report_file"
+                                                placeholder="" required>
+                                        </div>
+                                        <div class="col-6 mb-4">
+                                            <button
+                                                class="btn submit_color d-inline-flex align-items-center rounded-5 ps-3 float-end disabled"
+                                                type="button">
+                                                แก้ไขรายงาน<i class="bi bi-pencil ms-2" style="font-size: 25px"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-6"></div>
+                                        <div class="col-6">
+                                            <button
+                                                class="btn submit_color d-inline-flex align-items-center rounded-5 float-end"
+                                                type="submit">
+                                                บันทึก<i class="bi bi-floppy2 ms-2" style="font-size: 25px"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                @endif --}}
+                            @endif
 
-    @endif
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 @endsection

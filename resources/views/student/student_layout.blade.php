@@ -57,7 +57,7 @@
                                     <a class="list-group-item p-3 my-1 @yield('professor_info')" href="/student/process/professor_info/{{ $student_process_status }}"><i
                                             class="bi bi-dice-3 ms-3 me-2"></i>3.พบอาจารย์ที่ปรึกษา
                                     </a> {{-- process_3 หมายถึงเมนูพบอาจารย์ที่ปรึกษา --}}
-                                    <a class="list-group-item p-3 my-1 @yield('report')" href="/student/process/report/{{ $student_process_status }}/no_report"><i
+                                    <a class="list-group-item p-3 my-1 @yield('report')" href="/student/process/report/{{ $student_process_status }}"><i
                                             class="bi bi-dice-4 ms-3 me-2"></i>4.รายงานผลการฝึกงาน
                                     </a> {{-- process_4 หมายถึงเมนูรายงานผลการฝึกงาน --}}
                                     @endif

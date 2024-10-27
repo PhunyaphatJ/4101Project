@@ -1,6 +1,7 @@
 {{-- path หน้าเว็บเป็น /student/app_status/{student_process_status} --}}
 @extends('student.student_layout')
 @section('title', 'app_status')
+@section('navbar_header', 'นักศึกษา')
 @section('app_status', 'select_menu_color')
 @section('body_header', 'ตรวจสอบสถานะคำร้อง')
 @section('out_body_content')
