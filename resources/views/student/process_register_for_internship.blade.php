@@ -101,39 +101,40 @@
             <h5 class="my-3">ข้อมูลและหลักฐานประกอบการพิจารณา</h5>
 
             <div id="more_info" class="mx-3">
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" validate>
                     <div id="file" class="row">
+
                         <div class="col-4">
                             <label for="transcript" class="form-label">ใบรายงานการเช็คเกรด</label>
                             <input type="file" class="form-control rounded-5 ps-4" id="transcript" placeholder=""
                                 required>
-                            <div class="invalid-feedback">
-                                Valid is required
-                            </div>
                         </div>
 
                         <div class="col-4">
                             <label for="student_card" class="form-label">สำเนาบัตรนักศึกษา</label>
                             <input type="file" class="form-control rounded-5 ps-4" id="student_card" placeholder=""
                                 required>
-                            <div class="invalid-feedback">
-                                Valid is required
-                            </div>
                         </div>
 
                         <div class="col-4">
                             <label for="recentreceipt" class="form-label">ใบเสร็จลงทะเบียนเรียนภาคล่าสุด</label>
                             <input type="file" class="form-control rounded-5 ps-4" id="recentreceipt" placeholder=""
                                 required>
-                            <div class="invalid-feedback">
-                                Valid is required
-                            </div>
                         </div>
                     </div>
+                    <p class="text-end text-danger mt-4 mb-0 me-4">หน่วยกิตสะสมต้องมากกว่า 100</p>
+                    <hr class="mb-4 mt-0">
+                    @if ($student_process_status == 'no_register')
+                        <div class="mx-3">
+                            <button class="btn cancel_color p-3 px-5 float-end rounded-5" type="submit">ยืนยัน</button>
+                        </div>
+                        <div class="mx-3">
+                            <a href="/student/process/{{ $student_process_status }}"
+                                class="btn btn-secondary p-3 px-5 me-3 float-end rounded-5" type="cancel">ยกเลิก</a>
+                        </div>
+                    @endif
                 </form>
             </div>
-            <p class="text-end text-danger mt-4 mb-0 me-4">หน่วยกิตสะสมต้องมากกว่า 100</p>
-            <hr class="mb-4 mt-0">
         </section>
 
         <section> {{-- ปุ่มลงทะเบียน --}}
@@ -143,8 +144,8 @@
                         data-bs-target="#app_approval_pending" type="submit">ลงทะเบียน</button>
                 </div>
                 <div class="mx-3">
-                    <a href="/student/process/{{ $student_process_status }}"><button class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"
-                            type="cancel">ยกเลิก</button></a>
+                    <a href="/student/process/{{ $student_process_status }}"
+                        class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ยกเลิก</a>
                 </div>
             @else
                 @if (
@@ -157,8 +158,8 @@
                             data-bs-target="#app_approval_pending" type="submit">ลงทะเบียน</button>
                     </div>
                     <div class="mx-3">
-                        <a href="/student/process/{{ $student_process_status }}"><button class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"
-                                type="cancel">ย้อนกลับ</button></a>
+                        <a href="/student/process/{{ $student_process_status }}"
+                            class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ย้อนกลับ</a>
                     </div>
                 @endif
 
@@ -179,7 +180,7 @@
                         </div>
                         <div class="modal-footer">
                             <a class="cancel_color py-3 px-4 rounded-5"
-                                href="/student/process/process_register_for_internship/register_pending">ปิด</a>
+                                href="{{ route('process_register_for_internship', 'register_pending') }}">ปิด</a>
                         </div>
                     </div>
                 </div>

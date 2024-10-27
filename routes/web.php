@@ -43,19 +43,22 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+Route::get('/',[StudentController::class,'login'])->name('login');
+Route::post('/compare_login',[StudentController::class,'compare_login'])->name('compare_login');
+Route::get('/registerr',[StudentController::class,'register'])->name('register');
+Route::post('/compare_register',[StudentController::class,'compare_register'])->name('compare_register');
+
 Route::prefix('student')->group(function(){
-    Route::get('/login',[StudentController::class,'login']);
-    Route::get('/register',[StudentController::class,'register']);
-    Route::get('/manual/{student_process_status}',[StudentController::class,'manual']);
-    Route::get('/process/{student_process_status}',[StudentController::class,'process']);
-    Route::get('/process/process_register_for_internship/{student_process_status}',[StudentController::class,'process_register_for_internship']);
-    Route::get('/process/process_company/{student_process_status}',[StudentController::class,'process_company']);
-    Route::get('/process/process_company_rec/{student_process_status}/{app_type}',[StudentController::class,'process_company_rec']);
-    Route::get('/process/process_company_rec_with_request/{student_process_status}/{app_type}',[StudentController::class,'process_company_rec_with_request']);
-    Route::get('/process/process_company_search_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_search_address']);
-    Route::get('/process/process_company_add_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_add_address']);
-    Route::get('/process/process_company_choose_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_choose_address']);
-    Route::get('/process/professor_info/{student_process_status}',[StudentController::class,'professor_info']);
-    Route::get('/process/report/{student_process_status}/{report}',[StudentController::class,'report']);
-    Route::get('/app_status/{student_process_status}',[StudentController::class,'app_status']);
+    Route::get('/manual/{student_process_status}',[StudentController::class,'manual'])->name('manual');
+    Route::get('/process/{student_process_status}',[StudentController::class,'process'])->name('process');
+    Route::get('/process/process_register_for_internship/{student_process_status}',[StudentController::class,'process_register_for_internship'])->name('process_register_for_internship');
+    Route::get('/process/process_company/{student_process_status}',[StudentController::class,'process_company'])->name('process_company');
+    Route::get('/process/process_company_rec/{student_process_status}/{app_type}',[StudentController::class,'process_company_rec'])->name('process_company_rec');
+    Route::get('/process/process_company_rec_with_request/{student_process_status}/{app_type}',[StudentController::class,'process_company_rec_with_request'])->name('process_company_rec_with_request');
+    Route::get('/process/process_company_search_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_search_address'])->name('process_company_search_address');
+    Route::get('/process/process_company_add_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_add_address'])->name('process_company_add_address');
+    Route::get('/process/process_company_choose_address/{student_process_status}/{app_type}',[StudentController::class,'process_company_choose_address'])->name('process_company_choose_address');
+    Route::get('/process/professor_info/{student_process_status}',[StudentController::class,'professor_info'])->name('professor_info');
+    Route::get('/process/report/{student_process_status}/{report}',[StudentController::class,'report'])->name('report');
+    Route::get('/app_status/{student_process_status}',[StudentController::class,'app_status'])->name('app_status');
 });
