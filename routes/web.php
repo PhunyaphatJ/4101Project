@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-    return view('ui_layout.login');
-});
+Route::get('/',[UserController::class,'login'])->name('login');
+Route::post('/',[UserController::class,'login_verify'])->name('login_verify');
+
 
 Route::prefix('admin')->group(function(){
     Route::get('/', function () { return view('admin.fake_login'); });
@@ -27,12 +28,14 @@ Route::prefix('admin')->group(function(){
     Route::get('/manage_application/approval/{application_type}',[AdminController::class,'application_approval_list'])->name('application_approval_list');
     Route::get('/manage_application/approval/{application_type}/{application_id}',[AdminController::class,'application_approval_detail'])->name('application_approval_detail');
     Route::get('/manage_application/approval/{application_type}/{application_id}/approve',[AdminController::class,'approve_application'])->name('approve_application');
-    Route::post('/manage_application/approval/{application_type}/{application_id}/reject_application',[AdminController::class,'reject_application'])->name('reject_application');
+    Route::post('/manage_application/approval/{application_type}/{application_id}/reject',[AdminController::class,'reject_application'])->name('reject_application');
     // application update document status
     Route::get('/manage_application/update_document_status/{application_type}',[AdminController::class,'application_update_document_status_list'])->name('application_update_document_status_list');
     Route::get('/manage_application/update_document_status/{application_type}/{application_id}',[AdminController::class,'application_update_document_status_detail'])->name('application_update_document_status_detail');
+    Route::get('/manage_application/update_document_status/{application_type}/{application_id}/completed',[AdminController::class,'application_update_document_status_complete'])->name('application_update_document_status_complete');
     // application history
     Route::get('/manage_application/history/{application_type}',[AdminController::class,'application_history_list'])->name('application_history_list');
+    Route::get('/manage_application/history/{application_type}/{application_id}',[AdminController::class,'application_history_detail'])->name('application_history_detail');
 });
 
 // ----------
@@ -49,8 +52,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/',[StudentController::class,'login'])->name('login');
-Route::post('/compare_login',[StudentController::class,'compare_login'])->name('compare_login');
+
+
 Route::get('/registerr',[StudentController::class,'register'])->name('register');
 Route::post('/compare_register',[StudentController::class,'compare_register'])->name('compare_register');
 

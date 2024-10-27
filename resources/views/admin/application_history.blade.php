@@ -85,7 +85,7 @@
                         @elseif($application['application_status'] == 'reject')
                             <td class="status_reject_color">ปฏิเสธ</td>
                         @endif
-                        <td><a class="btn btn-warning btn-sm"href="#">แสดง</a></td>
+                        <td><a class="btn btn-warning btn-sm"href="{{route('application_history_detail',[$application['application_type'],$application['application_id']])}}">แสดง</a></td>
                     </tr>
                 @endforeach
             </tbody>

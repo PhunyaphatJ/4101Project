@@ -1,8 +1,8 @@
 @extends('admin.admin_layout')
-@section('title', 'อนุมัติคำร้อง')
+@section('title', 'ประวัติคำร้อง')
 @section('sidebar_manage_application_color', 'select_menu_color')
-@section('subsidebar_application_appoval_color', 'select_menu_color')
-@section('body_header', 'อนุมัติคำร้อง')
+@section('subsidebar_application_history_color', 'select_menu_color')
+@section('body_header', 'ประวัติคำร้อง')
 @section('body_content')
     <div class="card mt-3 p-4" style="border-color:black; border-width: 2px; border-radius: 0px">
         <div class="card-bordy row p-0">
@@ -223,95 +223,22 @@
     </div>
     {{-- button group --}}
     <div class="text-center mt-4">
-        {{-- ปุ่มอนุมัติ เมื่อกดจะแสดง pop up ยืนยันการอนุมัติคำร้อง --}}
-        <div style="display: inline-block">
-            <button class="btn btn-success" onclick="approve_block_on()">อนุมัติ</button>
-            {{-- pop up ยืนยันการอนุมัติคำร้อง --}}
-            <div class="overlay" id="approve-popup">
-                <div class="card overlay-item w-75">
-                    <div class="card-body">
-                        <div class="row">
-                            <h4 class="col-9 text-start mt-4 ps-3">อนุมัติคำร้อง</h4>
-                            <div class="col-3 text-end">
-                                <button class="btn"><i class="bi bi-x-lg" style="text-align: left;"
-                                        onclick="approve_block_off()"></i></button>
-                            </div>
-                        </div>
-                        {{-- ปุ่มใน pop up --}}
-                        <div class="text-start ps-3">
-                            <span>อนุมัติคำร้อง {{ $application['application_id'] }} และเปลี่ยนสถานะคำร้องเป็น</span>
-                            @if ($application['application_type'] == 'internship_register')
-                                <span>'สมบูรณ์'</span>
-                            @else
-                                <span>'กำลังจัดทำ'</span>
-                            @endif
-                        </div>
-                        <a class="btn btn-warning"
-                            href="{{ route('approve_application', [$application['application_type'], $application['application_id']]) }}">
-                            ยืนยัน
-                        </a>
-                        <button class="btn btn-dark" onclick="approve_block_off()">ยกเลิก</button>
-                    </div>
-                </div>
-            </div>
-            {{-- สิ้นสุด pop up --}}
-        </div>
-        {{-- ปุ่มไม่อนุมัติ เมื่อกดจะแสดง pop up ยืนยันการไม่อนุมัติคำร้อง --}}
-        <div style="display: inline-block">
-            <button class="btn btn-danger" onclick="reject_block_on()">ไม่อนุมัติ</button>
-            {{-- pop up ยืนยันการไม่อนุมัติคำร้อง --}}
-            <div class="overlay" id="reject-popup">
-                <div class="card overlay-item w-75">
-                    <div class="card-body">
-                        <div class="row">
-                            <h4 class="col-9 text-start mt-4 ps-3">ไม่อนุมัติคำร้อง</h4>
-                            <div class="col-3 text-end">
-                                <button class="btn"><i class="bi bi-x-lg" style="text-align: left;"
-                                        onclick="reject_block_off()"></i></button>
-                            </div>
-                        </div>
-                        {{-- ปุ่มใน pop up --}}
-                        <p class="text-start ps-3 mb-0">ไม่อนุมัติคำร้อง {{ $application['application_id'] }}
-                            และเปลี่ยนสถานะคำร้องเป็นปฏิเสธ</p>
-                        <form method="POST"
-                            action="/admin/manage_application/approval/{{ $application['application_type'] }}/{{ $application['application_id'] }}/reject">
-                            @csrf
-                            <div class="form-group">
-                                <textarea name="response_detail" cols="10" rows="5" class="form-control" placeholder="ระบุเหตุผล.."></textarea>
-                            </div>
-                            @error('response_detail')
-                                <script>
-                                    document.getElementById("reject-popup").style.display = "block";
-                                </script>
-                                <p class="text-start text-danger mt-2 mb-0">{{ $message }}</p>
-                            @enderror
-                            <input type="submit" value="ยืนยัน" class="btn btn-warning m-2">
-                        </form>
-                        <button class="btn btn-dark" onclick="reject_block_off()">ยกเลิก</button>
-                    </div>
-                </div>
-            </div>
-            {{-- สิ้นสุด pop up --}}
-        </div>
-        <div style="display: inline-block">
-            <a class="btn btn-secondary" href="{{ route('application_approval') }}">ย้อนกลับ</a>
+        @if (
+            $application['application_type'] == 'internship_request' &&
+                $application['application_status'] == 'document_pending')
+            <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอความอนุเคราะห์">ดาวน์โหลดหนังสือขอความอนุเคราะห์</a>
+        @endif
+        @if ($application['application_type'] == 'recommendation' && $application['application_status'] == 'document_pending')
+            <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือส่งตัว">ดาวน์โหลดหนังสือส่งตัว</a>
+            <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือแต่งตั้งอาจารย์">ดาวน์โหลดหนังสือแต่งตั้งอาจารย์</a>
+        @endif
+        @if (
+            ($application['application_type'] == 'recommendation' || $application['application_type'] == 'appreciation') &&
+                $application['application_status'] == 'document_pending')
+            <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอคุณ">ดาวน์โหลดหนังสือขอคุณ</a>
+        @endif
+        <div>
+            <a class="btn btn-secondary" href="{{ route('application_history') }}">ย้อนกลับ</a>
         </div>
     </div>
-    <script>
-        function approve_block_on() {
-            document.getElementById("approve-popup").style.display = "block";
-        }
-
-        function approve_block_off() {
-            document.getElementById("approve-popup").style.display = "none";
-        }
-
-        function reject_block_on() {
-            document.getElementById("reject-popup").style.display = "block";
-        }
-
-        function reject_block_off() {
-            document.getElementById("reject-popup").style.display = "none";
-        }
-    </script>
 @endsection

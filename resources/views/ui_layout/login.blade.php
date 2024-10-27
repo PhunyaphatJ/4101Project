@@ -5,7 +5,7 @@
 @section('body_content')
     <div class="row justify-content-center ">
         <div class="col-5 col-item">
-            <form method="POST" action="{{ route('compare_login') }}">
+            <form method="POST" action="{{ route('login_verify') }}">
                 @csrf
                 <div class="form-floating my-4">
                     <input type="email" class="form-control  rounded-5 ps-4" name="email"
@@ -26,8 +26,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-                <button class="btn submit_color w-100 py-3 my-4  rounded-5"
-                    type="submit">Login</button>
+                <button class="btn submit_color w-100 py-3 my-4  rounded-5" type="submit">Login</button>
             </form>
         </div>
     </div>
