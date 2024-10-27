@@ -1,4 +1,5 @@
 @extends('ui_layout.navbar_layout')
+@section('navbar_header','สำหรับผู้ดูแลระบบ')
 @section('layout_style')
     <style>
         #sidebar {
@@ -8,7 +9,7 @@
     </style>
 @endsection
 @section('sidebar')
-    <div class="row mt-3">
+    <div class="sidebar row mt-3">
         <div class="col-lg-3">
             <div class="card sidebar_color sticky-top" style="border-radius: 20px">
                 <div class="card-body mx-2">
@@ -96,6 +97,9 @@
 @endsection
 @section('style')
     <style>
+        .sidebar{
+            z-index: 1;
+        }
         ul.navigation {
             list-style-type: none;
             margin: 0;
@@ -146,6 +150,27 @@
         }
         .status_reject_color{
             color: red;
+        }
+        div.overlay {
+            position: fixed;
+            display: none;
+            width: 60%;
+            height: 100%;
+            top: 0%;
+            left: 30%;
+            right: 10%;
+            bottom: 0%;
+            background-color: rgba(210, 210, 210, 0.125);
+            z-index: 2;
+            cursor: pointer;
+        }
+        .overlay-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* font-size: 50px; */
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
         }
     </style>
 @endsection
