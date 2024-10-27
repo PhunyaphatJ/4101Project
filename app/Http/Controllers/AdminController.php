@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,6 +13,7 @@ class AdminController extends Controller
     {
         $menu = 'manage_application';
         $application_type = 'all';
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         // ข้อมูลตัวอย่าง application ทั้งหมดที่อยู่ในสถานะรอการอนุมัติ
         $applications = [
             [
@@ -66,6 +68,7 @@ class AdminController extends Controller
     function application_approval_list($application_type)
     {
         $menu = 'manage_application';
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         if ($application_type == 'internship_register') {
             // ตัวอย่างข้อมูล คำร้องขึ้นทะเบียนฝึกงาน ที่อยู่ในสถานะรอการอนุมัติ
             $applications = [
@@ -133,10 +136,11 @@ class AdminController extends Controller
             return view('admin.application_approval', compact('menu', 'application_type', 'applications'));
         }
     }
-    // จัดการคำร้อง อนุมัติคำร้อง ,ข้อมูลคำร้องขึ้นทะเบียนเรียน
+    // จัดการคำร้อง อนุมัติคำร้อง ,ข้อมูลรายละเอียดคำร้อง
     function application_approval_detail($application_type, $application_id)
     {
         $menu = 'manage_application';
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         // ข้อมูลตัวอย่าง application ทั้งหมดที่อยู่ในสถานะรอการอนุมัติ
         $applications = [
             [
@@ -172,10 +176,9 @@ class AdminController extends Controller
                 'department' => 'IT',
                 'phone' => '094xxx',
                 'email' => 'tomandjerry@rumail.ru.ac.th',
-                // ข้อมูล evidence
-                'idcard_path' => '#',
-                'transcript_path' => '#',
-                'recentreceipt_path' => '#',
+                // ข้อมูลสถานที่ฝึกงาน
+                'company_name'
+                // ข้อมูลรายละเอียดการฝึกงาน
             ],
             [
                 // ข้อมูล application
@@ -191,10 +194,10 @@ class AdminController extends Controller
                 'department' => 'CS',
                 'phone' => '094xxx',
                 'email' => 'strawberrycake@rumail.ru.ac.th',
-                // ข้อมูล evidence
-                'idcard_path' => '#',
-                'transcript_path' => '#',
-                'recentreceipt_path' => '#',
+                // ข้อมูลสถานที่ฝึกงาน
+                // ข้อมูลรายละเอียดการฝึกงาน
+                // ข้อมูลพี่เลี้ยง
+                // เอกสาร2
             ],
             [
                 // ข้อมูล application
@@ -210,10 +213,9 @@ class AdminController extends Controller
                 'department' => 'CS',
                 'phone' => '094xxx',
                 'email' => 'hiphippo@rumail.ru.ac.th',
-                // ข้อมูล evidence
-                'idcard_path' => '#',
-                'transcript_path' => '#',
-                'recentreceipt_path' => '#',
+                // ข้อมูลสถานที่ฝึกงาน
+                // ข้อมูลรายละเอียดการฝึกงาน
+                // ข้อมูลอาจารย์ที่ปรึกษา
             ],
             [
                 // ข้อมูล application
@@ -229,10 +231,8 @@ class AdminController extends Controller
                 'department' => 'IT',
                 'phone' => '094xxx',
                 'email' => 'underthesea@rumail.ru.ac.th',
-                // ข้อมูล evidence
-                'idcard_path' => '#',
-                'transcript_path' => '#',
-                'recentreceipt_path' => '#',
+                // ข้อมูลสถานที่ฝึกงาน
+                // ข้อมูลรายละเอียดการฝึกงาน
             ],
         ];
         foreach ($applications as $application) {
@@ -242,11 +242,62 @@ class AdminController extends Controller
         }
         return view('admin.application_approval_detail', compact('menu'));
     }
+    // จัดการคำร้อง อนุมัติคำร้อง ,อนุมัติคำร้อง
+    function approve_application($application_type, $application_id)
+    {
+        $menu = 'manage_application';
+        $event = 'approve';
+        // .....เปลี่ยนสถานะคำร้องใน DB เป็น completed......
+        $noti_subject = 'คำร้องได้รับการอนุมัติ';
+        $noti_detail = 'เลขที่คำร้อง:' . $application_id;
+        if ($application_type == 'internship_register') {
+            $noti_detail = $noti_detail . ' ,การขึ้นทะเบียนฝึกงานได้รับการอนุมัติ';
+        } elseif ($application_type == 'internship_request') {
+            $noti_detail = $noti_detail . ' ,คำร้องขอเอกสารขอความอนุเคราะห์ได้รับการอนุมัติและกำลังจัดทำเอกสาร';
+        } elseif ($application_type == 'recommendation') {
+            $noti_detail = $noti_detail . ' ,คำร้องขอเอกสารส่งตัวได้รับการอนุมัติและกำลังจัดทำเอกสาร';
+        } elseif ($application_type == 'appreciation') {
+            $noti_detail = $noti_detail . ' ,คำร้องขอเอกสารขอบคุณได้รับการอนุมัติและกำลังจัดทำเอกสาร';
+        }
+        // ..............บันทึกแจ้งเตือน................
+        return view('admin.application_approval_response', compact('menu', 'event'));
+    }
+    // จัดการคำร้อง อนุมัติคำร้อง ,ไม่อนุมัติคำร้อง aka.ปฏิเสธ
+    function reject_application($application_type, $application_id, Request $request)
+    {
+        $menu = 'manage_application';
+        $event = 'reject';
+        $request->validate(
+            [
+                'response_detail' => 'required'
+            ],
+            [
+                'response_detail.required' => 'กรุณาป้อนข้อความ'
+            ]
+        );
+        // .....เปลี่ยนสถานะคำร้องใน DB เป็น reject......
+        $noti_subject = 'คำร้องได้รับการปฏิเสธ';
+        $noti_detail = 'เลขที่คำร้อง:' . $application_id;   // . คือการ concat string
+        if ($application_type == 'internship_register') {
+            $noti_detail = $noti_detail . ',การขึ้นทะเบียนฝึกงานได้รับการปฏิเสธ';
+        } elseif ($application_type == 'internship_request') {
+            $noti_detail = $noti_detail . ' ,คำร้องขอเอกสารขอความอนุเคราะห์ได้รับการปฏิเสธ';
+        } elseif ($application_type == 'recommendation') {
+            $noti_detail = $noti_detail . ' ,คำร้องขอเอกสารส่งตัวได้รับการปฏิเสธ';
+        } elseif ($application_type == 'appreciation') {
+            $noti_detail = $noti_detail . ' ,คำร้องขอเอกสารขอบคุณได้รับการปฏิเสธ';
+        }
+        $noti_detail = $noti_detail . ',เหตุผลการปฏิเสธคำร้อง ' . $request->response_detail;
+        // ..............บันทึกแจ้งเตือน................
+        return view('admin.application_approval_response', compact('menu', 'event'));
+    }
+
     // จัดการคำร้อง อัพเดตสถานะการจัดทำเอกสาร ,หน้าแรก แสดงรายการคำร้องทั้งหมดที่อยูในสถานะกำลังจัดทำ
     function application_update_document_status()
     {
         $menu = 'manage_application';
         $application_type = 'all';
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         // ข้อมูลตัวอย่าง application ทั้งหมดที่อยู่ในสถานะรอการอนุมัติ
         $applications = [
             [
@@ -301,6 +352,7 @@ class AdminController extends Controller
     function application_update_document_status_list($application_type)
     {
         $menu = 'manage_application';
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         if ($application_type == 'internship_request') {
             // ตัวอย่างข้อมูล คำร้องขอหนังสือขอความอนุเคราะห์ ที่อยู่ในสถานะรอการอนุมัติ
             $applications = [
@@ -354,12 +406,17 @@ class AdminController extends Controller
             return view('admin.application_update_document_status', compact('menu', 'application_type', 'applications'));
         }
     }
+    function application_update_document_status_detail($application_type, $application_id){
+        $menu = 'manage_application';
+        
+    }
 
     // จัดการคำร้อง ประวัติคำร้อง ,หน้าแรก แสดงรายการคำร้องทั้งหมด
     function application_history()
     {
         $menu = 'manage_application';
         $application_type = 'all';
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         // ข้อมูลตัวอย่าง application ทั้งหมดที่อยู่ในสถานะรอการอนุมัติ
         $applications = [
             [
@@ -414,6 +471,7 @@ class AdminController extends Controller
     function application_history_list($application_type)
     {
         $menu = 'manage_application';
+        // .......ดึงข้อมูลใน DB มาแทนที่ข้อมูลตัวอย่าง.......
         if ($application_type == 'internship_register') {
             // ตัวอย่างข้อมูล คำร้องขึ้นทะเบียนฝึกงาน ที่อยู่ในสถานะรอการอนุมัติ
             $applications = [

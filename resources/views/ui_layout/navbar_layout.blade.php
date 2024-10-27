@@ -113,7 +113,8 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar_color">
         <div class="container mx-5 py-3" style="font-size: 120%">
-            <span><i class="bi bi-house-fill me-3"></i>สำหรับนักศึกษา</span>
+            <span><i class="bi bi-house-fill me-3"></i>@yield('navbar_header')</span>  
+            {{-- navbar_header ระบุว่าเป็นหน้าของ user คนไหน --}}
             <div class="d-flex">
                 <a class="nav-link mx-4" href="#"><i class="bi bi-bell-fill"></i></a>
                 <a class="nav-link" href="#"><i class="bi bi-person-fill" style="font-size: 110%"></i></a>
