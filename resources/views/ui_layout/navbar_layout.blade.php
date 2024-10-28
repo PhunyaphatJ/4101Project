@@ -116,8 +116,7 @@
             <span><i class="bi bi-house-fill me-3"></i>@yield('navbar_header')</span>  
             {{-- navbar_header ระบุว่าเป็นหน้าของ user คนไหน --}}
             <div class="d-flex">
-                <a class="nav-link mx-4" href="#"><i class="bi bi-bell-fill"></i></a>
-                <a class="nav-link" href="#"><i class="bi bi-person-fill" style="font-size: 110%"></i></a>
+                @yield('right_icon')
             </div>
         </div>
     </nav>

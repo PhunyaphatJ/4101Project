@@ -1,5 +1,8 @@
 @extends('ui_layout.navbar_layout')
 @section('navbar_header','สำหรับผู้ดูแลระบบ')
+@section('right_icon')
+    <a class="nav-link" href="#"><i class="bi bi-person-fill" style="font-size: 110%"></i></a>
+@endsection
 @section('layout_style')
     <style>
         #sidebar {

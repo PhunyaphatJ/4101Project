@@ -342,7 +342,7 @@ class AdminController extends Controller
         }
         $noti_detail = $noti_detail . ',เหตุผลการปฏิเสธคำร้อง ' . $request->response_detail;
         // ..............บันทึกแจ้งเตือน................
-        return view('admin.application_approval_response', compact('menu', 'event'));
+        return view('admin.application_approval_response', compact('menu', 'application_type', 'event'));
     }
     // จัดการคำร้อง อนุมัติคำร้อง ,มอบหมายอาจารย์ตอนอนุมัติเอกสารส่งตัว
     function assign_professor()
