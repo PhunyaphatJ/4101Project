@@ -53,8 +53,8 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/registerr',[StudentController::class,'register'])->name('register');
-Route::post('/compare_register',[StudentController::class,'compare_register'])->name('compare_register');
+Route::get('/registerr',[StudentController::class,'register']);
+Route::post('/compare_register',[StudentController::class,'compare_register'])->name('register');
 
 Route::prefix('student')->group(function(){
     Route::get('/manual/{student_process_status}',[StudentController::class,'manual'])->name('manual');
