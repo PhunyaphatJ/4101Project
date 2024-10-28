@@ -1,6 +1,7 @@
 {{-- path หน้าเว็บเป็น /student/process/process_company_rec/{student_process_status}/{app_type} --}}
 @extends('student.student_layout')
-@section('title', 'sprocess_company_rec')
+@section('title', 'process_company_rec')
+@section('navbar_header', 'นักศึกษา')
 @section('process', 'select_menu_color')
 @section('process_company', 'select_menu_color')
 @section('body_header', 'สถานที่ฝึกงาน(ขอเอกสารส่งตัว)')

@@ -1,6 +1,7 @@
 {{-- path หน้าเว็บเป็น /student/register --}}
 @extends('ui_layout.login_layout')
 @section('title', 'register')
+@section('navbar_header', 'นักศึกษา')
 @section('register', 'select_menu_color')
 @section('body_header', 'Register')
 @section('style')
