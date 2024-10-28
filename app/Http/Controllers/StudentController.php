@@ -14,7 +14,17 @@ class StudentController extends Controller
     function register()
     {
         $menu = 'register';
-        return view('student.register', compact('menu'));
+        $path = public_path('raw_database.json');    
+        $data = json_decode(file_get_contents($path), false);
+        $provinces = array_map(function ($item) {
+            return $item->province;
+        }, $data);
+        $provinces = array_unique($provinces);
+        $provinces = array_values($provinces);
+        
+        $amphoes = [];
+        $tambons = [];
+        return view('student.register' ,compact('menu','provinces','amphoes','tambons'));
     }
 
     function compare_register(Request $request)
