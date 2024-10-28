@@ -1,14 +1,8 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-Route::prefix('admin')->group(function(){
-    Route::get('/', function () { return view('admin.fake_login'); });
+Route::prefix('admin')->middleware('auth')->group(function(){
+    Route::get('/', function () { return view('admin.fake_login'); })->name('admin.dashboard');
     // sidebar
     Route::get('/manage_application/approval',[AdminController::class,'application_approval'])->name('application_approval');
     Route::get('/manage_application/update_document_status',[AdminController::class,'application_update_document_status'])->name('application_update_document_status');
@@ -34,20 +28,3 @@ Route::prefix('admin')->group(function(){
     Route::get('/manage_application/history/{application_type}',[AdminController::class,'application_history_list'])->name('application_history_list');
     Route::get('/manage_application/history/{application_type}/{application_id}',[AdminController::class,'application_history_detail'])->name('application_history_detail');
 });
-
-// ----------
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-
-Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-->name('logout');
-// require __DIR__.'/auth.php';
-require __DIR__.'/student.php';
