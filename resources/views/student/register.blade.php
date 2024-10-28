@@ -20,7 +20,7 @@
 @endsection
 @section('body_content')
     <div class="container">
-        <form class="needs-validation" validate method="POST" action="{{ route('compare_register') }}">
+        <form class="needs-validation" validate method="POST" action="{{ route('register') }}">
             @csrf
             <section> {{-- input ข้อมูลนักศึกษา --}}
                 <h5 class="mb-3">ข้อมูลนักศึกษา</h5>
@@ -98,28 +98,34 @@
                     </div>
                     <div class="col-6">
                         <label for="province" class="form-label">จังหวัด</label>
-                        <select class="form-select rounded-5 ps-4" name="province" required>
-                            <option value="">Choose...</option>
-                            <option>United States</option>
+                        <select id="input_province" class="form-select rounded-5 ps-4" name="province" required>
+                            <option value="">กรุณาเลือกจังหวัด</option>
+                            @foreach($provinces as $item)
+                            <option value="{{ $item }}">{{ $item }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-6">
                         <label for="district" class="form-label">อำเภอ/เขต</label>
-                        <select class="form-select rounded-5 ps-4" name="district" required>
-                            <option value="">Choose...</option>
-                            <option>United States</option>
+                        <select id="input_amphoe" class="form-select rounded-5 ps-4" name="district" required>
+                            <option value="">กรุณาเลือกเขต/อำเภอ</option>
+                            @foreach($amphoes as $item)
+                            <option value="{{ $item }}">{{ $item }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-6">
                         <label for="sub_district" class="form-label">ตำบล/แขวง</label>
-                        <select class="form-select rounded-5 ps-4" name="sub_district" required>
-                            <option value="">Choose...</option>
-                            <option>United States</option>
+                        <select id="input_tambon" class="form-select rounded-5 ps-4" name="sub_district" required>
+                            <option value="">กรุณาเลือกแขวง/ตำบล</option>
+                            @foreach($tambons as $item)
+                            <option value="{{ $item }}">{{ $item }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-6">
                         <label for="postcode" class="form-label">รหัสไปรษณีย์</label>
-                        <input type="text" class="form-control rounded-5 ps-4" name="postcode" placeholder=""
+                        <input id="input_zipcode" type="text" class="form-control rounded-5 ps-4" name="postcode" placeholder=""
                             value="" required>
                     </div>
                 </div>
@@ -160,3 +166,4 @@
         </form>
     </div>
 @endsection
+<script src="{{ asset('js/address.js') }}"></script>

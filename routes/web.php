@@ -6,10 +6,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
-
 Route::get('/',[UserController::class,'login'])->name('login');
 Route::post('/',[UserController::class,'login_verify'])->name('login_verify');
-
 
 Route::prefix('admin')->group(function(){
     Route::get('/', function () { return view('admin.fake_login'); });
@@ -55,8 +53,8 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/registerr',[StudentController::class,'register'])->name('register');
-Route::post('/compare_register',[StudentController::class,'compare_register'])->name('compare_register');
+Route::get('/registerr',[StudentController::class,'register']);
+Route::post('/compare_register',[StudentController::class,'compare_register'])->name('register');
 
 Route::prefix('student')->group(function(){
     Route::get('/manual/{student_process_status}',[StudentController::class,'manual'])->name('manual');
