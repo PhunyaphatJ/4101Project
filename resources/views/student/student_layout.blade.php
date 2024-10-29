@@ -1,8 +1,9 @@
 @extends('ui_layout.navbar_layout')
 @section('navbar_header','สำหรับนักศึกษา')
 @section('right_icon')
-    <a class="nav-link mx-4" href="#"><i class="bi bi-bell-fill"></i></a>
+    <a class="nav-link mx-4 pt-1" href="#"><i class="bi bi-bell-fill"></i></a>
     <a class="nav-link" href="#"><i class="bi bi-person-fill" style="font-size: 110%"></i></a>
+    <a class="nave-link text-white ms-3 p-1" href="{{route('logout')}}"><i class="bi bi-box-arrow-right"></i></a>
 @endsection
 @section('layout_style')
 <style>
