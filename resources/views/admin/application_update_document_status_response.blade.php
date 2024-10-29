@@ -1,7 +1,7 @@
 @extends('admin.admin_layout')
 @section('title', 'ปรับปรุงสถานะการจัดทำเอกสาร')
 @section('sidebar_manage_application_color', 'select_menu_color')
-@section('subsidebar_application_appoval_color', 'select_menu_color')
+@section('subsidebar_update_document_status_color', 'select_menu_color')
 @section('body_header', 'ปรับปรุงสถานะการจัดทำเอกสาร')
 @section('body_content')
     <div class="text-center">

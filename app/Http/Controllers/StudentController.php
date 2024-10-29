@@ -8,7 +8,7 @@ class StudentController extends Controller
 {
 
     // student_process_status = (no_register, register_pending, register_completed, company_pending, internship)
-    // student_process_status = (rec, request, rec_with_request, rec_no_request)
+    // app_type = (rec, request, rec_with_request, rec_no_request)
     // report = (no_report, edit_report, have_report)
 
     function register()
@@ -132,7 +132,7 @@ class StudentController extends Controller
         ];
         $internship_info = [
             [
-                'semester' => '1',
+                'semester' => '2',
                 'years' => '2555',
                 'doc2' => 'doc2',
                 'start_date' => '10/10/11',
@@ -363,7 +363,7 @@ class StudentController extends Controller
         ];
         $mentors = [
             [
-                'fname' => 'fname',
+                'fname' => 'ffff',
                 'lname' => 'lname',
                 'position' => 'position',
                 'phone' => '000-000-0000',
@@ -430,12 +430,12 @@ class StudentController extends Controller
     function report($student_process_status)
     {
         $menu = 'process';
-        $report_files = [];
-        // $report_files = [
-        //     [
-        //        'report_file' => 'report_file', 
-        //     ]
-        // ];
+        // $report_files = [];
+        $report_files = [
+            [
+               'report_file' => 'report_file', 
+            ]
+        ];
         if ($report_files == null) {
             $report = 'no_report';
         } else {

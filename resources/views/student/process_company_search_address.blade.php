@@ -79,7 +79,7 @@
 
 @section('out_body_header', 'รายการสถานที่ฝึกงาน')
 @section('out_body_content')
-    <section> {{-- แสดงรายระเอียดสถานที่ฝึกงานตามที่ได้ขอเอกสารขอความอนุเคราะห์ไป --}}
+    <section> {{-- แสดงรายระเอียดสถานที่ฝึกงานตามที่มีในระบบ --}}
         @foreach ($company_addresses as $company)
             <div class="card rounded-2 shadow mb-3">
                 <div class="card-body">
