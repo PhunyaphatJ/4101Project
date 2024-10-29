@@ -258,8 +258,8 @@
             @if ($app_type == 'request')
                 <section> {{-- ปุ่ม submit สำหรับ ขอเอกสารขอความอนุเคราะห์ --}}
                     <div class="mx-3">
-                        <button class="btn submit_color p-3 px-5 float-end rounded-5"
-                            type="submit">ขอเอกสารขอความอนุเคราะห์</button>
+                        <a href="/student/process/process_company_search_address/{{ $student_process_status }}/{{ $app_type }}" class="btn submit_color p-3 px-5 float-end rounded-5"
+                            type="submit">ขอเอกสารขอความอนุเคราะห์</a>
                     </div>
                     <div class="mx-3">
                         <a class="btn cancel_color p-3 px-5 me-3 float-end rounded-5"

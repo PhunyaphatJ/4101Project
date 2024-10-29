@@ -7,7 +7,7 @@
             <div class="card-body mx-2">
                 <h6 class="card-title"><i class="bi bi-menu-button-fill me-2"></i>เมนู</h6>
                 <ul class="list-group list-group-flush">
-                    <a class="list-group-item p-3 my-1 @yield('register')" href="registerr"><i class="bi bi-back ms-3 me-2"></i>Register</a> {{-- @yield('register') จะรับค่า "สี" มาจากไฟล์ที่เรียกใช้ layout(เลือกใช้สีจาก style ที่ตั้งไว้) Register หมายถึงเมนูRegister ให้ใส่สีเฉพาะเมนูที่กำลังทำงานอยู่ --}}
+                    <a class="list-group-item p-3 my-1 @yield('register')" href="register"><i class="bi bi-back ms-3 me-2"></i>Register</a> {{-- @yield('register') จะรับค่า "สี" มาจากไฟล์ที่เรียกใช้ layout(เลือกใช้สีจาก style ที่ตั้งไว้) Register หมายถึงเมนูRegister ให้ใส่สีเฉพาะเมนูที่กำลังทำงานอยู่ --}}
                     <a class="list-group-item p-3 my-1 @yield('login')" href="/"><i class="bi bi-back ms-3 me-2"></i>Login</a> {{-- login หมายถึงเมนูLogin --}}
                     <a class="list-group-item p-3 my-1 @yield('mentor')" href="#"><i class="bi bi-back ms-3 me-2"></i>สำหรับผู้ดูแลนักศึกษา</a> {{-- mentor หมายถึงเมนูสำหรับผู้ดูแลนักศึกษา --}}
                 </ul>

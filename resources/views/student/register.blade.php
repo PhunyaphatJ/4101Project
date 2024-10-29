@@ -20,7 +20,7 @@
 @endsection
 @section('body_content')
     <div class="container">
-        <form class="needs-validation" validate method="POST" action="{{ route('register') }}">
+        <form class="needs-validation" validate method="POST" action="{{ route('compare_register') }}">
             @csrf
             <section> {{-- input ข้อมูลนักศึกษา --}}
                 <h5 class="mb-3">ข้อมูลนักศึกษา</h5>
@@ -89,12 +89,12 @@
                     <div class="col-3">
                         <label for="village_no" class="form-label">หมู่ที่</label>
                         <input type="text" class="form-control rounded-5 ps-4" name="village_no" placeholder=""
-                            value="" required>
+                            value="" >
                     </div>
                     <div class="col-6">
                         <label for="road" class="form-label">ถนน</label>
                         <input type="text" class="form-control rounded-5 ps-4" name="road" placeholder=""
-                            value="" required>
+                            value="" >
                     </div>
                     <div class="col-6">
                         <label for="province" class="form-label">จังหวัด</label>
