@@ -113,6 +113,7 @@
                         <option value="">กรุณาเลือกเขต/อำเภอ</option>
                         @foreach($amphoes as $item)
                         <option value="{{ $item }}">{{ $item }}</option>
+                        {{-- action เเล้ว address ไม่หาย --}}
                         @if(old('district') == $item) <option value="{{ $item }}" selected>{{ $item }}</option> @endif
                         @endforeach
                     </select>
@@ -123,7 +124,6 @@
                         <option value="">กรุณาเลือกแขวง/ตำบล</option>
                         @foreach($tambons as $item)
                         <option value="{{ $item }}">{{ $item }}</option>
-                        {{-- i nedd old data --}}
                         @if(old('sub_district') == $item) <option value="{{ $item }}" selected>{{ $item }}</option> @endif
                         @endforeach
                     </select>
