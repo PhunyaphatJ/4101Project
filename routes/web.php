@@ -53,7 +53,7 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/registerr',[StudentController::class,'register']);
+Route::get('/register',[StudentController::class,'register']);
 Route::post('/compare_register',[StudentController::class,'compare_register'])->name('register');
 
 Route::prefix('student')->group(function(){

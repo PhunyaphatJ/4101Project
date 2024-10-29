@@ -59,12 +59,15 @@ function showZipcode() {
 }
 
 //EVENTS
-document.querySelector('#input_province').addEventListener('change', (event) => {
-    showAmphoes();
-});
-document.querySelector('#input_amphoe').addEventListener('change', (event) => {
-    showTambons();
-});
-document.querySelector('#input_tambon').addEventListener('change', (event) => {
-    showZipcode();
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelector('#input_province').addEventListener('change', (event) => {
+        showAmphoes();
+    });
+    document.querySelector('#input_amphoe').addEventListener('change', (event) => {
+        showTambons();
+    });
+    document.querySelector('#input_tambon').addEventListener('change', (event) => {
+        showZipcode();
+    });
 });
