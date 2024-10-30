@@ -1,9 +1,14 @@
 @extends('ui_layout.navbar_layout')
-@section('navbar_header','สำหรับผู้ดูแลระบบ')
+@section('navbar_header', 'สำหรับผู้ดูแลระบบ')
 @section('right_icon')
     <a class="nav-link" href="#"><i class="bi bi-person-fill" style="font-size: 110%"></i></a>
-    <a class="nave-link text-white ms-3 p-1" href="{{route('logout')}}"><i class="bi bi-box-arrow-right"></i></a>
-@endsection
+    <a class="nav-link text-white ms-3 p-1" href="#"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="bi bi-box-arrow-right"></i>
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+</form>@endsection
 @section('layout_style')
     <style>
         #sidebar {
@@ -101,18 +106,21 @@
 @endsection
 @section('style')
     <style>
-        .sidebar{
+        .sidebar {
             z-index: 1;
         }
+
         ul.navigation {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
         }
+
         ul.navigation li {
             float: left;
         }
+
         li.navigation a {
             text-decoration: none;
             color: gray;
@@ -122,39 +130,50 @@
             border-width: 2px;
             border-color: lightgray;
         }
-        li.navigation:hover a{
+
+        li.navigation:hover a {
             color: black;
             background-color: lightblue;
         }
+
         li.navigation.active a {
             color: black;
             border-color: black;
-            background-color:lightblue;
+            background-color: lightblue;
         }
-        td.status_approval_pending_color{
-            color:lightskyblue;
+
+        td.status_approval_pending_color {
+            color: lightskyblue;
         }
-        td.status_document_pending_color{
-            color:gold;
+
+        td.status_document_pending_color {
+            color: gold;
         }
-        td.status_completed_color{
-            color:lightgreen;
+
+        td.status_completed_color {
+            color: lightgreen;
         }
-        td.status_reject_color{
+
+        td.status_reject_color {
             color: red;
         }
-        .status_approval_pending_color{
-            color:lightskyblue;
+
+        .status_approval_pending_color {
+            color: lightskyblue;
         }
-        .status_document_pending_color{
-            color:gold;
+
+        .status_document_pending_color {
+            color: gold;
         }
-        .status_completed_color{
-            color:lightgreen;
+
+        .status_completed_color {
+            color: lightgreen;
         }
-        .status_reject_color{
+
+        .status_reject_color {
             color: red;
         }
+
         div.overlay {
             position: fixed;
             display: none;
@@ -168,6 +187,7 @@
             z-index: 2;
             cursor: pointer;
         }
+
         .overlay-item {
             position: absolute;
             top: 50%;
