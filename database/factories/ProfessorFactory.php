@@ -23,8 +23,8 @@ class ProfessorFactory extends Factory
             'professor_id' => $this->faker->unique()->numerify('##########'), 
             'remark' => $this->faker->optional()->sentence,
             'status' => $this->faker->randomElement(['active', 'no_active']),
-            'running_number' => $this->faker->randomNumber(),
             'assigned' => $this->faker->boolean,
+            'last_assigned_at' => now(),
         ];
     }
 }
