@@ -13,11 +13,9 @@ class NotificationFactory extends Factory
     public function definition()
     {
         return [
-            'sender_email' => User::factory()->create()->email, 
-            'receiver_email' => User::factory()->create()->email, 
             'datetime' => $this->faker->dateTime(), 
             'subject' => $this->faker->sentence(), 
-            'details' => $this->faker->paragraph(), 
+            'details' => substr($this->faker->paragraph(), 0, 255),        
         ];
     }
 

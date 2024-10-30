@@ -14,8 +14,6 @@ class Internship_detailFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => Student::factory(), 
-            'company_id' => Company::factory(), 
             'register_semester' => $this->faker->randomElement(['1', '2', 'S', 'retake1', 'retake2']),
             'year' => $this->faker->year(),
             'start_date' => $this->faker->date(),
@@ -28,6 +26,13 @@ class Internship_detailFactory extends Factory
     {
         return $this->state([
             'student_id' => $student->student_id,
+        ]);
+    }
+
+    public function company(Company $company)
+    {
+        return $this->state([
+            'company_id' =>  $company->company_id,
         ]);
     }
 }

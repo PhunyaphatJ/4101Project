@@ -19,13 +19,14 @@ return new class extends Migration
             $table->string('applicant_email');
             $table->enum('application_type',['Internship_Register','Internship_Request','Recommendation','Appreciation']);
             $table->enum('application_status',['approval_pending','reject','document_pending','completed']);
-            $table->timestamp('sent');
+            $table->mediumInteger('notification_id')->unsigned();
             $table->mediumInteger('internship_detail_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
             $table->foreign('applicant_email')->references('email')->on('persons')->onDelete('cascade');
             $table->foreign('internship_detail_id')->references('internship_detail_id')->on('internship_details')->onDelete('cascade');
+            $table->foreign('notification_id')->references('notification_id')->on('notifications')->onDelete('cascade');
         });
 
         Schema::create('evidences', function (Blueprint $table) {

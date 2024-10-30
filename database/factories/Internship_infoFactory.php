@@ -16,10 +16,6 @@ class Internship_infoFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => Student::factory(), 
-            'professor_id' => Professor::factory(), 
-            'mentor_email' => Mentor::factory()->create()->email, 
-            'internship_detail_id' => Internship_detail::factory(), 
             'grade' => $this->faker->randomElement(['A', 'F']),
             'report_file_path' => $this->faker->optional()->filePath(),
         ];

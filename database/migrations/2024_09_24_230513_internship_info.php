@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('internship_details', function (Blueprint $table) {
             $table->char('student_id',10);
             $table->mediumIncrements('internship_detail_id')->unsigned();
-            $table->mediumInteger('company_id')->unsigned()->unique();
+            $table->mediumInteger('company_id')->unsigned();
             $table->enum('register_semester',['1','2','S','retake1','retake2']);
             $table->year('year');
             $table->date('start_date');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
             $table->foreign('company_id')->references('company_id')->on('companies')->onDelete('cascade');
+            $table->unique(['student_id', 'company_id']);
         });
 
         Schema::create('internship_infos', function (Blueprint $table) {

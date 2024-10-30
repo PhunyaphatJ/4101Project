@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Mentor;
+use App\Models\Company;
 
 class MentorFactory extends Factory
 {
@@ -11,7 +12,7 @@ class MentorFactory extends Factory
 
     public function definition()
     {
-        $company = \App\Models\Company::factory()->create(); // Create a company first
+        $company = \App\Models\Company::factory()->create(); 
 
         return [
             'email' => $this->faker->unique()->safeEmail, 
@@ -22,5 +23,11 @@ class MentorFactory extends Factory
             'fax' => $this->faker->optional()->numerify('##########'), 
             'company_id' => $company->company_id, 
         ];
+    }
+    public function company(Company $company)
+    {
+        return $this->state([
+            'company_id' => $company->company_id, 
+        ]);
     }
 }

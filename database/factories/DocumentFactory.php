@@ -15,7 +15,6 @@ class DocumentFactory extends Factory
         return [
             'document_path' => $this->faker->filePath(),
             'document_type' => $this->faker->randomElement(['pdf', 'docx', 'xlsx']), 
-            'admin_email' => Admin::factory()->create()->email,
         ];
     }
 
