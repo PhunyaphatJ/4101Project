@@ -45,8 +45,8 @@ return new class extends Migration
             $table->char('professor_id',10)->unique();
             $table->string('remark')->nullable();
             $table->enum('status',['active','no_active'])->default('active');
-            $table->integer('running_number');
-            $table->boolean('assigned')->default(true);
+            $table->boolean('assigned')->default(false);
+            $table->timestamp('last_assigned_at');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('email')->references('email')->on('persons')->onDelete('cascade');
