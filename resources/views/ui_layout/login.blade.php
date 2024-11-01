@@ -4,12 +4,11 @@
 @section('body_header', 'Login')
 @section('style')
     <style>
-        /* hover button */
+        /* hover button login */
         button[type="submit"]:hover {
-            background-color: #ccc;
-            color: #333;
-            border-color: #333;
-            cursor: pointer;
+            background: #ff96ad;
+            box-shadow: 0 0 5px #ff96ad, 0 0 25px #ff96ad, 0 0 50px #ff96ad, 0 0 200px #ff96ad;
+
         }
     </style>
 @endsection
