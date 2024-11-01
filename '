@@ -1,0 +1,19 @@
+[33m2bdb830[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32medit[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m1f323f8[m HEAD@{1}: reset: moving to HEAD~1
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{2}: reset: moving to HEAD~1
+[33me470333[m HEAD@{3}: checkout: moving from login to edit
+[33m7f181a8[m[33m ([m[1;32mlogin[m[33m)[m HEAD@{4}: commit: edit hover login
+[33mc47ec3d[m[33m ([m[1;31morigin/login[m[33m)[m HEAD@{5}: pull: Fast-forward
+[33m720a952[m HEAD@{6}: commit: add old address
+[33maa77390[m HEAD@{7}: commit: add old address
+[33m19962c3[m HEAD@{8}: commit: add old address
+[33m38d8ff6[m HEAD@{9}: commit (merge): Merge branch 'frontend' of https://github.com/PhunyaphatJ/4101Project into login
+[33mb0357d2[m HEAD@{10}: checkout: moving from edit to login
+[33me470333[m HEAD@{11}: commit: Commit การเปลี่ยนแปลง
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: pull origin login: updating HEAD
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{13}: checkout: moving from main to edit
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{14}: checkout: moving from edit to main
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{15}: checkout: moving from main to edit
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{16}: checkout: moving from edit to main
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{17}: checkout: moving from main to edit
+[33mc642ab3[m[33m ([m[1;31morigin/edit[m[33m, [m[1;32mmain[m[33m)[m HEAD@{18}: clone: from https://github.com/PhunyaphatJ/4101Project.git
