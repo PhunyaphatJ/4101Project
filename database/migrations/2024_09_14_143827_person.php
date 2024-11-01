@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('persons', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->id();
+            $table->string('email')->unique();
             $table->enum('prefix',['MS','MR','MRS']);
             $table->string('name');
             $table->string('surname');
@@ -25,7 +26,8 @@ return new class extends Migration
 
 
         Schema::create('students', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->id();
+            $table->string('email')->unique();
             $table->char('student_id',10)->unique();
             $table->enum('student_type',['no_register','general','internship','former'])->default('no_register');
             $table->enum('department',['CS','IT']);
@@ -38,19 +40,21 @@ return new class extends Migration
         });
         
         Schema::create('professors', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->id();
+            $table->string('email')->unique();
             $table->char('professor_id',10)->unique();
             $table->string('remark')->nullable();
             $table->enum('status',['active','no_active'])->default('active');
-            $table->integer('running_number');
-            $table->boolean('assigned')->default(true);
+            $table->boolean('assigned')->default(false);
+            $table->timestamp('last_assigned_at');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('email')->references('email')->on('persons')->onDelete('cascade');
         });
 
         Schema::create('admins', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->id();
+            $table->string('email')->unique();
             $table->enum('status',['active','no_active']);
             $table->timestamps();
             $table->softDeletes();

@@ -13,7 +13,6 @@ class EvidenceFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => $this->faker->unique()->numerify('##########'), 
             'credit' => $this->faker->numberBetween(0, 100),
             'idcard_path' => $this->faker->word . '.jpg', 
             'transcript_path' => $this->faker->word . '.pdf',

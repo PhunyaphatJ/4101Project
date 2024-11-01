@@ -5,8 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Application;
 use App\Models\Student;
-use App\Models\Person;
+use App\Models\Professor;
 use App\Models\Internship_detail;
+use App\Models\Notification;
 
 class ApplicationFactory extends Factory
 {
@@ -15,11 +16,8 @@ class ApplicationFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => $this->faker->unique()->numerify('##########'), 
-            'applicant_email' => $this->faker->unique()->safeEmail,
             'application_type' => 'Internship_Register',
             'application_status' => $this->faker->randomElement(['approval_pending', 'reject', 'document_pending', 'completed']),
-            'sent' => $this->faker->dateTime,
             'internship_detail_id' => null, 
         ];
     }
@@ -28,21 +26,32 @@ class ApplicationFactory extends Factory
     {
         return $this->state([
             'student_id' => $student->student_id,
+            'applicant_email' => $student->email,
+            'notification_id' =>  Notification::factory()->sender($student->person->user)->receiver($student->person->user)->create()->notification_id,
         ]);
     }
 
-    public function applicant(Person $person)
+    public function appreciation(Professor $professor,Student $student)
     {
         return $this->state([
-            'applicant_email' => $person->email,
+            'student_id' => $student->student_id,
+            'applicant_email' => $professor->email,
+            'application_type' => 'Appreciation',
+            'notification_id' =>  Notification::factory()->sender($professor->person->user)->receiver($student->person->user)->create()->notification_id,
         ]);
     }
+
 
     public function internship_detail(Internship_detail $internship_detail) 
     {
         return $this->state([
             'internship_detail_id' => $internship_detail->internship_detail_id,
-            'application_type' => $this->faker->randomElement([ 'Internship_Request', 'Recommendation', 'Appreciation']),
+        ]);
+    }
+
+    public function application_type(String $type){
+        return $this->state([
+            'application_type' => $type,
         ]);
     }
 }

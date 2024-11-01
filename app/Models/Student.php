@@ -11,8 +11,6 @@ class Student extends Model
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
     use HasFactory;
 
-    protected $primaryKey = 'email';
-    public $incrementing = false;
     protected $softCascade = ['address','internship_info','application','evidence','internship_detail'];
     protected $fillable = [
         'email', 

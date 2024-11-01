@@ -14,8 +14,6 @@ class User extends Authenticatable
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
     use HasFactory, Notifiable;
-    protected $primaryKey = 'email';
-    public $incrementing = false;
     protected $softCascade = ['person','notification'];
     /**
      * The attributes that are mass assignable.
@@ -26,7 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'roles',
+        'role',
     ];
 
     /**

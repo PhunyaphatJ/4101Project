@@ -13,7 +13,6 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => Internship_info::factory(), 
             'date' => $this->faker->date(), 
             'sent' => $this->faker->boolean(), 
         ];
