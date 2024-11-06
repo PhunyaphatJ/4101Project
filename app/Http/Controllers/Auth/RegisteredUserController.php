@@ -45,7 +45,6 @@ class RegisteredUserController extends Controller
             }
         }
 
-
         DB::transaction(function () use ($request) {
             $user = User::create([
                 'email' => $request->email,
@@ -88,8 +87,8 @@ class RegisteredUserController extends Controller
                         'professor_id' => $request->professor_id,
                         'remark' => $request->remark,
                         'status' => $request->status,
-                        'running_number' => $request->running_number,
-                        'assigned' => $request->assigned,
+                        'assigned' => false,
+                        'last_assigned_at' => now(),
                     ]);
                     break;
                 default:
@@ -104,7 +103,9 @@ class RegisteredUserController extends Controller
                 // return redirect('/'); 
             }
         });
-
+        if ($request->role == 'professor') {
+            return redirect()->route('manage_users', ['users_type' => 'professor']);
+        }
        
 
         return redirect()->back();

@@ -8,20 +8,53 @@ use App\Models\Student;
 
 class GradeController extends Controller
 {
-    function students_grade(){
-        $students = Student::whereIn('student_type',['internship','former'])->get();
+    function students_grade(Request $request)
+    {
+        $menu = '';
+        $request->validate(
+            [
+                'name' => 'nullable|string',
+                'student_id' => 'nullable|string'
+            ],
+            [
+                'name.string' => 'ชื่อจะต้องเป็นข้อความ',
+                'student_id.string' => 'รหัสนักศึกษาจะต้องเป็นข้อความ'
+            ]
+        );
 
+        $name = $request->input('name');
+        $student_id = $request->input('student_id');
 
-        return view('student.test_grade', compact('students'));
-    }
+        $query = Student::query();
 
-    function student_grade_detail($student_id){
-        $student = Student::findOrFail($student_id);
-
-        if($student->student_type != 'former' || $student->student_type != 'internship'){
-            return redirect()->back()->withErrors(['message' => 'สถานะนักศึกษาไม่ถูกต้อง']);        
+        if ($name) {
+            $query->whereHas('person', function ($query) use ($name) {
+                $query->where('name', 'like', $name . '%');
+            });
         }
 
-        return view('student.student_grade_detail', compact('student'));
+        if ($student_id) {
+                $query->where('student_id', 'like', $student_id . '%');
+        }
+        $query->whereIn('student_type',['former','internship']);
+
+        $students = $query->paginate(10);
+
+        if ($students->isEmpty()) {
+            session()->flash('error', 'ไม่พบบุคคลที่ตรงกับคำค้นหา');
+        }
+        return view('admin.students_grade', compact('students','menu'));
+    }
+
+    function student_grade_detail($student_id)
+    {
+        $menu = '';
+        $student = Student::findOrFail($student_id);
+
+        if ($student->student_type == 'former' || $student->student_type == 'internship') {
+            return view('admin.student_grade_detail', compact('student','menu'));
+        }
+        return redirect()->back()->withErrors(['message' => 'สถานะนักศึกษาไม่ถูกต้อง']);
+
     }
 }

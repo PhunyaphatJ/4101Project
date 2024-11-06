@@ -223,11 +223,8 @@
                 </div>
                 <div>
                     <h6 style="display: inline-block">เบอร์โทรศัพท์: </h6>
-                    @if ($application->internship_detail->company->fax == null)
-                        <span>-</span>
-                    @else
-                        <span>{{ $application->internship_detail->internship_info->professor->person->phone }}</span>
-                    @endif
+
+                        <span>{{ $application->internship_detail->internship_info->professor->person->phone ?? '-' }}</span>
                 </div>
                 <div>
                     <h6 style="display: inline-block">Email: </h6>
@@ -235,11 +232,7 @@
                 </div>
                 <div>
                     <h6 style="display: inline-block">ข้อมูลเพิ่มเติม: </h6>
-                    @if ($application->internship_detail->company->fax == null)
-                        <span>-</span>
-                    @else
-                        <span>{{ $application->internship_detail->internship_info->professor->remark }}</span>
-                    @endif
+                        <span>{{ $application->internship_detail->internship_info->professor->remark ?? '-' }}</span>
                 </div>
             </div>
     </div>
@@ -248,16 +241,16 @@
     {{-- button group --}}
     <div class="text-center mt-4">
         @if (
-            $application['application_type'] == 'internship_request' &&
+            $application['application_type'] == 'Internship_Request' &&
                 $application['application_status'] == 'document_pending')
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอความอนุเคราะห์">ดาวน์โหลดหนังสือขอความอนุเคราะห์</a>
         @endif
-        @if ($application['application_type'] == 'recommendation' && $application['application_status'] == 'document_pending')
+        @if ($application['application_type'] == 'Recommendation' && $application['application_status'] == 'document_pending')
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือส่งตัว">ดาวน์โหลดหนังสือส่งตัว</a>
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือแต่งตั้งอาจารย์">ดาวน์โหลดหนังสือแต่งตั้งอาจารย์</a>
         @endif
         @if (
-            ($application['application_type'] == 'recommendation' || $application['application_type'] == 'appreciation') &&
+            ($application['application_type'] == 'Recommendation' || $application['application_type'] == 'Appreciation') &&
                 $application['application_status'] == 'document_pending')
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอคุณ">ดาวน์โหลดหนังสือขอคุณ</a>
         @endif

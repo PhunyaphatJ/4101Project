@@ -5,6 +5,16 @@
 @section('body_header', 'อนุมัติคำร้อง')
 @section('body_content')
 <div class="card mt-3 p-4" style="border-color:black; border-width: 2px; border-radius: 0px">
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="card-bordy row p-0">
         {{-- ประเภทคำร้อง --}}
         <div class="col-6" style="padding-top:10px">
@@ -81,7 +91,7 @@
             <input type="radio" name="professor_option" value="true" id="queue_professor_radio" checked>
             <label for="queue_professor_radio">Select from Queue Professor</label>
             <select name="selected_professor" class="form-select" id="queue_professor_dropdown" disabled>
-                <option value="{{ $queue_professor['professor_id'] }}">
+                <option value="{{ $queue_professor['id'] }}">
                     {{ $queue_professor['professor_id'] }} {{ $queue_professor->person->name }} {{ $queue_professor->person->surname }}
                 </option>
             </select>
@@ -93,7 +103,7 @@
             <label for="professor_list_radio">Select from Professor List</label>
             <select name="selected_professor" class="form-select" id="professor_list_dropdown" disabled>
                 @foreach ($professors as $professor)
-                    <option value="{{ $professor['professor_id'] }}">
+                    <option value="{{ $professor['id'] }}">
                         {{ $professor['professor_id'] }} {{ $professor->person->name }} {{ $professor->person->surname }}
                     </option>
                 @endforeach

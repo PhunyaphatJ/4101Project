@@ -4,72 +4,54 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Models\Document;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
       // จัดการเอกสาร ,หน้าแรก
-    function documents()
+    function documents($document_type)
     {
         $menu = 'manage_document';
 
-        $documents = Document::all();
-
-        return view('admin.admin_layout', compact('menu','documents'));
+        return view('admin.documents', compact('menu','document_type'));
     }
 
-    function document_form(){
-
-        return view('admin.document_test');
+    function document_form($document_type){
+        $menu = 'manage_document';
+        return view('admin.document_upload',compact('menu','document_type'));
     }
-
-    function create_document(Request  $request){
-        $request->validate([
-            'document_file' => 'required|file',
-        ],
-        [
-            'document_file.required' => 'กรุณาเพิ่มไฟล์' 
-        ]);
-        $file = $request->file('document_file');
-        $filename = Str::uuid().'.'.$request->document_name.'.'.$file->getClientOriginalExtension();
-        $path = $file->storeAs('documents',$filename);
-
-        abort_if(!$path, 500, 'Failed to store the file.');
-
-        $document = Document::create([
-            'document_path' => $path,
-            'document_type' => $file->getClientOriginalExtension(),
-            'admin_email' => 'roberta08@example.org',
-        ]);
-        // $document->save();
-        abort_if(!$document, 500, 'Failed to create the document.');
-
-
-        return response()->json(['message' => 'document uploaded successfully'], 201);
-    }
-
-    function document_detail($document_id){
-        $document = Document::findOrFail($document_id);
-
-        $path = $document->document_path;
-        if (Storage::exists($path)) {
-            $fileContent = Storage::get($path);
-            // Get the file's MIME type (e.g., pdf, jpg, png)
-            $mimeType = Storage::mimeType($path);
     
-            return new Response($fileContent, 200, [
-                'Content-Type' => $mimeType,
-                'Content-Disposition' => 'inline; filename="' . $filename . '"'
-            ]);
-        } else {
-            abort(404, 'Document not found.');
+    function create_document(Request $request, $document_type) {
+        $validDocumentTypes = ['document_manual', 'document_2'];
+    
+        if (!in_array($document_type, $validDocumentTypes)) {
+            dd($document_type);
+            return redirect()->back()->with('error', 'Invalid document type.');
         }
-        return compact('document');
+        
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:4096',
+        ]);
+    
+        if ($request->hasFile('image')) {
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $filename = $document_type . '.' . $extension; 
+    
+            // Check if the previous document exists and delete it
+            $previousDocumentPath = 'documents/' . $filename;
+            if (Storage::disk('public')->exists($previousDocumentPath)) {
+                Storage::disk('public')->delete($previousDocumentPath);
+            }
+    
+            $path = $request->file('image')->storeAs('documents', $filename, 'public'); 
+    
+            return redirect()->back()->with('success', 'Image uploaded successfully. Path: ' . $path);
+        }
+    
+        return redirect()->back()->with('error', 'Image upload failed.');
     }
+    
 
-
-    function update_document($document_id){
-
-    }
 }
+

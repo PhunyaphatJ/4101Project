@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "arielmejiadev/larapex-charts": "^2.1",
         "askedio/laravel-soft-cascade": "^11.0",
         "laravel/framework": "^11.28",
         "laravel/sanctum": "^4.0",

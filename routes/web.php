@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\GradeController;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\MailNotification;
+use App\Http\Controllers\Admin\StatisticController;
+
 
 Route::get('/student_grade',[GradeController::class,'students_grade']);
 
