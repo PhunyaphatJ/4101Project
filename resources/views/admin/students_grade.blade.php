@@ -40,7 +40,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Email</th>
+                    <th>รหัสประจำตัว</th>
                     <th>ชื่อ</th>
                     <th>นามสกุล</th>
                     <th>สถานะ</th>
@@ -51,7 +51,7 @@
                 {{-- Loop through users and display their details --}}
                 @foreach ($students as $student)
                     <tr>
-                        <td>{{ $student->email }}</td>
+                        <td>{{ $student->student_id }}</td>
                         <td>{{ $student->person->name }}</td>
                         <td>{{ $student->person->surname }}</td>
                         <td>{{ $student->student_type }}</td>

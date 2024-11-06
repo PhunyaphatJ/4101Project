@@ -38,7 +38,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Email</th>
+                    <th>รหัสประจำตัว</th>
                     <th>ชื่อ</th>
                     <th>นามสกุล</th>
                     @if ($users_type == 'professor')
@@ -53,7 +53,11 @@
                 {{-- Loop through users and display their details --}}
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->email }}</td>
+                        @if ($users_type == 'professor')
+                            <td>{{ $user->professor_id }}</td>
+                        @else
+                            <td>{{ $user->student_id }}</td>
+                        @endif
                         <td>{{ $user->person->name }}</td>
                         <td>{{ $user->person->surname }}</td>
                         @if ($users_type == 'professor')
