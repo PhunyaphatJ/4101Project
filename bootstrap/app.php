@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 } elseif ($role === 'professor') {
                     return '/professor';
                 } elseif ($role === 'student') {
-                    return '/student/manual/กำลังดำเนินการ';
+                    return '/student/manual';
                 } else {
                     abort(403, 'Unauthorized action.');
                 }

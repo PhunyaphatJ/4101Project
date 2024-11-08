@@ -14,20 +14,27 @@
     </style>
 @endsection
 @section('body_content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <section> {{-- ปุ่ม ขอเอกสารส่งตัวแบบไม่มี request จะเซทค่าดั้งนี้ app_type = rec_no_request --}} {{-- ปุ่ม ขอเอกสารส่งตัวแบบมี request จะเซทค่าดั้งนี้ app_type = rec_with_request --}}
         <div class="d-flex gap-4 justify-content-center py-5">
             <div class="sidebar_color" style="width: 45%">
                 <a id="bottom_menu" class="btn d-grid align-items-center mb-4 py-3 rounded-0" type="button"
-                    href="/student/process/process_company_search_address/{{ $student_process_status }}/rec_no_request"
-                    style="height: 85%">
+                    href="{{ route('search_company', ['type' => 'recommendation']) }}" style="height: 85%">
                     <h5>ขอเอกสารส่งตัว</h5>
                     <p>(นักศึกษาที่ไม่มีการยื่นหนังสือขอความอนุเคราะห์)</p>
                 </a>
             </div>
             <div class="sidebar_color" style="width: 45%">
                 <a id="bottom_menu" class="btn d-grid align-items-center mb-4 py-3 rounded-0 " type="button"
-                    href="/student/process/process_company_rec_with_request/{{ $student_process_status }}/rec_with_request"
-                    style="height: 85%">
+                    href="{{ route('recommendation_request') }}" style="height: 85%">
                     <h5>ขอเอกสารส่งตัว</h5>
                     <p>(นักศึกษาที่มีการยื่นหนังสือขอความอนุเคราะห์)</p>
                 </a>
@@ -41,7 +48,7 @@
                 <h5>ดาวน์โหลดแบบตอบรับ(เอกสาร 2)</h5>
                 <p>(สำหรับให้หน่วยงานกรอกและแนบสำเนาในขั้นตอนการขอเอกสารส่งตัว)</p>
             </div>
-            <a href="https://github.com/twbs/bootstrap/releases/download/v5.3.3/bootstrap-5.3.3-dist.zip"
+            <a href="{{ asset('storage/documents/document_2.pdf') }}"
                 class="btn submit_color float-end mx-3 rounded-5 p-2 px-4"
                 onclick="ga('send', 'event', 'Getting started', 'Download', 'Download Bootstrap');"><i
                     class="bi bi-arrow-down-circle-fill me-2"></i>Download</a> {{-- ปุ่มดาวน์โหลดได้จริง ลิงค์ดาวน์โหลดเป็นไฟล์ css and js ของ bootstrap (ใส่มาเป็นตัวอย่าง) --}}

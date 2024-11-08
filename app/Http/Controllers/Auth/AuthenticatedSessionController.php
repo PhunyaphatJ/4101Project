@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
             return redirect('admin/manage_application/approval');
         }
 
-        return redirect()->route('manual', ['student_process_status' => 'กำลังดำเนินการ']);
+        return redirect()->route('manual');
     }
 
     /**

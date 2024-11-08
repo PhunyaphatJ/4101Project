@@ -56,27 +56,27 @@
             {{-- ชื่อ : prefix name lastname --}}
             <div>
                 <h6 style="display: inline-block">ชื่อ: </h6>
-                @if ($application['prefix'] == 'MR')
+                @if ($application->student->person->prefix == 'MR')
                     <span>นาย </span>
-                @elseif($application['prefix'] == 'MS')
+                @elseif($application->student->person->prefix == 'MS')
                     <span>นางสาว </span>
-                @elseif($application['prefix'] == 'MRS')
+                @elseif($application->student->person->prefix == 'MRS')
                     <span>นาง </span>
                 @endif
-                <span>{{ $application['name'] }} </span>
-                <span>{{ $application['lastname'] }} </span>
+                <span>{{ $application->student->person->name }} </span>
+                <span>{{ $application->student->person->surname }} </span>
             </div>
             <div>
                 <h6 style="display: inline-block">ภาควิชา: </h6>
-                <span>{{ $application['department'] }}</span>
+                <span>{{ $application->student->department }}</span>
             </div>
             <div>
                 <h6 style="display: inline-block">เบอร์โทรศัพท์: </h6>
-                <span>{{ $application['phone'] }}</span>
+                <span>{{ $application->student->person->phone }}</span>
             </div>
             <div>
                 <h6 style="display: inline-block">Email: </h6>
-                <span>{{ $application['email'] }}</span>
+                <span>{{ $application->student->email }}</span>
             </div>
         </div>
     </div>

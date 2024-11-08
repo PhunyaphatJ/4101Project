@@ -91,7 +91,8 @@ class ApplicationController extends Controller
                 $application->application_status = 'document_pending';
                 if ($application->application_type == 'Internship_Request') {
                     $applications = Application::where('student_id', $application->student_id)
-                        ->where('application_id', '<>', $application->application_id)->get();
+                        ->where('application_id', '<>', $application->application_id)
+                        ->where('application_type','Internship_Request')->get();
                     foreach ($applications as $other_application) {
                         $other_application->application_status = 'reject';
                         $other_application->save();
@@ -150,15 +151,14 @@ class ApplicationController extends Controller
         try {
             $professor = Professor::findOrFail($request->selected_professor);
             $application = Application::findOrFail($application_id);
-            $internship_info = Internship_info::create([
-                'student_id' => $application->student_id,
-                'professor_id' => $professor->professor_id,
-                'internship_detail_id' => $application->internship_detail_id,
-            ]);
+            $internship_info = Internship_info::where('student_id',$application->student_id)->first();
+            $internship_info->professor_id = $professor->professor_id;
+
 
             $professor->last_assigned_at = now();
             $application->application_status = 'document_pending';
 
+            $internship_info->save();
             $professor->save();
             $application->save();
 

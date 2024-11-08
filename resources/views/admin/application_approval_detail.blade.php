@@ -82,17 +82,17 @@
                     <div class="row">
                         <div class="col">
                             <h6>ใบรายงานการเช็คเกรด </h6>
-                            <a class="btn btn-outline-info bi bi-download" href="{{ $application['transcript_path'] }}">
+                            <a class="btn btn-outline-info bi bi-download" href="{{ asset('storage/' . $application->student->evidence->transcript_path) }}">
                                 ดาวน์โหลด</a>
                         </div>
                         <div class="col">
                             <h6>สำเนาบัตรนักศึกษา </h6>
-                            <a class="btn btn-outline-info bi bi-download" href="{{ $application['idcard_path'] }}">
+                            <a class="btn btn-outline-info bi bi-download" href="{{ asset('storage/' . $application->student->evidence->idcard_path) }}">
                                 ดาวน์โหลด</a>
                         </div>
                         <div class="col">
                             <h6>ใบเสร็จลงทะเบียนเรียนภาคล่าสุด </h6>
-                            <a class="btn btn-outline-info bi bi-download" href="{{ $application['recentreceipt_path'] }}">
+                            <a class="btn btn-outline-info bi bi-download" href="{{ asset('storage/' . $application->student->evidence->recentreceipt_path) }}">
                                 ดาวน์โหลด</a>
                         </div>
                     </div>

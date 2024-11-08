@@ -30,7 +30,7 @@ return new class extends Migration
         Schema::create('internship_infos', function (Blueprint $table) {
             $table->char('student_id', 10)->unique();
             $table->mediumIncrements('internship_id')->unsigned();
-            $table->char('professor_id',10);
+            $table->char('professor_id',10)->nullable();
             $table->string('mentor_email')->nullable();
             $table->mediumInteger('internship_detail_id')->unsigned()->unique();
             $table->enum('grade',['A','F'])->nullable();

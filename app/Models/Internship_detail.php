@@ -19,7 +19,7 @@ class Internship_detail extends Model
         'year',
         'start_date',
         'end_date',
-        'attend_to',
+        'attend_to'
     ];
 
     public function student(){

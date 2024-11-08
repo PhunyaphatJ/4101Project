@@ -11,8 +11,10 @@ class Mentor extends Model
 {
     use HasFactory,softDeletes;
 
+    protected $table = 'mentors';
     protected $primaryKey = 'email';
     public $incrementing = false;
+    protected $keyType = 'string'; 
 
     protected $fillable = [
         'email',

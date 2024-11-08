@@ -15,7 +15,6 @@
 @endsection
 @section('body_content')
     <section> {{-- แสดงข้อมูลอาจารย์ที่ปรึกษา --}}
-        @foreach ($professors as $professor)
             <div class="card rounded-0 shadow" id="display_info">
                 <div class="card-body">
                     <div class="px-5 py-4">
@@ -28,7 +27,7 @@
                                     </div>
                                     <div class="col-8 mt-2">
                                         <h6 class="mb-0">ชื่อ</h6>
-                                        <p class="mb-0" style="font-size: 13px">{{ $professor['prefix'] }} {{ $professor['fname'] }} {{ $professor['lname'] }}</p>
+                                        <p class="mb-0" style="font-size: 13px">{{ $professor->person->prefix }} {{ $professor->person->name }} {{ $professor->person->surname }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +38,7 @@
                                     </div>
                                     <div class="col-8 mt-2">
                                         <h6 class="mb-0">โทรศัพท์</h6>
-                                        <p class="mb-0" style="font-size: 13px">{{ $professor['phone'] }}</p>
+                                        <p class="mb-0" style="font-size: 13px">{{ $professor->person->phone }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +49,7 @@
                                     </div>
                                     <div class="col-8 mt-2">
                                         <h6 class="mb-0">ข้อมูลเพิ่มเติม</h6>
-                                        <p class="mb-0" style="font-size: 13px">{{ $professor['remark'] }}</p>
+                                        <p class="mb-0" style="font-size: 13px">{{ $professor->person->remark ?? '-' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +70,6 @@
             </div>
 
             <hr class="my-4">
-        @endforeach
     </section>
 
 @endsection

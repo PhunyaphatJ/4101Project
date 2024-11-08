@@ -4,18 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Internship_info extends Model
 {
-    use \Illuminate\Database\Eloquent\SoftDeletes;
-    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
-
     use HasFactory;
 
     protected $primaryKey = 'student_id';
     public $incrementing = false;
-    protected $softCascade = ['event','evaluation_answer'];
+    
     protected $fillable = [
         'student_id',
         'professor_id',

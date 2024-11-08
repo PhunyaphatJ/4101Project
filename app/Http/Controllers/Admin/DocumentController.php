@@ -26,7 +26,6 @@ class DocumentController extends Controller
         $validDocumentTypes = ['document_manual', 'document_2'];
     
         if (!in_array($document_type, $validDocumentTypes)) {
-            dd($document_type);
             return redirect()->back()->with('error', 'Invalid document type.');
         }
         

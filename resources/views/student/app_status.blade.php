@@ -20,30 +20,28 @@
                             <thead>
                                 <div class="row text-center">
                                     <p class="col-3">เลขที่คำร้อง</p>
-                                    <p class="col-3">ชื่อหน่วยงาน</p>
                                     <p class="col-3">วันที่ส่งคำร้อง</p>
                                     <p class="col-3">สถานะ</p>
                                 </div>
                             </thead>
                             <tbody>
                                 @foreach ($applications as $application)
-                                    @if ($application['application_type'] == 'internship_register')
+                                    @if ($application->application_type == 'Internship_Register')
                                         <div class="row text-center body_color pt-2 my-2">
                                             <p class="col-3">{{ $application['application_id'] }}</p>
-                                            <p class="col-3">{{ $application['company_name'] }}</p>
-                                            <p class="col-3">{{ $application['application_date'] }}</p>
-                                            @if ($application['application_status'] == 'สมบูรณ์')
+                                            <p class="col-3">{{ $application->notification->datetime }}</p>
+                                            @if ($application['application_status'] == 'completed')
                                                 <p class="col-3 app_accept_color">{{ $application['application_status'] }}</p>
                                             @else
-                                                @if ($application['application_status'] == 'กำลังดำเนินการ')
+                                                @if ($application['application_status'] == 'document_pending')
                                                     <p class="col-3 app_in_preparation_color">
                                                         {{ $application['application_status'] }}</p>
                                                 @else
-                                                    @if ($application['application_status'] == 'รอการอนุมัติ')
+                                                    @if ($application['application_status'] == 'approval_pending')
                                                         <p class="col-3 app_approval_pending_color">
                                                             {{ $application['application_status'] }}</p>
                                                     @else
-                                                        @if ($application['application_status'] == 'ปฎิเสธ')
+                                                        @if ($application['application_status'] == 'reject')
                                                             <p class="col-3 app_reject_color">
                                                                 {{ $application['application_status'] }}<i
                                                                     class="bi bi-three-dots-vertical float-end"
@@ -86,23 +84,23 @@
                             </thead>
                             <tbody>
                                 @foreach ($applications as $application)
-                                    @if ($application['application_type'] == 'internship_request')
+                                    @if ($application['application_type'] == 'Internship_Request')
                                         <div class="row text-center body_color pt-2 my-2">
                                             <p class="col-3">{{ $application['application_id'] }}</p>
-                                            <p class="col-3">{{ $application['company_name'] }}</p>
-                                            <p class="col-3">{{ $application['application_date'] }}</p>
-                                            @if ($application['application_status'] == 'สมบูรณ์')
+                                            <p class="col-3">{{ $application->internship_detail->company->company_name }}</p>
+                                            <p class="col-3">{{ $application->notification->datetime }}</p>
+                                            @if ($application['application_status'] == 'completed')
                                                 <p class="col-3 app_accept_color">{{ $application['application_status'] }}</p>
                                             @else
-                                                @if ($application['application_status'] == 'กำลังดำเนินการ')
+                                                @if ($application['application_status'] == 'document_pending')
                                                     <p class="col-3 app_in_preparation_color">
                                                         {{ $application['application_status'] }}</p>
                                                 @else
-                                                    @if ($application['application_status'] == 'รอการอนุมัติ')
+                                                    @if ($application['application_status'] == 'approval_pending')
                                                         <p class="col-3 app_approval_pending_color">
                                                             {{ $application['application_status'] }}</p>
                                                     @else
-                                                        @if ($application['application_status'] == 'ปฎิเสธ')
+                                                        @if ($application['application_status'] == 'reject')
                                                             <p class="col-3 app_reject_color">
                                                                 {{ $application['application_status'] }}<i
                                                                     class="bi bi-three-dots-vertical float-end"
@@ -145,23 +143,23 @@
                             </thead>
                             <tbody>
                                 @foreach ($applications as $application)
-                                    @if ($application['application_type'] == 'internship_rec')
+                                    @if ($application['application_type'] == 'Recommendation')
                                         <div class="row text-center body_color pt-2 my-2">
                                             <p class="col-3">{{ $application['application_id'] }}</p>
-                                            <p class="col-3">{{ $application['company_name'] }}</p>
-                                            <p class="col-3">{{ $application['application_date'] }}</p>
-                                            @if ($application['application_status'] == 'สมบูรณ์')
+                                            <p class="col-3">{{ $application->internship_detail->company->company_name }}</p>
+                                            <p class="col-3">{{ $application->notification->datetime }}</p>
+                                            @if ($application['application_status'] == 'completed')
                                                 <p class="col-3 app_accept_color">{{ $application['application_status'] }}</p>
                                             @else
-                                                @if ($application['application_status'] == 'กำลังดำเนินการ')
+                                                @if ($application['application_status'] == 'document_pending')
                                                     <p class="col-3 app_in_preparation_color">
                                                         {{ $application['application_status'] }}</p>
                                                 @else
-                                                    @if ($application['application_status'] == 'รอการอนุมัติ')
+                                                    @if ($application['application_status'] == 'approval_pending')
                                                         <p class="col-3 app_approval_pending_color">
                                                             {{ $application['application_status'] }}</p>
                                                     @else
-                                                        @if ($application['application_status'] == 'ปฎิเสธ')
+                                                        @if ($application['application_status'] == 'reject')
                                                             <p class="col-3 app_reject_color">
                                                                 {{ $application['application_status'] }}<i
                                                                     class="bi bi-three-dots-vertical float-end"
