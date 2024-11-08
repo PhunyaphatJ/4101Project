@@ -15,7 +15,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/register',[RegisteredUserController::class, 'store']);
 });
 
-
+// get ได้เเค่ data เเต่ get เธอกลับมาไม่ได้ 🥺
 Route::prefix('student')->middleware(['auth','verified','role:student'])->group(function(){
     Route::view('/','student.test')->name('student');
     Route::get('/manual/{student_process_status}',[StudentController::class,'manual'])->name('manual');
@@ -43,3 +43,4 @@ Route::prefix('student')->middleware(['auth','verified','role:student'])->group(
     Route::post('/add_report/{student_process_status}',[StudentController::class,'add_report'])->name('add_report');
     Route::get('/app_status/{student_process_status}',[StudentController::class,'app_status'])->name('app_status');
 });
+
