@@ -47,7 +47,7 @@
                             <a class="list-group-item p-3 my-1 mt-3 @yield('process_register_for_internship')"
                                 href="/student/process/process_register_for_internship/{{ $student_process_status }}"><i
                                     class="bi bi-dice-1 ms-3 me-2"></i>1.ลงทะเบียนขอฝึกงาน</a>
-                            @if ($student_process_status == 'register_pending' || $student_process_status == 'no_register')
+                            @if ($student_process_status == 'register_pending' || $student_process_status == 'กำลังดำเนินการ')
                                 <a class="list-group-item p-3 my-1 @yield('process_company') disabled"
                                     href="/student/process/process_company/{{ $student_process_status }}"><i
                                         class="bi bi-dice-2 ms-3 me-2"></i>2.สถานที่ฝึกงาน</a>

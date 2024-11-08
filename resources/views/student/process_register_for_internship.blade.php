@@ -98,50 +98,47 @@
             </div>
         @endforeach
     </section>
-    @if ($student_process_status == 'no_register')
+    @if ($student_process_status == 'กำลังดำเนินการ')
 
         <section> {{-- input ข้อมูลและหลักฐานประกอบการพิจารณา --}}
             <hr class="my-4">
             <h5 class="my-3">ข้อมูลและหลักฐานประกอบการพิจารณา</h5>
 
             <div id="more_info">
-                @if ($student_process_status == 'no_register')
-                    <form class="needs-validation" validate method="POST"
-                        action="{{ route('compare_internship_register') }}">
-                        @csrf
-                        <div id="file" class="row mx-3">
+                <form class="needs-validation" validate method="POST" action="{{ route('compare_internship_register') }}">
+                    @csrf
+                    <div id="file" class="row mx-3">
 
-                            <div class="col-4">
-                                <label for="transcript" class="form-label">ใบรายงานการเช็คเกรด</label>
-                                <input type="file" class="form-control rounded-5 ps-4" name="transcript" placeholder=""
-                                    required>
-                            </div>
-
-                            <div class="col-4">
-                                <label for="student_card" class="form-label">สำเนาบัตรนักศึกษา</label>
-                                <input type="file" class="form-control rounded-5 ps-4" name="student_card" placeholder=""
-                                    required>
-                            </div>
-
-                            <div class="col-4">
-                                <label for="recentreceipt" class="form-label">ใบเสร็จลงทะเบียนเรียนภาคล่าสุด</label>
-                                <input type="file" class="form-control rounded-5 ps-4" name="recentreceipt"
-                                    placeholder="" required>
-                            </div>
-                        </div>
-                        <p class="text-end text-danger mt-4 mb-0 me-4">หน่วยกิตสะสมต้องมากกว่า 100</p>
-                        <hr class="mb-4 mt-0">
-
-                        <div class="mx-3">
-                            <button class="btn submit_color p-3 px-5 float-end rounded-5" type="submit">ลงทะเบียน</button>
-                        </div>
-                        <div class="mx-3">
-                            <a href="{{ route('process_register_for_internship', 'no_register') }}"
-                                class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ยกเลิก</a>
+                        <div class="col-4">
+                            <label for="transcript" class="form-label">ใบรายงานการเช็คเกรด</label>
+                            <input type="file" class="form-control rounded-5 ps-4" name="transcript" placeholder=""
+                                required>
                         </div>
 
-                    </form>
-                @endif
+                        <div class="col-4">
+                            <label for="student_card" class="form-label">สำเนาบัตรนักศึกษา</label>
+                            <input type="file" class="form-control rounded-5 ps-4" name="student_card" placeholder=""
+                                required>
+                        </div>
+
+                        <div class="col-4">
+                            <label for="recentreceipt" class="form-label">ใบเสร็จลงทะเบียนเรียนภาคล่าสุด</label>
+                            <input type="file" class="form-control rounded-5 ps-4" name="recentreceipt" placeholder=""
+                                required>
+                        </div>
+                    </div>
+                    <p class="text-end text-danger mt-4 mb-0 me-4">หน่วยกิตสะสมต้องมากกว่า 100</p>
+                    <hr class="mb-4 mt-0">
+
+                    <div class="mx-3">
+                        <button class="btn submit_color p-3 px-5 float-end rounded-5" type="submit">ลงทะเบียน</button>
+                    </div>
+                    <div class="mx-3">
+                        <a href="{{ route('process_register_for_internship', 'no_register') }}"
+                            class="btn cancel_color p-3 px-5 me-3 float-end rounded-5" type="cancel">ยกเลิก</a>
+                    </div>
+
+                </form>
             </div>
         </section>
     @else
@@ -158,7 +155,8 @@
                                 <h5><i class="bi bi-folder-fill me-2"></i>ข้อมูลและหลักฐานประกอบการพิจารณา</h5>
                                 <div class="row justify-content-center mt-4">
                                     <div class="col-4 mb-3">
-                                        <label>ใบรายงานการเช็คเกรด &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <label>ใบรายงานการเช็คเกรด
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <button class="btn sidebar_color d-inline-flex align-items-center rounded-5 m-auto"
                                             type="button">
                                             {{ $file['transcript'] }}<i class="bi bi-file-earmark-text ms-2"
@@ -166,7 +164,8 @@
                                         </button>
                                     </div>
                                     <div class="col-4 mb-3">
-                                        <label>สำเนาบัตรนักศึกษา &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <label>สำเนาบัตรนักศึกษา
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <button class="btn sidebar_color d-inline-flex align-items-center rounded-5 m-auto"
                                             type="button">
                                             {{ $file['student_card'] }}<i class="bi bi-file-earmark-text ms-2"
