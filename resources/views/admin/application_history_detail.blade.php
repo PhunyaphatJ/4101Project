@@ -8,20 +8,20 @@
         <div class="card-bordy row p-0">
             {{-- ประเภทคำร้อง --}}
             <div class="col-6" style="padding-top:10px">
-                @if ($application['application_type'] == 'internship_register')
+                @if ($application['application_type'] == 'Internship_Register')
                     <h3 style="display: inline-block">ขึ้นทะเบียนฝึกงาน</h3>
-                @elseif($application['application_type'] == 'internship_request')
+                @elseif($application['application_type'] == 'Internship_Request')
                     <h3 style="display: inline-block">เอกสารขอความอนุเคราะห์</h3>
-                @elseif($application['application_type'] == 'recommendation')
+                @elseif($application['application_type'] == 'Recommendation')
                     <h3 style="display: inline-block">เอกสารส่งตัว</h3>
-                @elseif($application['application_type'] == 'appreciation')
+                @elseif($application['application_type'] == 'Appreciation')
                     <h3 style="display: inline-block">เอกสารขอบคุณ</h3>
                 @endif
             </div>
             {{-- รายละเอียดคำร้อง --}}
             <div class="col-6 text-end">
                 <p class="m-0">เลขที่คำร้อง {{ $application['application_id'] }}</p>
-                <p class="m-0">วันที่ส่งคำร้อง {{ $application['date'] }}</p>
+                <p class="m-0">วันที่ส่งคำร้อง {{ $application->notification->datetime }}</p>
                 <span>สถานะ </span>
                 {{-- เปลี่ยนสถานะคำร้องเป็นภาษาไทย --}}
                 @if ($application['application_status'] == 'approval_pending')
@@ -46,32 +46,36 @@
                 {{-- ชื่อ : prefix name lastname --}}
                 <div>
                     <h6 style="display: inline-block">ชื่อ: </h6>
-                    @if ($application['prefix'] == 'MR.')
+                    @if ($application['professor_prefix'] == 'MR')
                         <span>นาย </span>
-                    @elseif($application['prefix'] == 'MS.')
+                    @elseif($application['professor_prefix'] == 'MS')
                         <span>นางสาว </span>
-                    @elseif($application['prefix'] == 'MRS.')
+                    @elseif($application['professor_prefix'] == 'MRS')
                         <span>นาง </span>
                     @endif
-                    <span>{{ $application['name'] }} </span>
-                    <span>{{ $application['lastname'] }} </span>
+                    <span>{{ $application->student->person->name }} </span>
+                    <span>{{ $application->student->person->surname }} </span>
                 </div>
                 <div>
                     <h6 style="display: inline-block">ภาควิชา: </h6>
-                    <span>{{ $application['department'] }}</span>
+                    <span>{{ $application->student->department }}</span>
                 </div>
                 <div>
                     <h6 style="display: inline-block">เบอร์โทรศัพท์: </h6>
-                    <span>{{ $application['phone'] }}</span>
+                    @if ($application->student->person->phone == null)
+                        <span>-</span>
+                    @else
+                        <span>{{ $application->student->person->phone }}</span>
+                    @endif
                 </div>
                 <div>
                     <h6 style="display: inline-block">Email: </h6>
-                    <span>{{ $application['email'] }}</span>
+                    <span>{{ $application->student->email }}</span>
                 </div>
             </div>
         </div>
         {{-- ข้อมูลหลักฐานประกอบการพิจารณา --}}
-        @if ($application['application_type'] == 'internship_register')
+        @if ($application['application_type'] == 'Internship_Register')
             <div class="card-body">
                 <h4>หลักฐานประกอบการพิจารณา</h4>
                 <div class="ms-3">
@@ -97,27 +101,31 @@
         @endif
         {{-- ข้อมูลสถานที่ฝึกงาน --}}
         @if (
-            $application['application_type'] == 'internship_request' ||
-                $application['application_type'] == 'recommendation' ||
-                $application['application_type'] == 'appreciation')
+            $application['application_type'] == 'Internship_Request' ||
+                $application['application_type'] == 'Recommendation' ||
+                $application['application_type'] == 'Appreciation')
             <div class="card-body pb-0">
                 <h4>ข้อมูลสถานที่ฝึกงาน</h4>
                 <div class="ms-3">
                     <div>
                         <h6 style="display: inline-block">ชื่อสถานที่: </h6>
-                        <span>{{ $application['company_name'] }}</span>
+                        <span>{{ $application->internship_detail->company->company_name }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">ที่อยู่: </h6>
-                        <span>{{ $application['company_address'] }}</span>
+                        <span>{{ $application->internship_detail->company->address->getAddress() }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">เบอร์โทรศัพท์: </h6>
-                        <span>{{ $application['company_phone'] }}</span>
+                        <span>{{ $application->internship_detail->company->phone }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">เบอร์โทรสาร: </h6>
-                        <span>{{ $application['company_fax'] }}</span>
+                        @if($application->internship_detail->company->fax == null)
+                            <span>-</span>
+                        @else
+                        <span>{{ $application->internship_detail->company->fax }}</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -127,53 +135,61 @@
                 <div class="ms-3">
                     <div>
                         <h6 style="display: inline-block">ภาคการลงทะเบียน: </h6>
-                        <span>{{ $application['register_semester'] }}</span>
+                        <span>{{ $application->internship_detail->register_semester }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">ปีการศึกษา: </h6>
-                        <span>{{ $application['year'] }}</span>
+                        <span>{{ $application->internship_detail->year }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">วันที่เริ่มฝึกงาน: </h6>
-                        <span>{{ $application['start_date'] }}</span>
+                        <span>{{ $application->internship_detail->start_date }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">วันที่สิ้นสุดการฝึกงาน: </h6>
-                        <span>{{ $application['end_date'] }}</span>
+                        <span>{{ $application->internship_detail->end_date }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">เรียน(ผู้รับเอกสาร): </h6>
-                        <span>{{ $application['attend_to'] }}</span>
+                        <span>{{ $application->internship_detail->attend_to }}</span>
                     </div>
                 </div>
             </div>
         @endif
         {{-- ข้อมูลพี่เลี้ยง --}}
-        @if ($application['application_type'] == 'recommendation')
+        @if ($application['application_type'] == 'Recommendation')
             <div class="card-body pb-0">
                 <h4>ผู้รับผิดชอบ/พี่เลี้ยง</h4>
                 <div class="ms-3">
                     {{-- ชื่อ : name lastname --}}
                     <div>
                         <h6 style="display: inline-block">ชื่อ: </h6>
-                        <span>{{ $application['mentor_name'] }} </span>
-                        <span>{{ $application['mentor_lastname'] }} </span>
+                        <span>{{ $application->internship_detail->internship_info->mentor->name }} </span>
+                        <span>{{ $application->internship_detail->internship_info->mentor->surname }} </span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">Email: </h6>
-                        <span>{{ $application['mentor_email'] }}</span>
+                        <span>{{ $application->internship_detail->internship_info->mentor->email }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">ตำแหน่ง: </h6>
-                        <span>{{ $application['mentor_position'] }}</span>
+                        <span>{{ $application->internship_detail->internship_info->mentor->position }}</span>
                     </div>
                     <div>
                         <h6 style="display: inline-block">เบอร์โทรศัพท์: </h6>
-                        <span>{{ $application['mentor_phone'] }}</span>
+                        @if ($application->internship_detail->company->fax == null)
+                            <span>-</span>
+                        @else
+                            <span>{{ $application->internship_detail->internship_info->mentor->phone }}</span>
+                        @endif
                     </div>
                     <div>
                         <h6 style="display: inline-block">เบอร์โทรสาร: </h6>
-                        <span>{{ $application['mentor_fax'] }}</span>
+                        @if ($application->internship_detail->company->fax == null)
+                            <span>-</span>
+                        @else
+                            <span>{{ $application->internship_detail->internship_info->mentor->fax }}</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -185,37 +201,38 @@
             </div>
         @endif
         {{-- ข้อมูลอาจารย์ที่ปรึกษา --}}
-        @if ($application['application_type'] == 'appreciation')
+        @if ($application['application_type'] == 'Appreciation')
             <h4>ข้อมูลอาจารย์ที่ปรึกษา</h4>
             <div class="ms-3">
                 <div>
                     <h6 style="display: inline-block">รหัส: </h6>
-                    <span>{{ $application['professor_id'] }}</span>
+                    <span>{{ $application->internship_detail->internship_info->professor->professor_id }}</span>
                 </div>
                 {{-- ชื่อ : prefix name lastname --}}
                 <div>
                     <h6 style="display: inline-block">ชื่อ: </h6>
-                    @if ($application['professor_prefix'] == 'MR.')
+                    @if ($application['professor_prefix'] == 'MR')
                         <span>นาย </span>
-                    @elseif($application['professor_prefix'] == 'MS.')
+                    @elseif($application['professor_prefix'] == 'MS')
                         <span>นางสาว </span>
-                    @elseif($application['professor_prefix'] == 'MRS.')
+                    @elseif($application['professor_prefix'] == 'MRS')
                         <span>นาง </span>
                     @endif
-                    <span>{{ $application['professor_name'] }} </span>
-                    <span>{{ $application['professor_lastname'] }} </span>
+                    <span>{{ $application->internship_detail->internship_info->professor->person->name }} </span>
+                    <span>{{ $application->internship_detail->internship_info->professor->person->surname }} </span>
                 </div>
                 <div>
                     <h6 style="display: inline-block">เบอร์โทรศัพท์: </h6>
-                    <span>{{ $application['professor_phone'] }}</span>
+
+                        <span>{{ $application->internship_detail->internship_info->professor->person->phone ?? '-' }}</span>
                 </div>
                 <div>
                     <h6 style="display: inline-block">Email: </h6>
-                    <span>{{ $application['professor_email'] }}</span>
+                    <span>{{ $application->internship_detail->internship_info->professor->email }}</span>
                 </div>
                 <div>
                     <h6 style="display: inline-block">ข้อมูลเพิ่มเติม: </h6>
-                    <span>{{ $application['professor_remark'] }}</span>
+                        <span>{{ $application->internship_detail->internship_info->professor->remark ?? '-' }}</span>
                 </div>
             </div>
     </div>
@@ -224,16 +241,16 @@
     {{-- button group --}}
     <div class="text-center mt-4">
         @if (
-            $application['application_type'] == 'internship_request' &&
+            $application['application_type'] == 'Internship_Request' &&
                 $application['application_status'] == 'document_pending')
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอความอนุเคราะห์">ดาวน์โหลดหนังสือขอความอนุเคราะห์</a>
         @endif
-        @if ($application['application_type'] == 'recommendation' && $application['application_status'] == 'document_pending')
+        @if ($application['application_type'] == 'Recommendation' && $application['application_status'] == 'document_pending')
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือส่งตัว">ดาวน์โหลดหนังสือส่งตัว</a>
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือแต่งตั้งอาจารย์">ดาวน์โหลดหนังสือแต่งตั้งอาจารย์</a>
         @endif
         @if (
-            ($application['application_type'] == 'recommendation' || $application['application_type'] == 'appreciation') &&
+            ($application['application_type'] == 'Recommendation' || $application['application_type'] == 'Appreciation') &&
                 $application['application_status'] == 'document_pending')
             <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอคุณ">ดาวน์โหลดหนังสือขอคุณ</a>
         @endif
