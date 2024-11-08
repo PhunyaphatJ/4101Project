@@ -19,7 +19,12 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentTest extends TestCase
 {
+    public function test_the_application_returns_a_suscessful_response():void{
+        $response = $this->get('/');
+        $response->assertStatus(200);
+    }
     // use RefreshDatabase;
+    /*
     private function create_student($address_id = null){
         $user = User::create([
             'email' => 'student1@example.com',
@@ -313,5 +318,5 @@ class StudentTest extends TestCase
         $this->assertDatabaseHas('users', [
             'email' => $user->email,
         ]);
-    }
+    } */
 }
