@@ -167,7 +167,7 @@
                             <input type="date" class="form-control rounded-5 ps-4" id="end_date" placeholder=""
                                 required>
                             <label for="end_date" class="form-label"
-                                style="font-size: 12px">(ก่อนวันสอบวันแรกของภาคการลงทะเบี่ยน)</label>
+                                style="font-size: 12px">(ก่อนวันสอบวันแรกของภาคการลงทะเบียน)</label>
                             <div class="invalid-feedback">
                                 Valid date required
                             </div>

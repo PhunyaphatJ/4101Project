@@ -63,7 +63,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            @if ($student_process_status == 'no_register')
+                            @if ($student_process_status == 'กำลังดำเนินการ')
                                 <a href="/student/process/process_register_for_internship/{{ $student_process_status }}"><button
                                         type="button" class="btn btn-lg submit_color mt-4 w-100 p-3  rounded-5"
                                         data-bs-dismiss="modal" style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
