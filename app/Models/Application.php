@@ -21,7 +21,7 @@ class Application extends Model
         'applicant_email',
         'application_type',
         'application_status',
-        'sent',
+        'notification_id',
         'internship_detail_id',
     ];
 
@@ -36,4 +36,13 @@ class Application extends Model
     public function person(){
         return $this->belongsTo(Person::class,'applicant_email','email');
     }
+
+    public function notification(){
+        return $this->hasOne(Notification::class,'notification_id','notification_id');
+    }
+
+    public function student(){
+        return $this->belongsTo(Student::class,'student_id','student_id');
+    }
+    
 }

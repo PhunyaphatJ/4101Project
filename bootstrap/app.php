@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,8 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectUsersTo(function(Request $request) {
-            if ($request->user()) {
-                $role = $request->user()->role;
+            if (Auth::check()) {
+                $role = Auth::user()->role;
                 if ($role === 'admin') {
                     return '/admin/manage_application/approval';
                 } elseif ($role === 'professor') {
@@ -28,6 +29,11 @@ return Application::configure(basePath: dirname(__DIR__))
             }
             return '/'; 
         });
+    })
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'role' => \App\Http\Middleware\Role::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
