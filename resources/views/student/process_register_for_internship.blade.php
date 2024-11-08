@@ -175,6 +175,7 @@
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label>ใบเสร็จลงทะเบียนเรียนภาคล่าสุด</label>
+                                        {{-- เเก้ตรงนี้ --}}
                                         <button class="btn sidebar_color d-inline-flex align-items-center rounded-5 m-auto"
                                             type="button">
                                             {{ $file['recentreceipt'] }}<i class="bi bi-file-earmark-text ms-2"

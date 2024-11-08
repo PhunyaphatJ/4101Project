@@ -44,7 +44,8 @@
                                     <i class="bi bi-person-bounding-box" style="font-size: 48px"></i>
                                     <div class="mt-3">
                                         <h6 class="mb-0" style="font-size: 18px">ชื่อ</h6>
-                                        <p class="mb-0" style="font-size: 15px">{{ $student['prefix'] }} {{ $student['fname'] }} {{ $student['lname'] }}</p>
+                                        <p class="mb-0" style="font-size: 15px">{{ $student['prefix'] }}
+                                            {{ $student['fname'] }} {{ $student['lname'] }}</p>
                                     </div>
                                 </li>
                                 <li class="d-flex gap-5">
@@ -66,6 +67,7 @@
                                 <a href="/student/process/process_register_for_internship/{{ $student_process_status }}"><button
                                         type="button" class="btn btn-lg submit_color mt-4 w-100 p-3  rounded-5"
                                         data-bs-dismiss="modal" style="font-size: 18px">ลงทะเบียนขอฝึกงาน</button></a>
+                                        {{-- เเก้ --}}
                             @else
                                 @if (
                                     $student_process_status == 'register_pending' ||

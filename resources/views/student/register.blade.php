@@ -101,6 +101,8 @@
                 <div class="col-6">
                     <label for="road" class="form-label">ถนน</label>
                     <input type="text" class="form-control rounded-5 ps-4" name="road" placeholder="" value="{{ old('road') }}" autocomplete="off" required>
+                    {{-- old data  --}}
+                    
                 </div>
                 <div class="col-6">
                     <label for="province" class="form-label">จังหวัด</label>

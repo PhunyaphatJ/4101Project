@@ -98,6 +98,7 @@ class StudentController extends Controller
                 'recentreceipt' => 'recentreceipt',
             ],
         ];
+        
         return view('student.process_register_for_internship', compact('menu', 'student_process_status', 'students', 'internship_register'));
     }
 
@@ -161,6 +162,7 @@ class StudentController extends Controller
 
     function process_company_rec_with_request($student_process_status, $app_type)
     {
+
         $menu = 'process';
         //ตัวอย่างข้อมูล company ที่ได้ทำการขอเอกสารขอความอนุเคราะห์
         $company_addresses = [
