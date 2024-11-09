@@ -23,4 +23,8 @@ class ProfessorController extends Controller
         $menu = '';
         return view('professor.former_intern_information', compact('menu'));
     }
+    function response_test(){
+        $menu = '';
+        return view('professor.response_appreciation_application', compact('menu'));
+    }
 }
