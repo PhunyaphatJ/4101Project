@@ -113,17 +113,17 @@
             {{-- ผลการประเมินจากบริษัท --}}
             <div class="col card me-2 p-3 bg-dark text-white">
                 <h6 class="text-center">ผลการประเมินจากบริษัท</h6>
-                {{-- ลิงค์ไปหน้า internship_assessment_form--}}
+                {{-- ลิงค์ไปหน้า internship_assessment_form --}}
                 <a class="p-2" href="#">ผลประเมินการฝึกงาน <i class="bi bi-arrow-right"></i></a>
-                {{-- ลิงค์ไปหน้า survey_graduate_feature_form--}}
+                {{-- ลิงค์ไปหน้า survey_graduate_feature_form --}}
                 <a class="p-2" href="#">ผลการสำรวจคุณสมบัติบัณฑิต <i class="bi bi-arrow-right"></i></a>
             </div>
             {{-- แบบประเมินสำหรับอาจารย์ --}}
             <div class="col card me-2 p-3 bg-dark text-white">
                 <h6 class="text-center">แบบประเมินสำหรับอาจารย์</h6>
-                {{-- ลิงค์ไปหน้า business_assessment_form--}}
+                {{-- ลิงค์ไปหน้า business_assessment_form --}}
                 <a class="p-2" href="#">แบบประเมินสถานประกอบการ <i class="bi bi-arrow-right"></i></a>
-                {{-- ลิงค์ไปหน้า internship_evaluation_form--}}
+                {{-- ลิงค์ไปหน้า internship_evaluation_form --}}
                 <a class="p-2" href="#">แบบประเมินนักศึกษาฝึกงาน <i class="bi bi-arrow-right"></i></a>
             </div>
             {{-- เกรด --}}
@@ -169,8 +169,12 @@
                 {{-- endif --}}
             </div>
         </div>
-        {{-- หนังสือขอบคุณ --}}
-        <div class="card-body row d-flex justify-content-end pt-0">
+        <div class="card-body row d-flex justify-content-between pt-0">
+            {{-- ปุ่มย้อนกลับ --}}
+            <div class="col-2 p-0">
+                <button class="btn btn-dark p-3"><i class="bi bi-chevron-left"></i> ย้อนกลับ</button>
+            </div>
+            {{-- หนังสือขอบคุณ --}}
             <div class="col-4 card p-0 bg-transparent">
                 <button class="btn btn-dark p-3" onclick="request_appreciation_block_on()">ขอหนังสือขอบคุณ</button>
                 {{-- pop up บันทึกคำขอหนังสือขอบคุณ --}}

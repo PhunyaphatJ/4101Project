@@ -131,6 +131,12 @@
                 {{-- <h6 class="text-center p-3">$grad</h6> --}}
                 {{-- endif --}}
             </div>
+            {{-- ปุ่มย้อนกลับ --}}
+            <div class="card-body row">
+                <div class="col-2 p-0">
+                    <button class="btn btn-dark p-3"><i class="bi bi-chevron-left"></i> ย้อนกลับ</button>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
