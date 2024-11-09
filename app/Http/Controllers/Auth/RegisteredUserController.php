@@ -36,6 +36,14 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterUserRequest $request): RedirectResponse
     {
+        if($request->role == 'admin' || $request->role == 'professor'){
+            if(!Auth::check() ){
+                return redirect()->back()->with('error', 'You must be logged in to create');
+            }
+            if (Auth::user()->role != 'admin'){
+                return redirect()->back()->with('error', 'You Need a permission to create');
+            }
+        }
 
         DB::transaction(function () use ($request) {
             $user = User::create([
@@ -79,8 +87,8 @@ class RegisteredUserController extends Controller
                         'professor_id' => $request->professor_id,
                         'remark' => $request->remark,
                         'status' => $request->status,
-                        'running_number' => $request->running_number,
-                        'assigned' => $request->assigned,
+                        'assigned' => false,
+                        'last_assigned_at' => now(),
                     ]);
                     break;
                 default:
@@ -90,11 +98,13 @@ class RegisteredUserController extends Controller
                     ]);
             }
             event(new Registered($user));
+            if(!Auth::check()){
+                Auth::login($user);
+                // return redirect('/'); 
+            }
         });
-        // Auth::login($user);
-
-        if(!Auth::check()){
-            return redirect('/'); 
+        if ($request->role == 'professor') {
+            return redirect()->route('manage_users', ['users_type' => 'professor']);
         }
        
 

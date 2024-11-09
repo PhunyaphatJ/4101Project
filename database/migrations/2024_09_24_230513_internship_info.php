@@ -31,7 +31,7 @@ return new class extends Migration
             $table->char('student_id', 10)->unique();
             $table->mediumIncrements('internship_id')->unsigned();
             $table->char('professor_id',10);
-            $table->string('mentor_email');
+            $table->string('mentor_email')->nullable();
             $table->mediumInteger('internship_detail_id')->unsigned()->unique();
             $table->enum('grade',['A','F'])->nullable();
             $table->string('report_file_path')->nullable();

@@ -41,8 +41,6 @@ class RegisterUserRequest extends FormRequest
             $rules['professor_id'] = ['required', 'string', 'size:10', 'unique:professors'];
             $rules['remark'] = ['nullable', 'string', 'max:255'];
             $rules['status'] = ['required', 'in:active,no_active'];
-            $rules['running_number'] = ['required', 'integer'];
-            $rules['assigned'] = ['boolean'];
         } else {
             $rules['status'] = ['required', 'in:active,no_active'];
         }

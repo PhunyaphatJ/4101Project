@@ -32,4 +32,17 @@ class Address extends Model
     {
         return $this->belongsTo(Student::class,'address_id','address_id');
     }
+
+    public function getAddress()
+    {
+        return implode(' ', [
+            $this->house_no,
+            $this->village_no,
+            $this->road,
+            $this->sub_district,
+            $this->district,
+            $this->province,
+            $this->postal_code,
+        ]);
+    }
 }

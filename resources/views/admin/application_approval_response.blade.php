@@ -7,14 +7,14 @@
     <div class="text-center">
         @if ($event == 'approve')
             <p class="mt-3">อนุมัติคำร้องสำเร็จ</p>
-            @if ($application_type == 'internship_request')
+            @if ($application->application_type == 'Internship_Request')
                 <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอความอนุเคราะห์">ดาวน์โหลดหนังสือขอความอนุเคราะห์</a>
             @endif
-            @if ($application_type == 'recommendation')
+            @if ($application->application_type == 'Recommendation')
                 <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือส่งตัว">ดาวน์โหลดหนังสือส่งตัว</a>
                 <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือแต่งตั้งอาจารย์">ดาวน์โหลดหนังสือแต่งตั้งอาจารย์</a>
             @endif
-            @if ($application_type == 'recommendation' || $application_type == 'appreciation')
+            @if ($application->application_type == 'Recommendation' || $application->application_type == 'Appreciation')
                 <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอคุณ">ดาวน์โหลดหนังสือขอคุณ</a>
             @endif
         @elseif($event == 'reject')

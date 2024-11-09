@@ -3,6 +3,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Route;
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/',[UserController::class,'login'])->name('login');
@@ -12,8 +15,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/register',[RegisteredUserController::class, 'store']);
 });
 
-
-Route::prefix('student')->middleware('auth')->group(function(){
+// get ได้เเค่ data เเต่ get เธอกลับมาไม่ได้ 🥺
+Route::prefix('student')->middleware(['auth','verified','role:student'])->group(function(){
     Route::view('/','student.test')->name('student');
     Route::get('/manual/{student_process_status}',[StudentController::class,'manual'])->name('manual');
     Route::get('/process/{student_process_status}',[StudentController::class,'process'])->name('process');
@@ -40,3 +43,4 @@ Route::prefix('student')->middleware('auth')->group(function(){
     Route::post('/add_report/{student_process_status}',[StudentController::class,'add_report'])->name('add_report');
     Route::get('/app_status/{student_process_status}',[StudentController::class,'app_status'])->name('app_status');
 });
+

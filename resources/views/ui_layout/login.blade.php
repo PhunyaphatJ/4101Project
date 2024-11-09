@@ -13,6 +13,11 @@
     </style>
 @endsection
 @section('body_content')
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-5 col-item">
             <form method="POST" action="{{ route('login') }}">

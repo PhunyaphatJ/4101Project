@@ -26,9 +26,10 @@
                     <ul class="list-group list-group-flush">
                         <a class="list-group-item p-3 my-1 @yield('sidebar_manage_application_color')" href="{{ route('application_approval') }}"><i
                                 class="bi bi-back ms-3 me-2"></i>จัดการคำร้อง</a>
-                        <a class="list-group-item p-3 my-1 @yield('sidebar_manage_document_color')" href="{{ route('manage_document') }}"><i
+                        <a class="list-group-item p-3 my-1 @yield('sidebar_manage_document_color')" href="{{ route('manage_document' ,['document_type' => 'document_manual']) }}"><i
                                 class="bi bi-back ms-3 me-2"></i>จัดการเอกสาร</a>
-                        <a class="list-group-item p-3 my-1 @yield('sidebar_manage_user_color')" href="{{ route('manage_user_professor') }}"><i
+                        <a class="list-group-item p-3 my-1 @yield('sidebar_manage_user_color')"
+                            href="{{ route('manage_users', ['users_type' => 'professor']) }}"><i
                                 class="bi bi-back ms-3 me-2"></i>จัดการข้อมูลผู้ใช้งาน</a>
                         <a class="list-group-item p-3 my-1 @yield('sidebar_statistics_color')" href="{{ route('statistics_yearly') }}"><i
                                 class="bi bi-back ms-3 me-2"></i>สถิติ</a>
@@ -63,14 +64,29 @@
                                     class="bi bi-circle-fill float-end"></i></h6>
                             <ul class="list-group list-group-flush mt-4">
                                 <a class="list-group-item p-3 my-1 mt-3 @yield('subsidebar_manage_professor_color')"
-                                    href="{{ route('manage_user_professor') }}"><i
+                                    href=" {{ route('manage_users', ['users_type' => 'professor']) }}"><i
                                         class="bi bi-dice-1 ms-3 me-2"></i>จัดการข้อมูลอาจารย์</a>
                                 <a class="list-group-item p-3 my-1 @yield('subsidebar_manage_student_color')"
-                                    href="{{ route('manage_user_student') }}"><i
+                                    href="{{ route('manage_users', ['users_type' => 'student']) }}"><i
                                         class="bi bi-dice-2 ms-3 me-2"></i>จัดการข้อมูลนักศึกษา</a>
                             </ul>
                         </div>
                     </div>
+                @elseif ($menu == 'manage_document')
+                    <div id="sidebar" class="card sidebar_color mt-3" style="border-radius: 20px">
+                        <div class="card-body mx-2">
+                            <h6 class="card-title"><i class="bi bi-circle-fill float-start"></i><i
+                                    class="bi bi-circle-fill float-end"></i></h6>
+                            <ul class="list-group list-group-flush mt-4">
+                                <a class="list-group-item p-3 my-1 mt-3 @yield('subsidebar_user_manual_color')"
+                                    href="{{ route('manage_document' ,['document_type' => 'document_manual'])}}"><i
+                                        class="bi bi-dice-1 ms-3 me-2"></i>คู่มือการใช้งาน</a>
+                                <a class="list-group-item p-3 my-1 @yield('subsidebar_document_2')"
+                                    href="{{ route('manage_document' ,['document_type' => 'document_2']) }}"><i
+                                        class="bi bi-dice-2 ms-3 me-2"></i>แบบตอบรับนักศึกษา</a>
+                            </ul>
+                        </div>
+                    </div> 
                 @else
                     @if ($menu == 'statistics')
                         <div id="sidebar" class="card sidebar_color mt-3" style="border-radius: 20px">
@@ -92,7 +108,6 @@
                         </div>
                     @endif
                 @endif
-
             @endif
         </div>
         <div class="col-lg-9">
