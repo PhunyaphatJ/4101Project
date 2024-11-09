@@ -46,9 +46,6 @@ class AdminTest extends TestCase
     {
         $persons = Person::factory()->create([
             'email' => 'test@example.com',
-            'prefix' => 'MR',
-            'name' => 'John',
-            'surname' => 'Doe',
         ]);
 
     }
