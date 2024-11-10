@@ -5,10 +5,9 @@
 @section('manual','select_menu_color')
 @section('body_header','คู่มือการใช้งานระบบ')
 @section('body_content')
-@php
-$videoURL = "https://www.youtube.com/watch?v=WePNs-G7puA";
-$convertedURL = str_replace("watch?v=", "embed/", $videoURL);
-@endphp
-  <iframe width="560px"height="315px" src="{{ $convertedURL }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TCdxSoAhB9Q" frameborder="0" allowfullscreen ></iframe>
+
+<img width="560" height="315" src="https://images.thoughtbot.com/git-push-force-with-lease/XEDULrg2QsnzIGytOMfh_XFQLB.jpg" alt="">
 @endsection
 
