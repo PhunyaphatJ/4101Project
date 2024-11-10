@@ -82,11 +82,10 @@ class StudentController extends Controller
     //     }
     // }
 
-    function manual($student_process_status)
+    function manual()
     {
         $menu = 'manual';
-        $student_process_status = '';
-        return view('student.manual', compact('menu', 'student_process_status'));
+        return view('student.manual', compact('menu'));
     }
 
     function process()
