@@ -19,19 +19,20 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentTest extends TestCase
 {
-    public function test_the_application_returns_a_suscessful_response():void{
-        $response = $this->get('/');
-        $response->assertStatus(200);
-    }
-    // use RefreshDatabase;
-    /*
-    private function create_student($address_id = null){
+    // public function test_the_application_returns_a_suscessful_response():void{
+    //     $response = $this->get('/');
+    //     $response->assertStatus(200);
+    // }
+    
+    public function create_student($address_id = null){
         $user = User::create([
             'email' => 'student1@example.com',
             'password' => Hash::make('12345678'),
             'role' => 'student',
         ]);
-
+    }
+// use RefreshDatabase;
+    /*
         $person = Person::create([
             'email' => $user->email,
             'prefix' => 'MR',

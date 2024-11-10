@@ -29,23 +29,42 @@ class StudentController extends Controller
 
     function compare_register(Request $request)
     {
+    
+        $validatedData = $request->validate([
+            'prefix' => 'required|string|max:10',
+            'department' => 'required|string|max:255',
+            'student_id' => 'required|numeric|unique:students,student_id',
+            'fname' => 'required|string|regex:/^[a-zA-Zก-ฮぁ-ゞー]+$/u', 
+            'lname' => 'required|string|regex:/^[a-zA-Zก-ฮぁ-ゞー]+$/u', 
+            'phone' => 'required|regex:/^[0-9]{10}$/', 
+            'house_no' => 'required|string|max:255',
+            'village_no' => 'required|string|max:255',
+            'road' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
+            'district' => 'required|string|max:255',
+            'sub_district' => 'required|string|max:255',
+            'postcode' => 'required|numeric|digits:5',
+            'email' => 'required|email|unique:students,email',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password', 
+        ]);
         $register = [
-            'prefix' => $request->prefix,
-            'department' => $request->department,
-            'student_id' => $request->student_id,
-            'fname' => $request->fname,
-            'lname' => $request->lname,
-            'phone' => $request->phone,
-            'house_no' => $request->house_no,
-            'village_no' => $request->village_no,
-            'road' => $request->road,
-            'province' => $request->province,
-            'district' => $request->district,
-            'sub_district' => $request->sub_district,
-            'postcode' => $request->postcode,
-            'email' => $request->email,
-            'password' => $request->password,
-            'confirm_password' => $request->confirm_password,
+            'prefix' => $validatedData['prefix'],
+            'department' => $validatedData['department'],
+            'student_id' => $validatedData['student_id'],
+            'fname' => $validatedData['fname'],
+            'lname' => $validatedData['lname'],
+            'phone' => $validatedData['phone'],
+            'house_no' => $validatedData['house_no'],
+            'village_no' => $validatedData['village_no'],
+            'road' => $validatedData['road'],
+            'province' => $validatedData['province'],
+            'district' => $validatedData['district'],
+            'sub_district' => $validatedData['sub_district'],
+            'postcode' => $validatedData['postcode'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'confirm_password' => bcrypt($validatedData['confirm_password']),
         ];
         if ($register['password'] == $register['confirm_password']) {
             $menu = 'manual';
