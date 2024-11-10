@@ -14,26 +14,26 @@
             @endif
             <a href="{{ route('application_update_document_status') }}">ทั้งหมด</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารขอความอนุเคราะห์ --}}
-            @if ($application_type == 'internship_request')
+            @if ($application_type == 'Internship_Request')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
-            <a href="{{ route('application_update_document_status_list','internship_request') }}">เอกสารขอความอนุเคราะห์</a></li>
+            <a href="{{ route('application_update_document_status_list','Internship_Request') }}">เอกสารขอความอนุเคราะห์</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารส่งตัว --}}
-            @if ($application_type == 'recommendation')
+            @if ($application_type == 'Recommendation')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
-            <a href="{{ route('application_update_document_status_list','recommendation') }}">เอกสารส่งตัว</a></li>
+            <a href="{{ route('application_update_document_status_list','Recommendation') }}">เอกสารส่งตัว</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารสขอบคุณ --}}
-            @if ($application_type == 'appreciation')
+            @if ($application_type == 'Appreciation')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
-            <a href="{{ route('application_update_document_status_list','appreciation') }}">เอกสารขอบคุณ</a></li>
+            <a href="{{ route('application_update_document_status_list','Appreciation') }}">เอกสารขอบคุณ</a></li>
         </ul>
         {{-- ตารางแสดงรายการคำร้อง --}}
         <table class="table mt-1 text-center">
