@@ -14,28 +14,28 @@
             @endif
             <a href="{{ route('application_approval') }}">ทั้งหมด</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอขึ้นทะเบียนฝึกงาน --}}
-            @if ($application_type == 'internship_register')
+            @if ($application_type == 'Internship_Register')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
             <a href="{{ route('application_approval_list', 'Internship_Register') }}">ขึ้นทะเบียนฝึกงาน</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารขอความอนุเคราะห์ --}}
-            @if ($application_type == 'internship_request')
+            @if ($application_type == 'Internship_Request')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
             <a href="{{ route('application_approval_list', 'Internship_Request') }}">เอกสารขอความอนุเคราะห์</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารส่งตัว --}}
-            @if ($application_type == 'recommendation')
+            @if ($application_type == 'Recommendation')
                 <li class="navigation active">
                 @else
                 <li class="navigation">
             @endif
             <a href="{{ route('application_approval_list', 'Recommendation') }}">เอกสารส่งตัว</a></li>
             {{-- เลือกแสดงเฉพาะคำร้องขอเอกสารสขอบคุณ --}}
-            @if ($application_type == 'appreciation')
+            @if ($application_type == 'Appreciation')
                 <li class="navigation active">
                 @else
                 <li class="navigation">

@@ -40,7 +40,7 @@
                 @else
                 <li class="navigation">
             @endif
-            <a href="{{ route('application_history_list', 'appreciation') }}">เอกสารขอบคุณ</a></li>
+            <a href="{{ route('application_history_list', 'Appreciation') }}">เอกสารขอบคุณ</a></li>
         </ul>
         {{-- ตารางแสดงรายการคำร้อง --}}
         <table class="table mt-1 text-center">
