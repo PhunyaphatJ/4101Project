@@ -13,7 +13,7 @@
                 @elseif($application['application_type'] == 'Recommendation')
                     <h3 style="display: inline-block">เอกสารส่งตัว</h3>
                 @elseif($application['application_type'] == 'Appreciation')
-                    <h3 style="display: inline-block">เอกสารขอบคุณ</h3>
+                    <h3 style="display: inline-block" >เอกสารขอบคุณ</h3>
                 @endif
             </div>
             {{-- รายละเอียดคำร้อง --}}
