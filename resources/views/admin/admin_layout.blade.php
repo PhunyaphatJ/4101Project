@@ -1,12 +1,12 @@
 @extends('ui_layout.navbar_layout')
 @section('navbar_header', 'สำหรับผู้ดูแลระบบ')
 @section('right_icon')
-    <a class="nav-link" href="#"><i class="bi bi-person-fill" style="font-size: 110%"></i></a>
-    <a class="nav-link text-white ms-3 p-1" href="#"
+    <a class="nav-link" href="#"><i class="bi bi-person-fill" style="font-size: 100%"></i></a>
+    <a class="nav-link text-white ms-4 " href="#"
         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="bi bi-box-arrow-right"></i>
     </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;font-size: 100%">
         @csrf
 </form>@endsection
 @section('layout_style')

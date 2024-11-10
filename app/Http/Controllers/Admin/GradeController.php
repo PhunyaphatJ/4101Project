@@ -57,4 +57,5 @@ class GradeController extends Controller
         return redirect()->back()->withErrors(['message' => 'สถานะนักศึกษาไม่ถูกต้อง']);
 
     }
+    
 }

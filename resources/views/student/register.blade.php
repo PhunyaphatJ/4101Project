@@ -15,6 +15,12 @@
         #form-check input {
             height: 18px;
         }
+        /* hover button login */
+        button[type="submit"]:hover {
+            background: #ff96ad;
+            box-shadow: 0 0 5px #ff96ad, 0 0 25px #ff96ad, 0 0 50px #ff96ad, 0 0 200px #ff96ad;
+
+        }
     </style>
 @endsection
 
@@ -79,9 +85,7 @@
                         <label for="student_id" class="form-label">รหัสนักศึกษา</label>
                         <input type="text" class="form-control rounded-5 ps-4" name="student_id" placeholder=""
                             value="{{ old('student_id') }}" maxlength="10" autocomplete="off">
-                            @error('student_id')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                        
 
                     </div>
 
