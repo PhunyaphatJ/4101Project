@@ -36,11 +36,12 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterUserRequest $request): RedirectResponse
     {
-        if($request->role == 'admin' || $request->role == 'professor'){
-            if(!Auth::check() ){
+        // dd(now());
+        if ($request->role == 'admin' || $request->role == 'professor') {
+            if (!Auth::check()) {
                 return redirect()->back()->with('error', 'You must be logged in to create');
             }
-            if (Auth::user()->role != 'admin'){
+            if (Auth::user()->role != 'admin') {
                 return redirect()->back()->with('error', 'You Need a permission to create');
             }
         }
@@ -51,7 +52,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
             ]);
-    
+
             Person::create([
                 'email' => $request->email,
                 'prefix' => $request->prefix,
@@ -59,9 +60,9 @@ class RegisteredUserController extends Controller
                 'surname' => $request->surname,
                 'phone' => $request->phone,
             ]);
-    
-    
-            switch ($request->role){
+
+
+            switch ($request->role) {
                 case 'student':
                     $address = Address::create([
                         'house_no' => $request->house_no,
@@ -72,7 +73,7 @@ class RegisteredUserController extends Controller
                         'province' => $request->province,
                         'postal_code' => $request->postal_code,
                     ]);
-        
+
                     Student::create([
                         'email' => $request->email,
                         'student_id' => $request->student_id,
@@ -80,7 +81,7 @@ class RegisteredUserController extends Controller
                         'department' => $request->department,
                         'address_id' => $address->address_id,
                     ]);
-                    break;            
+                    break;
                 case 'professor':
                     Professor::create([
                         'email' => $request->email,
@@ -89,6 +90,9 @@ class RegisteredUserController extends Controller
                         'status' => $request->status,
                         'assigned' => false,
                         'last_assigned_at' => now(),
+                        'created_at' => now(),
+                        'updated_at' => now(),
+
                     ]);
                     break;
                 default:
@@ -98,7 +102,7 @@ class RegisteredUserController extends Controller
                     ]);
             }
             event(new Registered($user));
-            if(!Auth::check()){
+            if (!Auth::check()) {
                 Auth::login($user);
                 // return redirect('/'); 
             }
@@ -106,7 +110,7 @@ class RegisteredUserController extends Controller
         if ($request->role == 'professor') {
             return redirect()->route('manage_users', ['users_type' => 'professor']);
         }
-       
+
 
         return redirect()->back();
     }

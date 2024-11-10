@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
 return new class extends Migration
 {
     /**
@@ -46,8 +46,8 @@ return new class extends Migration
             $table->string('remark')->nullable();
             $table->enum('status',['active','no_active'])->default('active');
             $table->boolean('assigned')->default(false);
-            $table->timestamp('last_assigned_at');
-            $table->timestamps();
+            $table->timestamp('last_assigned_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+
             $table->softDeletes();
             $table->foreign('email')->references('email')->on('persons')->onDelete('cascade');
         });

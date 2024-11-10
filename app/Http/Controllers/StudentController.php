@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CompanyCreateRequest;
 use App\Models\Mentor;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -38,7 +39,7 @@ class StudentController extends Controller
 
     // function compare_register(Request $request)
     // {
-    
+
     //     $validatedData = $request->validate([
     //         'prefix' => 'required|string|max:10',
     //         'department' => 'required|string|max:255',
@@ -110,7 +111,7 @@ class StudentController extends Controller
     function register_internship(Request $request)
     {
         if (Auth::user()->person->student->student_type != 'no_register') {
-            return redirect()->back()->withErrors('user type invalid');
+            return redirect()->back()->withErrors(['message' => 'user type invalid']);
         }
 
         $request->validate([
@@ -155,11 +156,27 @@ class StudentController extends Controller
                     'recentreceipt_path' => $paths['recentreceipt'],
                 ]);
 
+                // $validator = Validator::make($request->all(), [
+                //     'student_id' => 'required|string',
+                //     'name' => 'required|string',
+                //     'surname' => 'required|string',
+                //     'document_type' => 'required|string',
+                // ]);
+
+                // if ($validator->fails()) {
+                //     return redirect()->back()
+                //         ->withErrors($validator)
+                //         ->withInput();
+                // }
+
                 $notification = Notification::create([
                     'sender_email' => Auth::user()->email,
                     'receiver_email' => Admin::first()->email,
                     'subject' => 'ลงทะเบียนของฝึกงาน ' . $student_id,
                     'details' => $student_id . ' ' . Auth::user()->person->name . ' ' . Auth::user()->person->surname,
+                    'datetime' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]);
 
                 Application::create([
@@ -183,9 +200,9 @@ class StudentController extends Controller
     function process_company()
     {
         $menu = 'process';
-        if(Auth::user()->person->student->student_id){
-            $internship_info = Internship_info::where('student_id',Auth::user()->person->student->student_id)->first();
-            return view('student.process_company', compact('menu','internship_info'));
+        if (Auth::user()->person->student->student_id) {
+            $internship_info = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first();
+            return view('student.process_company', compact('menu', 'internship_info'));
         }
 
         return view('student.process_company', compact('menu'));
@@ -310,7 +327,7 @@ class StudentController extends Controller
         $mentors = null;
         $application_id = null;
 
-        return view('student.process_company_select', compact('company', 'address', 'type', 'menu', 'mentors','application_id'));
+        return view('student.process_company_select', compact('company', 'address', 'type', 'menu', 'mentors', 'application_id'));
     }
 
     function select_company(Request $request, $type, $company_id, $application_id = null)
@@ -416,7 +433,7 @@ class StudentController extends Controller
                         ]);
                     }
                 }
-                
+
                 if (!$mentor) {
                     return redirect(route('process_company'))->withErrors('เกิดข้อผิดพลาดขึ้นกรุณาทำรายการใหม่');
                 }
@@ -428,7 +445,10 @@ class StudentController extends Controller
                     'receiver_email' => Admin::first()->email,
                     'subject' => 'ขอเอกสารส่งตัว : ' . $student_id,
                     'details' => $student_id . ' ' . Auth::user()->person->name . ' ' . Auth::user()->person->surname,
-                    
+                    'datetime' => now(),  // เพิ่มบรรทัดนี้
+                    'created_at' => now(),
+                    'updated_at' => now()
+
                 ]);
                 if ($application_id == null) {
                     $internship_detail = Internship_detail::create([
@@ -469,6 +489,9 @@ class StudentController extends Controller
                     'receiver_email' => Admin::first()->email,
                     'subject' => 'ขอหนังสือขอความอนุเคราะห์ : ' . $student_id,
                     'details' => $student_id . ' ' . Auth::user()->person->name . ' ' . Auth::user()->person->surname,
+                    'datetime' => now(), 
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]);
 
                 $internship_detail = Internship_detail::create([
@@ -497,17 +520,17 @@ class StudentController extends Controller
             return view('student.response', compact('menu', 'message'));
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors($e);
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
-    function add_mentor_form(Request $request, $type, $company_id,$application_id = null)
+    function add_mentor_form(Request $request, $type, $company_id, $application_id = null)
     {
         $menu = 'process';
-        return view('student.add_mentor', compact('menu', 'type', 'company_id','application_id'));
+        return view('student.add_mentor', compact('menu', 'type', 'company_id', 'application_id'));
     }
 
-    function add_mentor(Request $request, $type, $company_id,$application_id = null)
+    function add_mentor(Request $request, $type, $company_id, $application_id = null)
     {
         $menu = 'process';
         $checkEmail = User::where('email', $request->input('email'))->first();
@@ -536,52 +559,52 @@ class StudentController extends Controller
         $mentors->push($newMentor);
         Cache::put('mentors_' . $company_id . Auth::user()->person->student->student_id, $mentors, now()->addMinutes(30));
 
-        return redirect(route('select_company', [$type, $company_id,$application_id]));
+        return redirect(route('select_company', [$type, $company_id, $application_id]));
     }
 
     function professor_info()
     {
-        if(Auth::user()->person->student->student_type != 'internship'){
+        if (Auth::user()->person->student->student_type != 'internship') {
             return redirect()->back()->withErrors('สถานะไม่ถูกต้อง');
         }
         $menu = 'process';
-        $professor = Internship_info::where('student_id',Auth::user()->person->student->student_id)->first()->professor;
+        $professor = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first()->professor;
         return view('student.professor_info', compact('menu', 'professor'));
     }
 
     function report()
     {
-        if(Auth::user()->person->student->student_type != 'internship'){
+        if (Auth::user()->person->student->student_type != 'internship') {
             return redirect()->back()->withErrors('สถานะไม่ถูกต้อง');
-        }        
+        }
         $menu = 'process';
-        $report = Internship_info::where('student_id',Auth::user()->person->student->student_id)->first()->report_file_path;
+        $report = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first()->report_file_path;
 
-        return view('student.report', compact('menu','report'));
+        return view('student.report', compact('menu', 'report'));
     }
 
     function add_report(Request $request)
     {
         $request->validate([
-            'report_file' => 'required|file|mimes:pdf', 
+            'report_file' => 'required|file|mimes:pdf',
         ]);
-    
+
         $student_id = Auth::user()->person->student->student_id;
-    
+
         $fileName = "report.$student_id.pdf";
-    
-        $path = $request->file('report_file')->storeAs('internship_files/reports', $fileName, 'public'); 
-    
+
+        $path = $request->file('report_file')->storeAs('internship_files/reports', $fileName, 'public');
+
         $internship_info = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first();
         $internship_info->report_file_path = $path;
         $internship_info->save();
-    
+
         $report = $internship_info->report_file_path;
         $menu = 'process';
-        
+
         return view('student.report', compact('menu', 'report'));
     }
-    
+
 
     function app_status()
     {

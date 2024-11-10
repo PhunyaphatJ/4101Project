@@ -16,8 +16,10 @@ class Professor extends Model
         'professor_id', 
         'remark', 
         'status', 
-        'running_number',
+        'last_assigned_at',
         'assigned',
+        'created_at',
+        'updated_at'
     ];
 
     public function person()
