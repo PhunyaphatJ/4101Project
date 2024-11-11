@@ -38,7 +38,7 @@ class StudentController extends Controller
 
     // function compare_register(Request $request)
     // {
-    
+
     //     $validatedData = $request->validate([
     //         'prefix' => 'required|string|max:10',
     //         'department' => 'required|string|max:255',
@@ -183,9 +183,9 @@ class StudentController extends Controller
     function process_company()
     {
         $menu = 'process';
-        if(Auth::user()->person->student->student_id){
-            $internship_info = Internship_info::where('student_id',Auth::user()->person->student->student_id)->first();
-            return view('student.process_company', compact('menu','internship_info'));
+        if (Auth::user()->person->student->student_id) {
+            $internship_info = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first();
+            return view('student.process_company', compact('menu', 'internship_info'));
         }
 
         return view('student.process_company', compact('menu'));
@@ -310,7 +310,7 @@ class StudentController extends Controller
         $mentors = null;
         $application_id = null;
 
-        return view('student.process_company_select', compact('company', 'address', 'type', 'menu', 'mentors','application_id'));
+        return view('student.process_company_select', compact('company', 'address', 'type', 'menu', 'mentors', 'application_id'));
     }
 
     function select_company(Request $request, $type, $company_id, $application_id = null)
@@ -357,6 +357,47 @@ class StudentController extends Controller
             return redirect()->back()->withErrors('ประเภทของนักศึกษาไม่ถูกต้อง');
         }
 
+        if ($request->company_id == 0) {
+            $company = Cache::get('company_' . Auth::user()->person->student->student_id);
+            $address = Cache::get('address_' . Auth::user()->person->student->student_id);
+            if (!$company) {
+                return redirect(route('process_company'))->withErrors('เกิดข้อผิดพลาดขึ้นกรุณาทำรายการใหม่');
+            }
+            $address = Address::create([
+                'house_no' => $address['house_no'],
+                'village_no' => $address['village_no'],
+                'road' => $address['road'],
+                'sub_district' => $address['sub_district'],
+                'district' => $address['district'],
+                'province' => $address['province'],
+                'postal_code' => $address['postal_code'],
+            ]);
+            $company = Company::create([
+                'company_name' => $company['company_name'],
+                'phone' => $company['phone'],
+                'fax' => $company['fax'],
+                'address_id' => $address['address_id'],
+            ]);
+        } else {
+            $company = Company::findOrFail($request->company_id);
+        }
+
+        $student_id = Auth::user()->person->student->student_id;
+
+        if ($type == 'recommendation') {
+            $internship_info = Internship_info::where('student_id', $student_id)->first();
+            if ($internship_info) { 
+                return redirect()->back()->withErrors('คุณมีข้อมูลอยู่ในระบบแล้ว');
+            }
+        } else {
+            $internship_detail = Internship_detail::where('company_id', $company->company_id)
+                ->where('student_id', $student_id)
+                ->first();
+                if ($internship_detail) { 
+                    return redirect()->back()->withErrors('คุณมีข้อมูลอยู่ในระบบแล้ว');
+                }
+        }
+
         $menu = 'process';
 
         $application = Application::where('student_id', Auth::user()->person->student->student_id)
@@ -368,36 +409,14 @@ class StudentController extends Controller
 
         DB::beginTransaction();
         try {
-            if ($request->company_id == 0) {
-                $company = Cache::get('company_' . Auth::user()->person->student->student_id);
-                $address = Cache::get('address_' . Auth::user()->person->student->student_id);
-                if (!$company) {
-                    return redirect(route('process_company'))->withErrors('เกิดข้อผิดพลาดขึ้นกรุณาทำรายการใหม่');
-                }
-                $address = Address::create([
-                    'house_no' => $address['house_no'],
-                    'village_no' => $address['village_no'],
-                    'road' => $address['road'],
-                    'sub_district' => $address['sub_district'],
-                    'district' => $address['district'],
-                    'province' => $address['province'],
-                    'postal_code' => $address['postal_code'],
-                ]);
-                $company = Company::create([
-                    'company_name' => $company['company_name'],
-                    'phone' => $company['phone'],
-                    'fax' => $company['fax'],
-                    'address_id' => $address['address_id'],
-                ]);
-            } else {
-                $company = Company::findOrFail($request->company_id);
-            }
+           
 
             if ($request->company_id == 0) {
                 $company_id = $request->company_id;
             } else {
                 $company_id = $company->company_id;
             }
+
             if ($type == 'recommendation') {
                 $mentor = Mentor::where('email', $request->mentor_selection)->first();
                 if (!$mentor) {
@@ -416,24 +435,22 @@ class StudentController extends Controller
                         ]);
                     }
                 }
-                
                 if (!$mentor) {
                     return redirect(route('process_company'))->withErrors('เกิดข้อผิดพลาดขึ้นกรุณาทำรายการใหม่');
                 }
-            }
-            $student_id = Auth::user()->person->student->student_id;
-            if ($type == 'recommendation') {
+
                 $notification = Notification::create([
                     'sender_email' => Auth::user()->email,
                     'receiver_email' => Admin::first()->email,
                     'subject' => 'ขอเอกสารส่งตัว : ' . $student_id,
                     'details' => $student_id . ' ' . Auth::user()->person->name . ' ' . Auth::user()->person->surname,
-                    
+
                 ]);
+
                 if ($application_id == null) {
                     $internship_detail = Internship_detail::create([
                         'student_id' => $student_id,
-                        'company_id' => $company['company_id'],
+                        'company_id' => $company->company_id,
                         'register_semester' => $request->semester,
                         'year' => $request->years,
                         'start_date' => $request->start_date,
@@ -441,25 +458,26 @@ class StudentController extends Controller
                         'attend_to' => $request->attend_to,
                     ]);
                     // dd($internship_detail);
-                    $internship_detail_id = $internship_detail['internship_detail_id'];
+                    // $internship_detail_id = $internship_detail['internship_detail_id'];
                 } else {
-                    $application = Application::findOrFail($application_id);
-                    $internship_detail_id = $application->internship_detail->internship_detail_id;
+                    $internship_detail = Application::findOrFail($application_id)->internship_detail;
+                    // $internship_detail_id = $application->internship_detail->internship_detail_id;
                 }
 
                 $internship_info = Internship_info::create([
                     'student_id' => $student_id,
-                    'mentor_email' => $mentor['email'],
-                    'internship_detail_id' => $internship_detail_id,
+                    'mentor_email' => $mentor->email,
+                    'internship_detail_id' => $internship_detail->internship_detail_id,
                 ]);
 
+                // dd($internship_info);
                 $app = Application::create([
                     'student_id' => $student_id,
                     'applicant_email' => Auth::user()->email,
                     'application_type' => 'Recommendation',
                     'application_status' => 'approval_pending',
                     'notification_id' => $notification->notification_id,
-                    'internship_detail_id' => $internship_detail_id,
+                    'internship_detail_id' => $internship_detail->internship_detail_id,
                 ]);
 
                 $message = 'ขอหนังสือส่งตัว';
@@ -473,7 +491,7 @@ class StudentController extends Controller
 
                 $internship_detail = Internship_detail::create([
                     'student_id' => $student_id,
-                    'company_id' => $company['company_id'],
+                    'company_id' => $company->company_id,
                     'register_semester' => $request->semester,
                     'year' => $request->years,
                     'start_date' => $request->start_date,
@@ -492,22 +510,24 @@ class StudentController extends Controller
                 $message = 'ขอหนังสือขอความอนุเคราะห์';
             }
 
+            // dd('ok');
             DB::commit();
+            Cache::flush();
             $notification->sendNotification();
             return view('student.response', compact('menu', 'message'));
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors($e);
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
-    function add_mentor_form(Request $request, $type, $company_id,$application_id = null)
+    function add_mentor_form(Request $request, $type, $company_id, $application_id = null)
     {
         $menu = 'process';
-        return view('student.add_mentor', compact('menu', 'type', 'company_id','application_id'));
+        return view('student.add_mentor', compact('menu', 'type', 'company_id', 'application_id'));
     }
 
-    function add_mentor(Request $request, $type, $company_id,$application_id = null)
+    function add_mentor(Request $request, $type, $company_id, $application_id = null)
     {
         $menu = 'process';
         $checkEmail = User::where('email', $request->input('email'))->first();
@@ -536,52 +556,52 @@ class StudentController extends Controller
         $mentors->push($newMentor);
         Cache::put('mentors_' . $company_id . Auth::user()->person->student->student_id, $mentors, now()->addMinutes(30));
 
-        return redirect(route('select_company', [$type, $company_id,$application_id]));
+        return redirect(route('select_company', [$type, $company_id, $application_id]));
     }
 
     function professor_info()
     {
-        if(Auth::user()->person->student->student_type != 'internship'){
+        if (Auth::user()->person->student->student_type != 'internship') {
             return redirect()->back()->withErrors('สถานะไม่ถูกต้อง');
         }
         $menu = 'process';
-        $professor = Internship_info::where('student_id',Auth::user()->person->student->student_id)->first()->professor;
+        $professor = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first()->professor;
         return view('student.professor_info', compact('menu', 'professor'));
     }
 
     function report()
     {
-        if(Auth::user()->person->student->student_type != 'internship'){
+        if (Auth::user()->person->student->student_type != 'internship') {
             return redirect()->back()->withErrors('สถานะไม่ถูกต้อง');
-        }        
+        }
         $menu = 'process';
-        $report = Internship_info::where('student_id',Auth::user()->person->student->student_id)->first()->report_file_path;
+        $report = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first()->report_file_path;
 
-        return view('student.report', compact('menu','report'));
+        return view('student.report', compact('menu', 'report'));
     }
 
     function add_report(Request $request)
     {
         $request->validate([
-            'report_file' => 'required|file|mimes:pdf', 
+            'report_file' => 'required|file|mimes:pdf',
         ]);
-    
+
         $student_id = Auth::user()->person->student->student_id;
-    
+
         $fileName = "report.$student_id.pdf";
-    
-        $path = $request->file('report_file')->storeAs('internship_files/reports', $fileName, 'public'); 
-    
+
+        $path = $request->file('report_file')->storeAs('internship_files/reports', $fileName, 'public');
+
         $internship_info = Internship_info::where('student_id', Auth::user()->person->student->student_id)->first();
         $internship_info->report_file_path = $path;
         $internship_info->save();
-    
+
         $report = $internship_info->report_file_path;
         $menu = 'process';
-        
+
         return view('student.report', compact('menu', 'report'));
     }
-    
+
 
     function app_status()
     {

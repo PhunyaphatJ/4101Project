@@ -26,7 +26,7 @@
                 <div class="card-body mx-2">
                     <h6 class="card-title"><i class="bi bi-menu-button-fill me-2"></i>เมนู</h6>
                     <ul class="list-group list-group-flush">
-                        <a class="list-group-item p-3 my-1 @yield('sidebar_intern_supervision_and_information_color')" href="#"><i
+                        <a class="list-group-item p-3 my-1 @yield('sidebar_intern_supervision_and_information_color')" href="{{route('index')}}"><i
                                 class="bi bi-back ms-3 me-2"></i>ข้อมูลนักศึกษาและการนิเทศ</a>
                         <a class="list-group-item p-3 my-1 @yield('sidebar_statistics_color')" href="#"><i
                                 class="bi bi-back ms-3 me-2"></i>ข้อมูลสถิติ</a>

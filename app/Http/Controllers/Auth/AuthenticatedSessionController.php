@@ -30,6 +30,8 @@ class AuthenticatedSessionController extends Controller
 
         if(Auth::user()->role == 'admin'){
             return redirect('admin/manage_application/approval');
+        }elseif(Auth::user()->role == 'professor'){
+            return redirect('/professor');
         }
 
         return redirect()->route('manual');

@@ -15,7 +15,7 @@
                 <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือแต่งตั้งอาจารย์">ดาวน์โหลดหนังสือแต่งตั้งอาจารย์</a>
             @endif
             @if ($application->application_type == 'Recommendation' || $application->application_type == 'Appreciation')
-                <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอคุณ">ดาวน์โหลดหนังสือขอคุณ</a>
+                <a class="btn btn-primary mb-2" href="#ดาวน์โหลดหนังสือขอบคุณ">ดาวน์โหลดหนังสือขอบคุณ</a>
             @endif
         @elseif($event == 'reject')
             <p class="mt-3">ไม่อนุมัติคำร้องสำเร็จ</p>

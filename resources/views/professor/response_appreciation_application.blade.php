@@ -6,6 +6,6 @@
     <div class="text-center">
         <p class="mt-3">ขอหนังสือขอคุณสำเร็จ</p>
         {{-- ลิงค์ไปหน้า intern_information --}}
-        <a class="btn btn-outline-dark" href="#">ย้อนกลับ</a>
+        <a class="btn btn-outline-dark" href="{{route('index')}}">ย้อนกลับ</a>
     </div>
 @endsection

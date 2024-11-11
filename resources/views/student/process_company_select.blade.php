@@ -36,15 +36,19 @@
     </style>
 @endsection
 @section('body_content')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+
+
     <section> {{-- แสดงข้อมูลสถานที่ฝึกงาน --}}
         <div class="card rounded-0 shadow" id="display_info">
             <div class="card-body">
@@ -107,33 +111,34 @@
     </section>
 
     <div>
-        <form class="" validate method="POST" action="{{ route('request_document', ['type' => $type,'application_id'=>$application_id]) }}">
+        <form class="" validate method="POST"
+            action="{{ route('request_document', ['type' => $type, 'application_id' => $application_id]) }}">
             @csrf
             <input type="hidden" id="company_id" name="company_id" value="{{ $company['company_id'] }}">
-            @if($application_id == null)
-            <section> {{-- input รายละเอียดการฝึกงาน --}}
-                <hr class="my-4">
-                <h5 class="my-3">รายละเอียดการฝึกงาน</h5>
+            @if ($application_id == null)
+                <section> {{-- input รายละเอียดการฝึกงาน --}}
+                    <hr class="my-4">
+                    <h5 class="my-3">รายละเอียดการฝึกงาน</h5>
 
-                <div id="file" class="row mx-2">
-                    <div class="col-6">
-                        <label for="semester" class="form-label">ภาคการลงทะเบียน</label>
-                        <select class="form-select rounded-5 ps-4" name="semester" id="semester" required
-                            value="{{ old('semester') }}">
-                            <option value="">Choose...</option>
-                            <option value="1">ภาค 1</option>
-                            <option value="2">ภาค 2</option>
-                            <option value="s">ภาค ซัมเมอร์</option>
-                            <option value="retake1">ภาคซ่อม 1</option>
-                            <option value="retake2">ภาคซ่อม 2</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a valid district.
+                    <div id="file" class="row mx-2">
+                        <div class="col-6">
+                            <label for="semester" class="form-label">ภาคการลงทะเบียน</label>
+                            <select class="form-select rounded-5 ps-4" name="semester" id="semester" required
+                                value="{{ old('semester') }}">
+                                <option value="">Choose...</option>
+                                <option value="1">ภาค 1</option>
+                                <option value="2">ภาค 2</option>
+                                <option value="s">ภาค ซัมเมอร์</option>
+                                <option value="retake1">ภาคซ่อม 1</option>
+                                <option value="retake2">ภาคซ่อม 2</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid district.
+                            </div>
                         </div>
-                    </div>
 
                         <div class="col-6">
-                            <label for="years" class="form-label" >ปีการศึกษา (ค.ศ)</label>
+                            <label for="years" class="form-label">ปีการศึกษา (ค.ศ)</label>
                             <input type="text" class="form-control rounded-5 ps-4" name="years" id="years"
                                 pattern="[0-9]{4}" maxlength="4" minlength="4" placeholder="YYYY" required
                                 value="{{ old('years') }}">
@@ -142,7 +147,7 @@
                             </div>
                         </div>
 
-                            {{-- <div class="col-3">
+                        {{-- <div class="col-3">
                                 <label for="doc2" class="form-label">สำเนาแบบตอบรับ</label>
                                 <input type="file" class="form-control rounded-5 ps-4" name="doc2" id="doc2" placeholder=""
                                     required>
@@ -151,38 +156,38 @@
                                 </div>
                             </div> --}}
 
-                    <div class="col-3">
-                        <label for="start_date" class="form-label">วันที่เริ่ม</label>
-                        <input type="date" class="form-control rounded-5 ps-4" name="start_date" id="start_date"
-                            placeholder="" required value="{{ old('start_date') }}">
-                        <div class="invalid-feedback">
-                            Valid date required
+                        <div class="col-3">
+                            <label for="start_date" class="form-label">วันที่เริ่ม</label>
+                            <input type="date" class="form-control rounded-5 ps-4" name="start_date" id="start_date"
+                                placeholder="" required value="{{ old('start_date') }}">
+                            <div class="invalid-feedback">
+                                Valid date required
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-3">
-                        <label for="end_date" class="form-label">วันที่สิ้นสุด</label>
-                        <input type="date" class="form-control rounded-5 ps-4" name="end_date" id="end_date"
-                            placeholder="" required value="{{ old('end_date') }}">
-                        <label for="end_date" class="form-label"
-                            style="font-size: 12px">(ก่อนวันสอบวันแรกของภาคการลงทะเบียน)</label>
-                        <div class="invalid-feedback">
-                            Valid date required
+                        <div class="col-3">
+                            <label for="end_date" class="form-label">วันที่สิ้นสุด</label>
+                            <input type="date" class="form-control rounded-5 ps-4" name="end_date" id="end_date"
+                                placeholder="" required value="{{ old('end_date') }}">
+                            <label for="end_date" class="form-label"
+                                style="font-size: 12px">(ก่อนวันสอบวันแรกของภาคการลงทะเบียน)</label>
+                            <div class="invalid-feedback">
+                                Valid date required
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-6">
-                        <label for="attend_to" class="form-label">เรียน(ผู้รับเอกสาร)</label>
-                        <input type="text" class="form-control rounded-5 ps-4" name="attend_to" id="attend_to#"
-                            placeholder="" required value="{{ old('attend_to') }}">
-                        <div class="invalid-feedback">
-                            Valid date required
+                        <div class="col-6">
+                            <label for="attend_to" class="form-label">เรียน(ผู้รับเอกสาร)</label>
+                            <input type="text" class="form-control rounded-5 ps-4" name="attend_to" id="attend_to#"
+                                placeholder="" required value="{{ old('attend_to') }}">
+                            <div class="invalid-feedback">
+                                Valid date required
+                            </div>
                         </div>
                     </div>
-                </div>
-                <p class="text-end text-danger mb-0 me-4">COS ใช้เวลา 240 ชั่วโมง | INT ใช้เวลา 270 ชั่วโมง</p>
-                <hr class="mb-4 mt-0">
-            </section>
+                    <p class="text-end text-danger mb-0 me-4">COS ใช้เวลา 240 ชั่วโมง | INT ใช้เวลา 270 ชั่วโมง</p>
+                    <hr class="mb-4 mt-0">
+                </section>
             @endif
             @if ($type == 'request')
                 <section> {{-- ปุ่ม submit สำหรับ ขอเอกสารขอความอนุเคราะห์ --}}

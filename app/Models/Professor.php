@@ -16,7 +16,7 @@ class Professor extends Model
         'professor_id', 
         'remark', 
         'status', 
-        'running_number',
+        'last_assigned_at',
         'assigned',
     ];
 

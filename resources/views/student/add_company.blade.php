@@ -52,7 +52,7 @@
                     <div class="col-6">
                         <label for="fax" class="form-label">โทรสาร</label>
                         <input type="tel" class="form-control rounded-5 ps-4" name="fax" 
-                            value="{{ old('fax') }}" required autocomplete="off">
+                            value="{{ old('fax') }}" required autocomplete="off"maxlength='10'>
                     </div>
                 </div>
             </section>

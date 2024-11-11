@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-10 form-floating">
                         <input type="tel" class="form-control rounded-5 ps-4" name="phone" id="phone"
-                            placeholder="โทรศัพท์" required>
+                            placeholder="โทรศัพท์" required maxlength="10">
                         <label class="ps-5 bg-transparent" for="phone">โทรศัพท์</label>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <div class="col-10 form-floating">
                         <input type="tel" class="form-control rounded-5 ps-4" name="fax" id="fax"
                             placeholder="โทรสาร" required>
-                        <label class="ps-5 bg-transparent" for="fax">โทรสาร</label>
+                        <label class="ps-5 bg-transparent" for="fax" maxlength="10">โทรสาร</label>
                     </div>
                 </div>
                 <hr class="my-5">

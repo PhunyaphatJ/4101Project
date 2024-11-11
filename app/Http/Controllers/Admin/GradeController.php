@@ -36,7 +36,7 @@ class GradeController extends Controller
         if ($student_id) {
                 $query->where('student_id', 'like', $student_id . '%');
         }
-        $query->whereIn('student_type',['former','internship']);
+        $query->where('student_type','former');
 
         $students = $query->paginate(10);
 
